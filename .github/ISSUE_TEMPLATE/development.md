@@ -1,6 +1,6 @@
 ---
 name: development
-about: 개발
+about: 개발하기
 title: ""
 labels: "development"
 ---
