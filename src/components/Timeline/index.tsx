@@ -10,7 +10,7 @@ interface Props {
 
 //TODO 글 내용 부분 받아올 때 최대 length 두기, img props
 
-function Timeline({ title, create_date, main_text }: Props) {
+function Timeline() {
   return (
     <StyledTimelineList>
       {/* 글이 있다면 */}
