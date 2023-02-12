@@ -36,6 +36,5 @@ const StyledLayout = styled.div`
   max-width: 480px;
   width: 100vw;
   margin: 0 auto;
-  height: 100vh;
   background-color: ${({ theme }) => theme.color.background};
 `;
