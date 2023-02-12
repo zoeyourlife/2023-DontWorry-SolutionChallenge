@@ -89,6 +89,10 @@ const StyledTimelineItem = styled.div`
     border-radius: 50%;
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);
   }
+  &:hover::before {
+    transition: all 0.3s;
+    background: #ffffffc5;
+  }
 `;
 
 const StyledImg = styled.div`
