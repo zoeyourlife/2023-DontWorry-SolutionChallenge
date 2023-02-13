@@ -5,7 +5,7 @@ import Nav from "src/components/Nav";
 import styled from "styled-components";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 
-//TODO : button component 넣기, imgCard border 적용
+//TODO : button component 넣기
 function Detail() {
   const {
     query: { id },
@@ -16,7 +16,7 @@ function Detail() {
       <Nav />
       <StyledWrapper>
         <StyledTitle>글 제목</StyledTitle>
-        <StyledDate>2023.02.13</StyledDate>
+        <StyledDate>날짜</StyledDate>
 
         <StyledTagWrapper>
           <Tag />
@@ -122,6 +122,6 @@ const StyledImg = styled.div`
   width: 13.5rem;
   height: 13.5rem;
   margin: 0.5rem 0rem 0.5rem 0;
-  border-radius: ${({ theme }) => theme.borderRadius.button};
+  border-radius: ${({ theme }) => theme.borderRadius.imgCard};
   overflow: hidden;
 `;
