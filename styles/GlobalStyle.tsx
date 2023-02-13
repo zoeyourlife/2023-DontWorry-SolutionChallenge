@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
 
   html, body {
     background-color: ${({ theme }) => theme.color.white};
-    color: ${({ theme }) => theme.color.white}
+    color: ${({ theme }) => theme.color.white};
   }
 
   button,
