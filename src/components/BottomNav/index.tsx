@@ -15,7 +15,7 @@ function BottomNav({ selected }: IProps) {
         <StyledBottomNavWrapper>
             <Link href="/ImageFolder">
                 <StyledBtnWrapper>
-                    <StyledImageFolderPageBtn>
+                    <StyledImageFolderPageBtn color={selected}>
                         <PhotoLibraryIcon />
                         <p>Images</p>
                     </StyledImageFolderPageBtn>
@@ -31,7 +31,7 @@ function BottomNav({ selected }: IProps) {
             </Link>
             <Link href="/DontWorry">
                 <StyledBtnWrapper>
-                    <StyledDontWorryPageBtn>
+                    <StyledDontWorryPageBtn color={selected}>
                         <EscalatorWarningIcon />
                         <p>DontWorry</p>
                     </StyledDontWorryPageBtn>
@@ -64,18 +64,23 @@ const StyledBtnWrapper = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
+        p {
+            font-weight: ${({ theme }) => theme.fontWeight.bold};
+        }
     }
     cursor: pointer;
     width: 4.625rem;
 `;
 const StyledHomePageBtn = styled.div`
-    color: ${({ color, theme }) => color === 'Home' && theme.color.grey100};
+    color: ${({ color, theme }) =>
+        color === 'Home' ? 'white' : theme.color.grey100};
 `;
 
 const StyledImageFolderPageBtn = styled.div`
-    color: ${({ color, theme }) => color === 'Images' && theme.color.grey100};
+    color: ${({ color, theme }) =>
+        color === 'Images' ? 'white' : theme.color.grey100};
 `;
 const StyledDontWorryPageBtn = styled.div`
     color: ${({ color, theme }) =>
-        color === 'DontWorry' && theme.color.grey100};
+        color === 'DontWorry' ? 'white' : theme.color.grey100};
 `;
