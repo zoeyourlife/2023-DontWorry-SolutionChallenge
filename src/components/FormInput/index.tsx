@@ -1,5 +1,3 @@
-import { type } from "os";
-import { useState } from "react";
 import styled from "styled-components";
 
 interface InputBaseProps {
