@@ -28,6 +28,8 @@ const StyledNavWrapper = styled.nav`
 
   width: 100%;
   padding: 1rem;
+  background-color: ${({ theme }) => theme.color.background};
+  z-index: 10;
 `;
 
 const StyledLogo = styled.h1`

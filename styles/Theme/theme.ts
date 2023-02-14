@@ -5,7 +5,9 @@ const color = {
   black: "#000000",
   background: "#1f1f1f", // screen background
   blueGreen: "#3484a8", // 청록
-  grey: "#353535", // input, subNav color
+  grey: "#353535", // input, buttomNavbar color
+  grey100: "#808080",
+  grey500: "#6e6e6e",
 };
 
 const fontWeight = {
@@ -17,6 +19,7 @@ const fontWeight = {
 const borderRadius = {
   input: "17px",
   button: "15px",
+  imgCard: "10px",
 };
 
 export type ColorsTypes = typeof color;
