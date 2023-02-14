@@ -1,4 +1,5 @@
 import type { AppProps } from "next/app";
+import Head from "next/head";
 import { PropsWithChildren, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import GlobalStyle from "styles/GlobalStyle";
@@ -7,12 +8,21 @@ import useWindowSize from "src/hooks/useWindowSize";
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ThemeProvider>
+    <>
+      <Head>
+        <title>DontWorry</title>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0 viewport-fit=cover"
+        />
+      </Head>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
+    </>
   );
 }
 
