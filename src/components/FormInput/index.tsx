@@ -7,7 +7,7 @@ interface InputBaseProps {
 }
 
 function FormInput({ type }: InputBaseProps) {
-  return <StyledFormInput type={"password"} />;
+  return <StyledFormInput type={type} />;
 }
 
 export default FormInput;
