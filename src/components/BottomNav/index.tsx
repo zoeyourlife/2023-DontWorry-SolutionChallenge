@@ -73,14 +73,14 @@ const StyledBtnWrapper = styled.div`
 `;
 const StyledHomePageBtn = styled.div`
     color: ${({ color, theme }) =>
-        color === 'Home' ? 'white' : theme.color.grey100};
+        color === 'Home' ? theme.color.white : theme.color.grey100};
 `;
 
 const StyledImageFolderPageBtn = styled.div`
     color: ${({ color, theme }) =>
-        color === 'Images' ? 'white' : theme.color.grey100};
+        color === 'Images' ? theme.color.white : theme.color.grey100};
 `;
 const StyledDontWorryPageBtn = styled.div`
     color: ${({ color, theme }) =>
-        color === 'DontWorry' ? 'white' : theme.color.grey100};
+        color === 'DontWorry' ? theme.color.white : theme.color.grey100};
 `;
