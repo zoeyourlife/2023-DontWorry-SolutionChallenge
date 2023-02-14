@@ -30,15 +30,15 @@ export const defaultFadeInVariants: Variants = {
 
 export const defaultFadeInScaleVariants = {
   initial: {
-    scale: 0.4,
+    scale: 0.85,
     opacity: 0,
-    transition: { duration: 0.5, ease: defaultEasing },
+    transition: { duration: 0.8, ease: defaultEasing },
     willChange: "opacity, transform",
   },
   animate: {
     scale: 1,
     opacity: 1,
-    transition: { duration: 1.8, ease: defaultEasing },
+    transition: { duration: 1.6, ease: defaultEasing },
     willChange: "opacity, transform",
   },
   exit: {
@@ -51,30 +51,30 @@ export const defaultFadeInScaleVariants = {
 
 export const defaultFadeInUpVariants = {
   initial: {
-    y: 50,
+    y: 20,
     opacity: 0,
-    transition: { duration: 0.5, ease: defaultEasing },
+    transition: { duration: 0.45, ease: defaultEasing },
     willChange: "opacity, transform",
   },
   animate: {
     y: 0,
     opacity: 1,
-    transition: { duration: 0.5, ease: defaultEasing },
+    transition: { duration: 0.8, ease: defaultEasing },
     willChange: "opacity, transform",
   },
   exit: {
-    y: 50,
+    y: 20,
     opacity: 0,
-    transition: { duration: 0.5, ease: defaultEasing },
+    transition: { duration: 0.45, ease: defaultEasing },
     willChange: "opacity, transform",
   },
 };
 
 export const defaultFadeInLeftVariants = {
   initial: {
-    x: -90,
+    x: -22,
     opacity: 0,
-    transition: { duration: 0.9, ease: defaultEasing },
+    transition: { duration: 0.7, ease: defaultEasing },
     willChange: "opacity, transform",
   },
   animate: {
