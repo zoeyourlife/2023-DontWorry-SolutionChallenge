@@ -1,6 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
+import { motion } from "framer-motion";
+import {
+  defaultFadeInLeftVariants,
+  defaultFadeInUpVariants,
+} from "src/constants/motion";
 
 interface Props {
   title: string;
@@ -18,8 +23,22 @@ function Timeline() {
         <StyledTimelineContainer>
           <StyledTimelineItem>
             <StyledDate>글 작성 날짜</StyledDate>
-            <StyledTitle>글 제목</StyledTitle>
-            <StyledSummary>글 내용</StyledSummary>
+            <StyledTitle
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              variants={defaultFadeInLeftVariants}
+            >
+              글 제목
+            </StyledTitle>
+            <StyledSummary
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              variants={defaultFadeInUpVariants}
+            >
+              글 내용
+            </StyledSummary>
           </StyledTimelineItem>
         </StyledTimelineContainer>
       </Link>
@@ -29,7 +48,12 @@ function Timeline() {
         <StyledTimelineContainer>
           <StyledTimelineItem>
             <StyledDate>글 작성 날짜</StyledDate>
-            <StyledImg>
+            <StyledImg
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              variants={defaultFadeInUpVariants}
+            >
               <Image
                 src="/images/food.jpg"
                 alt="cardImg"
@@ -61,11 +85,11 @@ const StyledDate = styled.span`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
 `;
 
-const StyledTitle = styled.h3`
+const StyledTitle = styled(motion.h3)`
   margin: 1rem 0 0.5rem 0;
 `;
 
-const StyledSummary = styled.p`
+const StyledSummary = styled(motion.p)`
   font-weight: ${({ theme }) => theme.fontWeight.light};
   line-height: 1.3rem;
 `;
@@ -95,7 +119,7 @@ const StyledTimelineItem = styled.div`
   }
 `;
 
-const StyledImg = styled.div`
+const StyledImg = styled(motion.div)`
   position: relative;
   width: 100%;
   height: 100%;
