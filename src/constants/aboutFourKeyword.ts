@@ -1,4 +1,9 @@
-export const AboutFourKeyword = [
+interface IType {
+  title: string;
+  summary: string;
+}
+
+export const AboutFourKeyword: IType[] = [
   {
     title: "Evidence",
     summary: "Report photo or what you've been through.",
