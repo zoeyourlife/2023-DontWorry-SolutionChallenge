@@ -51,17 +51,14 @@ function Signup() {
       </StyledTextDiv>
       <StyledForm onSubmit={onSubmit}>
         <StyledInputDiv>
-          {/* <StyledInputTitleLabel htmlFor="email"><span>E-mail</span></StyledInputTitleLabel> */}
           <FormInput type="email" id="Email" value={email} />
         </StyledInputDiv>
 
         <StyledInputDiv>
-          {/* <StyledInputTitleLabel htmlFor="userId"><span>ID</span></StyledInputTitleLabel> */}
           <FormInput type="text" id="ID" value={userId} />
         </StyledInputDiv>
 
         <StyledInputDiv>
-          {/* <StyledInputTitleLabel htmlFor="password"><span>Password</span></StyledInputTitleLabel> */}
           <FormInput type="password" id="Password" value={password} />
         </StyledInputDiv>
 
