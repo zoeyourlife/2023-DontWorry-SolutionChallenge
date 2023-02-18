@@ -100,11 +100,14 @@ const StyledPageIntroSpan = styled.span`
 `;
 
 const StyledForm = styled.form`
+display: flex;
+flex-direction: column;
+justify-content: center;
   margin-top: 4rem;
 `;
 
 const StyledInputDiv = styled.div`
-  margin-top: 3rem;
+  margin-top: 4rem;
 `;
 
 const StyledInputTitleLabel = styled.label`
@@ -113,7 +116,7 @@ const StyledInputTitleLabel = styled.label`
 `;
 
 const StyledButtonDiv = styled.div`
-  margin-top: 4rem;
+  margin-top: 1rem;
 `;
 
 // String userId
