@@ -97,9 +97,9 @@ const StyledPageIntroSpan = styled.span`
 `;
 
 const StyledForm = styled.form`
-display: flex;
-flex-direction: column;
-justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin-top: 4rem;
 `;
 
