@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 interface InputBaseProps {
   type: "password" | "text" | "email";
-  id: "Password" | "ID" | "Email";
-  value : string;
+  id?: "Password" | "ID" | "Email";
+  value: string;
 }
 
 interface LabelProps {
@@ -12,21 +12,25 @@ interface LabelProps {
 
 function FormInput({ type, id }: InputBaseProps, { placeholder }: LabelProps) {
   return (
-    <div>
+    <StyledWrapper>
       <StyledFormInput type={type} id={id} />
-      <StyledInputTitleLabel htmlFor={id}>
+      <label htmlFor={id}>
         <span>{id}</span>
-      </StyledInputTitleLabel>
-    </div>
+      </label>
+    </StyledWrapper>
   );
 }
 
 export default FormInput;
 
+const StyledWrapper = styled.div`
+  width: 80%;
+  margin: 0 auto;
+`;
+
 const StyledFormInput = styled.input`
   display: flex;
-  width: 27rem;
-  margin: 0 auto;
+  width: 100%;
   padding: 1.5rem;
   color: ${({ theme }) => theme.color.white};
   font-size: 18px;
@@ -55,20 +59,16 @@ const StyledFormInput = styled.input`
     text-align: left;
     font-weight: bold;
     font-size: 0.7rem;
-    margin-top: 0.7rem;
+    padding: 1rem 0 1rem 0;
     color: ${({ theme }) => theme.color.grey100};
+    margin-top: 0.7rem;
     transition: all 0.25s;
-    transform: translateY(-190%);
+    transform: translateY(-260%);
   }
 
   :focus + label {
     color: ${({ theme }) => theme.color.white};
-    transform: translateY(-195%);
+    transform: translateY(-265%);
     font-size: 0.72rem;
   }
-`;
-
-const StyledInputTitleLabel = styled.label`
-  padding: 1rem 0 1rem 2.4rem;
-  color: ${({ theme }) => theme.color.grey100};
 `;

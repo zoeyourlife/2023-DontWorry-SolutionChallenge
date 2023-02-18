@@ -8,8 +8,6 @@ interface SubmitBtnProps {
 function SubmitBtn({ type, name }: SubmitBtnProps) {
   return (
     <StyledSubmitBtn type={type}>
-      {/* StyledSubmitP 태그 사이에 각자 들어갈 내용이긴 한데 ex) Submit, Reset, ... */}
-      {/* 따로 컴포넌트 구성을 해야될 것 같은데? */}
       <StyledSubmitP>{name}</StyledSubmitP>
     </StyledSubmitBtn>
   );
@@ -19,9 +17,8 @@ export default SubmitBtn;
 
 const StyledSubmitBtn = styled.button`
   display: flex;
-  width: 25rem;
+  width: 75%;
   padding: 0.8rem;
-  height: 2rem;
   margin: 0 auto;
   margin-top: 3rem;
   color: ${({ theme }) => theme.color.white};
@@ -32,7 +29,7 @@ const StyledSubmitBtn = styled.button`
 `;
 
 const StyledSubmitP = styled.p`
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   color: ${({ theme }) => theme.color.white};
   margin: 0 auto;
