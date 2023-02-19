@@ -43,12 +43,16 @@ const StyledMenu = styled.span<{ click: boolean }>`
   display: inline-block;
   width: 2rem;
   height: 0.15rem;
-  background-color: ${({ theme }) => theme.color.white};
-  ${(props) =>
-    props.click &&
-    css`
-      background-color: ${({ theme }) => theme.color.background};
-    `};
+
+  background-color: ${(props) =>
+    props.click
+      ? css`
+          ${({ theme }) => theme.color.background};
+        `
+      : css`
+          ${({ theme }) => theme.color.white};
+        `};
+
   transition: all 0.5s;
   &::before,
   &::after {
