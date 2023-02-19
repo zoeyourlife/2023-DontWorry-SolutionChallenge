@@ -4,6 +4,7 @@ interface InputBaseProps {
   type: "password" | "text" | "email";
   id?: "Password" | "ID" | "Email";
   value: string;
+  onChagne : Function;
 }
 
 interface LabelProps {
