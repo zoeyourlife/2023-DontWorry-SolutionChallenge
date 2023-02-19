@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+import { defaultFadeInScaleVariants } from "src/constants/motion";
 import styled from "styled-components";
 
 interface IProps {
@@ -7,7 +9,11 @@ interface IProps {
 
 function HrSummary({ title, summary }: IProps) {
   return (
-    <StyledIconSummaryWrapper>
+    <StyledIconSummaryWrapper
+      initial="initial"
+      whileInView="animate"
+      variants={defaultFadeInScaleVariants}
+    >
       {title}
       <StyledHr />
       <p>{summary}</p>
@@ -17,7 +23,7 @@ function HrSummary({ title, summary }: IProps) {
 
 export default HrSummary;
 
-const StyledIconSummaryWrapper = styled.div`
+const StyledIconSummaryWrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
   text-align: center;
