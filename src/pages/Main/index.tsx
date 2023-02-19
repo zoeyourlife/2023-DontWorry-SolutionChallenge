@@ -1,11 +1,19 @@
+import Link from "next/link";
+import styled from "styled-components";
 import Nav from "src/components/Nav";
 import Timeline from "src/components/Timeline";
-import styled from "styled-components";
+import AddIcon from "@mui/icons-material/Add";
 
 function Main() {
   return (
     <>
-      <Nav />
+      <Nav
+        rightConfig={
+          <Link href="/Main/Write">
+            <AddIcon />
+          </Link>
+        }
+      />
       <StyledWrapper>
         <Timeline />
       </StyledWrapper>

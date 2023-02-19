@@ -26,7 +26,6 @@ const StyledNavWrapper = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
 
   width: 100%;
   padding: 1rem;
