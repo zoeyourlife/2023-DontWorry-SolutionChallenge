@@ -2,8 +2,8 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
 function MakePdf() {
-  async function converToImg() {
-    const paper = document.querySelector(".pdfWrapper ") as HTMLElement;
+  async function pdfExport() {
+    const paper = document.querySelector(".pdfWrapper") as HTMLElement;
     const canvas = await html2canvas(paper, { scale: 5, useCORS: true });
     const imageFile = canvas.toDataURL("image/png", 1.0);
     const doc = new jsPDF("p", "mm", "a4", true);
@@ -30,11 +30,12 @@ function MakePdf() {
     // 한 페이지 이상일 경우
     while (heightLeft >= 0) {
       position = heightLeft - imgHeight;
+
       doc.addPage();
       doc.addImage(
         imageFile,
         "JPEG",
-        0,
+        10,
         position,
         imgWidth,
         imgHeight,
@@ -55,7 +56,7 @@ function MakePdf() {
 
   return {
     viewWithPdf: async () => {
-      const imageFile = await converToImg();
+      const imageFile = await pdfExport();
       return imageFile;
     },
   };
