@@ -48,9 +48,8 @@ function Detail() {
             <Image
               src="/images/food.jpg"
               alt="cardImg"
-              width={100}
-              height={100}
-              layout="responsive"
+              layout="fill"
+              sizes="13.5rem"
               quality={100}
             />
           </StyledImg>
