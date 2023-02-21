@@ -19,6 +19,7 @@ function Detail() {
 
   async function onSaveBtnClick() {
     if (currentRef) {
+      alert("converted to pdf ...");
       currentRef.style.color = "#000000";
     }
 
