@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import React, { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import FormInput from "src/components/FormInput";
 import SubmitBtn from "src/components/SubmitBtn";
+import { API_BASE_URL } from "src/constants/apiUrl";
 import styled from "styled-components";
 
 function Signup() {
@@ -23,10 +24,6 @@ function Signup() {
   const [isPassword, setIsPassword] = useState<boolean>(false);
   const [isEmail, setIsEmail] = useState<boolean>(false);
 
-  // const onChangeUserId = (e: ChangeEvent<HTMLInputElement>) => {
-  //   setUserId(e.target.value);
-  // };
-
   const onChangeUserId = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setUserId(e.target.value);
@@ -42,10 +39,6 @@ function Signup() {
     },
     []
   );
-
-  // const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
-  //   setPassWord(e.target.value);
-  // };
 
   const onChangePassword = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,10 +59,6 @@ function Signup() {
     },
     []
   );
-
-  // const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
-  //   setEmail(e.target.value);
-  // };
 
   const onChangeEmail = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -94,7 +83,7 @@ function Signup() {
       e.preventDefault();
       try {
         await axios
-          .post("http://35.247.84.165/signup", {
+          .post(`${API_BASE_URL}/signup`, {
             userId: userId,
             password: password,
             email: email,
@@ -103,7 +92,7 @@ function Signup() {
             console.log("response:", res);
             if (res.status === 200) {
               console.log("회원가입 완료");
-              router.push("/Signin/index");
+              router.push("/Signin");
             }
           });
       } catch (err) {
@@ -228,7 +217,3 @@ const StyledValidityDiv = styled.div`
   margin: 0.5rem 0 0 3.4rem;
   color: ${({ theme }) => theme.color.white};
 `;
-
-// String userId
-// String password
-// String email
