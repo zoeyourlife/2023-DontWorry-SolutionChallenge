@@ -15,12 +15,9 @@ function Tag() {
 export default Tag;
 
 const StyledTagShape = styled.div`
-  display: flex;
-  align-items: center;
-
   width: auto;
-  height: 1.46rem;
-  padding: 0rem 0.65rem;
+
+  padding: 0.13rem 0.65rem;
   margin-right: 0.13rem;
 
   border: 1px solid ${({ theme }) => theme.color.grey};
