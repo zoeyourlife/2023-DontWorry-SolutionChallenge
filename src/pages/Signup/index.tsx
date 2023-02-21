@@ -30,11 +30,13 @@ function Signup() {
   const onChangeUserId = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setUserId(e.target.value);
-      if (e.target.value.length < 2 || e.target.value.length > 5) {
-        setUserIdMessage("2글자 이상 5글자 미만으로 입력해주세요");
+      if (e.target.value.length < 6 || e.target.value.length > 20) {
+        setUserIdMessage(
+          "Please enter more than 6 characters and less than 20."
+        );
         setIsUserId(false);
       } else {
-        setUserIdMessage("올바른 아이디 형식입니다.");
+        setUserIdMessage("This is a valid ID format.");
         setIsUserId(true);
       }
     },
@@ -54,11 +56,11 @@ function Signup() {
 
       if (!passwordRegex.test(passwordCurrent)) {
         setPasswordMessage(
-          "숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요"
+          "Please enter at least 8 digits in combination of numbers + alphabet + special characters."
         );
         setIsPassword(false);
       } else {
-        setPasswordMessage("안전한 비밀번호입니다.");
+        setPasswordMessage("It's a safe password.");
         setIsPassword(true);
       }
     },
@@ -77,10 +79,10 @@ function Signup() {
       setEmail(emailCurrent);
 
       if (!emailRegex.test(emailCurrent)) {
-        setEmailMessage("이메일 형식이 틀림");
+        setEmailMessage("Not correct, Try again");
         setIsEmail(false);
       } else {
-        setEmailMessage("올바른 이메일 형식입니다.");
+        setEmailMessage("It's the correct email format.");
         setIsEmail(true);
       }
     },
@@ -100,6 +102,7 @@ function Signup() {
           .then((res) => {
             console.log("response:", res);
             if (res.status === 200) {
+              console.log("회원가입 완료");
               router.push("/Signin/index");
             }
           });
@@ -125,6 +128,13 @@ function Signup() {
             value={email}
             onChange={onChangeEmail}
           />
+          {email.length > 0 && (
+            <StyledValidityDiv
+              className={`message ${isEmail ? "success" : "error"}`}
+            >
+              {emailMessage}
+            </StyledValidityDiv>
+          )}
         </StyledInputDiv>
 
         <StyledInputDiv>
@@ -134,6 +144,13 @@ function Signup() {
             value={userId}
             onChange={onChangeUserId}
           />
+          {userId.length > 0 && (
+            <StyledValidityDiv
+              className={`message ${isUserId ? "success" : "error"}`}
+            >
+              {userIdMessage}
+            </StyledValidityDiv>
+          )}
         </StyledInputDiv>
 
         <StyledInputDiv>
@@ -141,8 +158,15 @@ function Signup() {
             type="password"
             id="Password"
             value={password}
-            onChagne={onChangePassword}
+            onChange={onChangePassword}
           />
+          {password.length > 0 && (
+            <StyledValidityDiv
+              className={`message ${isPassword ? "success" : "error"}`}
+            >
+              {passwordMessage}
+            </StyledValidityDiv>
+          )}
         </StyledInputDiv>
 
         <StyledButtonDiv>
@@ -197,6 +221,12 @@ const StyledInputTitleLabel = styled.label`
 
 const StyledButtonDiv = styled.div`
   margin-top: 1rem;
+`;
+
+const StyledValidityDiv = styled.div`
+  display: flex;
+  margin: 0.5rem 0 0 3.4rem;
+  color: ${({ theme }) => theme.color.white};
 `;
 
 // String userId
