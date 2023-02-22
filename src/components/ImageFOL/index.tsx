@@ -15,7 +15,7 @@ function onClickImageFOL(month: string, route: NextRouter) {
     route.push({ pathname: '/ImageFolder/Detail', query: { month: month } });
 }
 
-function ImageFOL(props: IImageFOL) {
+function ImageFOL({ month, quantity }: IImageFOL) {
     const route = useRouter();
     return (
         <StyledImageFOL
@@ -23,11 +23,11 @@ function ImageFOL(props: IImageFOL) {
             animate="animate"
             exit="exit"
             variants={defaultFadeInUpVariants}
-            onClick={() => onClickImageFOL(props.month, route)}
+            onClick={() => onClickImageFOL(month, route)}
         >
             <StyledTestImage />
-            <div>{props.month}</div>
-            <div>{props.quantity}</div>
+            <div>{month}</div>
+            <div>{quantity}</div>
         </StyledImageFOL>
     );
 }
