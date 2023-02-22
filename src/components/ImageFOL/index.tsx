@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { useRouter } from 'next/router';
+import { NextRouter, useRouter } from 'next/router';
 import Link from 'next/link';
 import {
     defaultFadeInLeftVariants,
@@ -10,6 +10,9 @@ import {
 interface IImageFOL {
     month: string;
     quantity: number;
+}
+function onClickImageFOL(month: string, route: NextRouter) {
+    route.push({ pathname: '/ImageFolder/Detail', query: { month: month } });
 }
 
 function ImageFOL(props: IImageFOL) {
@@ -20,7 +23,7 @@ function ImageFOL(props: IImageFOL) {
             animate="animate"
             exit="exit"
             variants={defaultFadeInUpVariants}
-            onClick={() => route.push('/')}
+            onClick={() => onClickImageFOL(props.month, route)}
         >
             <StyledTestImage />
             <div>{props.month}</div>
