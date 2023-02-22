@@ -1,6 +1,7 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Link from "next/link";
+import useScroll from "src/hooks/useScroll";
 import HomeIcon from "@mui/icons-material/Home";
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 import EscalatorWarningIcon from "@mui/icons-material/EscalatorWarning";
@@ -11,8 +12,10 @@ interface IProps {
 // * param: selected = "Image" or "Home" or "DontWorry"
 
 function BottomNav({ selected }: IProps) {
+  const { scrollDown, scrollTop } = useScroll();
+
   return (
-    <StyledBottomNavWrapper>
+    <StyledBottomNavWrapper hide={scrollDown && !scrollTop}>
       <Link href="/ImageFolder">
         <StyledBtnWrapper>
           <StyledImageFolderPageBtn color={selected}>
@@ -43,7 +46,7 @@ function BottomNav({ selected }: IProps) {
 
 export default BottomNav;
 
-const StyledBottomNavWrapper = styled.nav`
+const StyledBottomNavWrapper = styled.nav<{ hide: boolean }>`
   position: fixed;
   bottom: 0;
 
@@ -57,6 +60,17 @@ const StyledBottomNavWrapper = styled.nav`
   padding: 0.5rem;
   background-color: ${({ theme }) => theme.color.grey};
   z-index: 10;
+
+  ${(props) =>
+    props.hide
+      ? css`
+          transform: translateY(100%);
+          transition: all 0.65s;
+        `
+      : css`
+          transform: translateY(0%);
+          transition: all 0.4s;
+        `}
 `;
 
 const StyledBtnWrapper = styled.div`
