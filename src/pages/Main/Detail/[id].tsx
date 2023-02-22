@@ -1,50 +1,64 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { useRef } from "react";
 import Tag from "src/components/Common/Tag";
 import Nav from "src/components/Nav";
+import MakePdf from "src/components/Pdf/MakePdf";
 import styled from "styled-components";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 
-//TODO : button component 넣기
 function Detail() {
   const {
     query: { id },
   } = useRouter();
 
+  const pdf = MakePdf();
+
+  const colorChangeRef = useRef<HTMLDivElement>(null);
+  const currentRef = colorChangeRef.current;
+
+  async function onSaveBtnClick() {
+    if (currentRef) {
+      alert("converted to pdf ...");
+      currentRef.style.color = "#000000";
+    }
+
+    await pdf.viewWithPdf();
+    if (currentRef) {
+      currentRef.style.color = "#ffffff";
+    }
+  }
+
   return (
     <>
       <Nav />
-      <StyledWrapper>
+      <StyledWrapper ref={colorChangeRef} className="pdfWrapper">
         <StyledTitle>글 제목</StyledTitle>
         <StyledDate>날짜</StyledDate>
-
         <StyledTagWrapper>
           <Tag />
         </StyledTagWrapper>
-
         <StyledContentWrapper>
           <StyledContent>글내용</StyledContent>
         </StyledContentWrapper>
-
         <StyledLocationWrapper>
           <StyledLocationIcon /> <StyledLocation>장소 명</StyledLocation>
         </StyledLocationWrapper>
-
         <StyledImgWrapper>
           <StyledImg>
             <Image
               src="/images/food.jpg"
               alt="cardImg"
-              width={100}
-              height={100}
-              layout="responsive"
+              layout="fill"
+              sizes="13.5rem"
               quality={100}
             />
           </StyledImg>
         </StyledImgWrapper>
-
-        {/* button component 만들어지면 넣을 예정 */}
       </StyledWrapper>
+      <StyledBtnWrapper>
+        <StyledBtn onClick={onSaveBtnClick}>save as pdf</StyledBtn>
+      </StyledBtnWrapper>
     </>
   );
 }
@@ -124,4 +138,21 @@ const StyledImg = styled.div`
   margin: 0.5rem 0rem 0.5rem 0;
   border-radius: ${({ theme }) => theme.borderRadius.imgCard};
   overflow: hidden;
+`;
+
+const StyledBtnWrapper = styled.div`
+  position: relative;
+  min-height: 5.6rem;
+  height: auto;
+`;
+
+const StyledBtn = styled.button`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 1rem 1rem;
+  padding: 0.3rem 0.8rem;
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  background-color: ${({ theme }) => theme.color.blueGreen};
+  border-radius: ${({ theme }) => theme.borderRadius.imgCard};
 `;

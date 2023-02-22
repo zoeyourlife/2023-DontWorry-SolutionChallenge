@@ -1,16 +1,18 @@
 import Link from "next/link";
+import { ReactElement } from "react";
 import styled from "styled-components";
-import AddIcon from "@mui/icons-material/Add";
 
-function Nav() {
+interface INavProps {
+  rightConfig?: ReactElement;
+}
+
+function Nav({ rightConfig }: INavProps) {
   return (
     <StyledNavWrapper>
       <Link href="/Main">
         <StyledLogo>DontWorry</StyledLogo>
       </Link>
-      <Link href="/Main/Write">
-        <StyledWritePageBtn />
-      </Link>
+      {rightConfig && <>{rightConfig}</>}
     </StyledNavWrapper>
   );
 }
@@ -24,7 +26,6 @@ const StyledNavWrapper = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
 
   width: 100%;
   padding: 1rem;
@@ -33,9 +34,5 @@ const StyledNavWrapper = styled.nav`
 `;
 
 const StyledLogo = styled.h1`
-  cursor: pointer;
-`;
-
-const StyledWritePageBtn = styled(AddIcon)`
   cursor: pointer;
 `;
