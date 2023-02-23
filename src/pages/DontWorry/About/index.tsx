@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import Image from "next/image";
 import Nav from "src/components/Nav";
-import BottomNav from "src/components/BottomNav";
+import BottomNav from "src/components/Nav/BottomNav";
 import HrSummary from "src/components/About/HrSummary";
 import { AboutFourKeyword } from "src/constants/aboutFourKeyword";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   defaultFadeInLeftVariants,
   defaultFadeInRightVariants,
@@ -25,7 +25,7 @@ function About() {
             layout="responsive"
           />
         </StyledIntroBgWrapper>
-        <motion.div
+        <m.div
           initial="initial"
           whileInView="animate"
           variants={defaultFadeInLeftVariants}
@@ -34,7 +34,7 @@ function About() {
             Welcom to <br />
             Dontworry
           </StyledIntroText>
-        </motion.div>
+        </m.div>
         <StyledPaddingSection>
           <StyledHelpWomenWrapper>
             <StyledHelpWomenImgWrapper>
@@ -156,7 +156,7 @@ const StyledHelpWomenImgWrapper = styled.div`
   margin-right: 2rem;
 `;
 
-const StyledColumnWrapper = styled(motion.div)`
+const StyledColumnWrapper = styled(m.div)`
   display: flex;
   flex-direction: column;
   span {
@@ -166,7 +166,7 @@ const StyledColumnWrapper = styled(motion.div)`
   }
 `;
 
-const StyledYourSideText = styled(motion.div)`
+const StyledYourSideText = styled(m.div)`
   text-align: right;
   font-size: 1.85rem;
   letter-spacing: 0.1px;
@@ -175,13 +175,13 @@ const StyledYourSideText = styled(motion.div)`
   }
 `;
 
-const StyledDontWorryText = styled(motion.p)`
+const StyledDontWorryText = styled(m.p)`
   font-size: 1.4rem;
   color: ${({ theme }) => theme.color.grey500};
   margin-bottom: 0.5rem;
 `;
 
-const StyledSubTitleText = styled(motion.p)`
+const StyledSubTitleText = styled(m.p)`
   font-size: 1.4rem;
   margin-bottom: 1rem;
   opacity: 0.7;

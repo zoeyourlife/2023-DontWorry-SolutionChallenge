@@ -2,6 +2,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { PropsWithChildren, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
+import { LazyMotion, domMax } from "framer-motion";
 import GlobalStyle from "styles/GlobalStyle";
 import theme from "styles/Theme/theme";
 import useWindowSize from "src/hooks/useWindowSize";
@@ -17,10 +18,12 @@ function App({ Component, pageProps }: AppProps) {
         />
       </Head>
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <LazyMotion features={domMax}>
+          <GlobalStyle />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </LazyMotion>
       </ThemeProvider>
     </>
   );
