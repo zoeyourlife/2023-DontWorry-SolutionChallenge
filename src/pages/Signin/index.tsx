@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { ChangeEvent, useCallback, useState, useEffect } from "react";
 import FormInput from "src/components/FormInput";
+import Login from "src/components/Login";
 import SubmitBtn from "src/components/SubmitBtn";
 import { API_BASE_URL } from "src/constants/apiUrl";
 import styled from "styled-components";
@@ -91,6 +92,7 @@ function Signin() {
           <StyledRemSpan>Remember account</StyledRemSpan>
         </StyledInputTitleLabel>
         <SubmitBtn type="submit" name="Login" />
+        <Login />
       </StyledForm>
 
       <div>
