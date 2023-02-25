@@ -83,7 +83,7 @@ function Signup() {
       e.preventDefault();
       try {
         await axios
-          .post(`${API_BASE_URL}/signup`, {
+          .post(`${API_BASE_URL}signup`, {
             userId: userId,
             password: password,
             email: email,

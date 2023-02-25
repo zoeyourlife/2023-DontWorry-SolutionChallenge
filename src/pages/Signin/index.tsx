@@ -1,10 +1,18 @@
 import axios from "axios";
+import { Cookie } from "express-session";
+import Link from "next/link";
 import { useRouter } from "next/router";
-import { ChangeEvent, useCallback, useState } from "react";
+import { ChangeEvent, useCallback, useState, useEffect } from "react";
 import FormInput from "src/components/FormInput";
 import SubmitBtn from "src/components/SubmitBtn";
 import { API_BASE_URL } from "src/constants/apiUrl";
 import styled from "styled-components";
+
+interface SessionData {
+  cookie: Cookie;
+  Id: string;
+  Password: string;
+}
 
 function Signin() {
   const router = useRouter();
@@ -24,12 +32,26 @@ function Signin() {
       e.preventDefault();
       try {
         await axios
-          .post(`${API_BASE_URL}/login`, {
+          .post(`${API_BASE_URL}login`, {
             Id: userId,
             password: password,
           })
           .then((res) => {
             console.log(res.data);
+            console.log(res);
+            console.log(res.data.userId);
+            console.log(res.data.msg);
+            if (res.data.userId === undefined) {
+              console.log("==========", res.data.msg);
+              alert("입력하신 id가 일치 X");
+            } else if (res.data.userId === null) {
+              console.log("==========", "입력된 비밀번호 일치 X");
+              alert("비밀번호 일치 X");
+            } else if (res.data.userId === userId) {
+              console.log("===========", "로그인 성공");
+              sessionStorage.setItem("userId", userId);
+            }
+            // sessionStorage.setItem("sessionId", userId);
             router.push("/Main");
           });
         // Id, Pw 에러
@@ -40,6 +62,7 @@ function Signin() {
     },
     [userId, password, router]
   );
+
   return (
     <>
       <StyledTextDiv>
@@ -72,7 +95,9 @@ function Signin() {
 
       <div>
         <StyledRemHr />
-        <SubmitBtn type="submit" name="Create account" />
+        <Link href="/Signup">
+          <SubmitBtn type="submit" name="Create account" />
+        </Link>
       </div>
     </>
   );
@@ -121,6 +146,7 @@ const StyledRemHr = styled.hr`
   margin: 0 auto;
   margin-top: 5rem;
   overflow: visible;
+  transform: translateY(48px);
   ::after {
     content: "No account?";
     position: relative;
