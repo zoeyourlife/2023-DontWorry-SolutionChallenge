@@ -5,6 +5,7 @@ import useScroll from 'src/hooks/useScroll';
 import HomeIcon from '@mui/icons-material/Home';
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 import EscalatorWarningIcon from '@mui/icons-material/EscalatorWarning';
+import CreateIcon from '@mui/icons-material/Create';
 
 interface IProps {
     selected?: 'Images' | 'Home' | 'DontWorry';
@@ -32,11 +33,11 @@ function BottomNav({ selected }: IProps) {
                     </StyledHomePageBtn>
                 </StyledBtnWrapper>
             </Link>
-            <Link href="/DontWorry">
+            <Link href="/Main/Write">
                 <StyledBtnWrapper>
                     <StyledDontWorryPageBtn color={selected}>
-                        <EscalatorWarningIcon />
-                        <p>DontWorry</p>
+                        <CreateIcon />
+                        <p>Write</p>
                     </StyledDontWorryPageBtn>
                 </StyledBtnWrapper>
             </Link>
