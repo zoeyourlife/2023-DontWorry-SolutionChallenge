@@ -24,6 +24,9 @@ function HamburgerNav() {
           <StyledListItem>
             <Link href="/">Law</Link>
           </StyledListItem>
+          <StyledListItem>
+            <Link href="/Signin">Login</Link>
+          </StyledListItem>
         </StyledList>
       </StyledNavWrapper>
     </StyledMenuLabel>
@@ -41,7 +44,7 @@ const StyledMenuLabel = styled.label`
 const StyledMenu = styled.span<{ click: boolean }>`
   position: relative;
   display: inline-block;
-  width: 2rem;
+  width: 1.8rem;
   height: 0.15rem;
 
   background-color: ${(props) =>
@@ -61,7 +64,7 @@ const StyledMenu = styled.span<{ click: boolean }>`
     display: inline-block;
     left: 0;
     background-color: ${({ theme }) => theme.color.white};
-    width: 2rem;
+    width: 1.8rem;
     height: 0.15rem;
     transition: all 0.5s;
   }
