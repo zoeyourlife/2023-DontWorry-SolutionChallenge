@@ -8,7 +8,7 @@ import EscalatorWarningIcon from '@mui/icons-material/EscalatorWarning';
 import CreateIcon from '@mui/icons-material/Create';
 
 interface IProps {
-    selected?: 'Images' | 'Home' | 'DontWorry';
+    selected?: 'Images' | 'Home' | 'Write';
 }
 // * param: selected = "Image" or "Home" or "DontWorry"
 
@@ -99,5 +99,5 @@ const StyledImageFolderPageBtn = styled.div`
 
 const StyledDontWorryPageBtn = styled.div`
     color: ${({ color, theme }) =>
-        color === 'DontWorry' ? theme.color.white : theme.color.grey100};
+        color === 'Write' ? theme.color.white : theme.color.grey100};
 `;
