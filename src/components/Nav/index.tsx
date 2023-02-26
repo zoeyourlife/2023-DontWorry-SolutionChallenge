@@ -1,18 +1,23 @@
 import Link from "next/link";
-import { ReactElement } from "react";
 import styled from "styled-components";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import { useRouter } from "next/router";
+import HamburgerNav from "src/components/Nav/Hamburger";
 
-interface INavProps {
-  rightConfig?: ReactElement;
-}
+function Nav() {
+  const router = useRouter();
 
-function Nav({ rightConfig }: INavProps) {
   return (
     <StyledNavWrapper>
-      <Link href="/Main">
+      <StyledBackBtn
+        onClick={() => {
+          router.back();
+        }}
+      ></StyledBackBtn>
+      <Link href="/DontWorry/About">
         <StyledLogo>DontWorry</StyledLogo>
       </Link>
-      {rightConfig && <>{rightConfig}</>}
+      <HamburgerNav />
     </StyledNavWrapper>
   );
 }
@@ -34,5 +39,9 @@ const StyledNavWrapper = styled.nav`
 `;
 
 const StyledLogo = styled.h1`
+  cursor: pointer;
+`;
+
+const StyledBackBtn = styled(ArrowBackIosIcon)`
   cursor: pointer;
 `;
