@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { NextRouter, useRouter } from 'next/router';
 import Link from 'next/link';
 import {
@@ -35,7 +35,7 @@ function ImageFOL({ month, quantity }: IImageFOL) {
 
 export default ImageFOL;
 
-const StyledImageFOL = styled(motion.div)`
+const StyledImageFOL = styled(m.div)`
     width: 100%;
     height: 100%;
     display: flex;
