@@ -6,7 +6,7 @@ import { ChangeEvent, useCallback, useState, useEffect } from "react";
 import FormInput from "src/components/FormInput";
 import Login from "src/components/Login";
 import SubmitBtn from "src/components/SubmitBtn";
-import { API_BASE_URL } from "src/constants/apiUrl";
+import { API_BASED_URL } from "src/constants/apiUrl";
 import styled from "styled-components";
 
 interface SessionData {
@@ -33,7 +33,7 @@ function Signin() {
       e.preventDefault();
       try {
         await axios
-          .post(`${API_BASE_URL}login`, {
+          .post(`${API_BASED_URL}/login`, {
             Id: userId,
             password: password,
           })
@@ -92,8 +92,8 @@ function Signin() {
           <StyledRemSpan>Remember account</StyledRemSpan>
         </StyledInputTitleLabel>
         <SubmitBtn type="submit" name="Login" />
-        <Login />
       </StyledForm>
+      <Login />
 
       <div>
         <StyledRemHr />

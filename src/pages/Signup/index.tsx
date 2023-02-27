@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import React, { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import FormInput from "src/components/FormInput";
 import SubmitBtn from "src/components/SubmitBtn";
-import { API_BASE_URL } from "src/constants/apiUrl";
+import { API_BASED_URL } from "src/constants/apiUrl";
 import styled from "styled-components";
 
 function Signup() {
@@ -83,7 +83,7 @@ function Signup() {
       e.preventDefault();
       try {
         await axios
-          .post(`${API_BASE_URL}signup`, {
+          .post(`${API_BASED_URL}/signup`, {
             userId: userId,
             password: password,
             email: email,
