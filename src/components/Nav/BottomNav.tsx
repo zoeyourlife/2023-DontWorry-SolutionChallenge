@@ -4,7 +4,6 @@ import Link from 'next/link';
 import useScroll from 'src/hooks/useScroll';
 import HomeIcon from '@mui/icons-material/Home';
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
-import EscalatorWarningIcon from '@mui/icons-material/EscalatorWarning';
 import CreateIcon from '@mui/icons-material/Create';
 
 interface IProps {
