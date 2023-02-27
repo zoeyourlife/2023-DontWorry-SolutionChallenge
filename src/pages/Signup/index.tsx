@@ -1,7 +1,7 @@
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { ChangeEvent, FormEvent, useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import FormInput from "src/components/FormInput";
 import SubmitBtn from "src/components/SubmitBtn";
 import { API_BASE_URL } from "src/constants/apiUrl";
@@ -29,7 +29,7 @@ function Signup() {
       setUserId(e.target.value);
       if (e.target.value.length < 6 || e.target.value.length > 20) {
         setUserIdMessage(
-          "Please enter more than 6 characters and less than 20."
+          "Please enter more than 6 characters and less than 20.",
         );
         setIsUserId(false);
       } else {
@@ -37,7 +37,7 @@ function Signup() {
         setIsUserId(true);
       }
     },
-    []
+    [],
   );
 
   const onChangePassword = useCallback(
@@ -49,7 +49,7 @@ function Signup() {
 
       if (!passwordRegex.test(passwordCurrent)) {
         setPasswordMessage(
-          "Please enter at least 8 digits in combination of numbers + alphabet + special characters."
+          "Please enter at least 8 digits in combination of numbers + alphabet + special characters.",
         );
         setIsPassword(false);
       } else {
@@ -57,7 +57,7 @@ function Signup() {
         setIsPassword(true);
       }
     },
-    []
+    [],
   );
 
   const onChangeEmail = useCallback(
@@ -75,7 +75,7 @@ function Signup() {
         setIsEmail(true);
       }
     },
-    []
+    [],
   );
 
   const onSubmit = useCallback(
@@ -99,7 +99,7 @@ function Signup() {
         console.error(err);
       }
     },
-    [email, userId, password, router]
+    [email, userId, password, router],
   );
   return (
     <>

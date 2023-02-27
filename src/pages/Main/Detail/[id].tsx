@@ -1,11 +1,11 @@
-import { useRouter } from "next/router";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useRef } from "react";
 import Tag from "src/components/Common/Tag";
 import Nav from "src/components/Nav";
 import MakePdf from "src/components/Pdf/MakePdf";
 import styled from "styled-components";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 function Detail() {
   const {

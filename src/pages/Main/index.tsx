@@ -1,8 +1,7 @@
-import Link from "next/link";
-import styled from "styled-components";
 import Nav from "src/components/Nav";
-import Timeline from "src/components/Timeline";
 import BottomNav from "src/components/Nav/BottomNav";
+import Timeline from "src/components/Timeline";
+import styled from "styled-components";
 
 function Main() {
   return (

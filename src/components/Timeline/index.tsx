@@ -1,11 +1,11 @@
+import { m } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import styled from "styled-components";
-import { m } from "framer-motion";
 import {
   defaultFadeInLeftVariants,
   defaultFadeInUpVariants,
 } from "src/constants/motion";
+import styled from "styled-components";
 
 interface Props {
   title: string;

@@ -1,10 +1,9 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import Link from "next/link";
-import useScroll from "src/hooks/useScroll";
+import EscalatorWarningIcon from "@mui/icons-material/EscalatorWarning";
 import HomeIcon from "@mui/icons-material/Home";
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
-import EscalatorWarningIcon from "@mui/icons-material/EscalatorWarning";
+import Link from "next/link";
+import useScroll from "src/hooks/useScroll";
+import styled, { css } from "styled-components";
 
 interface IProps {
   selected: "Images" | "Home" | "DontWorry";
