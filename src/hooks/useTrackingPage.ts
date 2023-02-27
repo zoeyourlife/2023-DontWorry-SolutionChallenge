@@ -1,5 +1,5 @@
-import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import * as gtag from "src/libs/analytics/gtag";
 import { mixpanelTrack } from "src/libs/mixpanel/mixpanel";
 

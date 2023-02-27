@@ -14,7 +14,7 @@ interface LabelProps {
 
 function FormInput(
   { type, id, onChange }: InputBaseProps,
-  { placeholder }: LabelProps
+  { placeholder }: LabelProps,
 ) {
   return (
     <StyledWrapper>

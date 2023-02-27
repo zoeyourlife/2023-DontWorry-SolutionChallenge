@@ -1,15 +1,15 @@
-import styled from "styled-components";
+import { m } from "framer-motion";
 import Image from "next/image";
+import HrSummary from "src/components/About/HrSummary";
 import Nav from "src/components/Nav";
 import BottomNav from "src/components/Nav/BottomNav";
-import HrSummary from "src/components/About/HrSummary";
 import { AboutFourKeyword } from "src/constants/aboutFourKeyword";
-import { m } from "framer-motion";
 import {
   defaultFadeInLeftVariants,
   defaultFadeInRightVariants,
   defaultFadeInUpVariants,
 } from "src/constants/motion";
+import styled from "styled-components";
 
 function About() {
   return (

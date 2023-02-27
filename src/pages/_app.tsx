@@ -1,11 +1,11 @@
+import { domMax, LazyMotion } from "framer-motion";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { PropsWithChildren, useEffect } from "react";
+import useWindowSize from "src/hooks/useWindowSize";
 import styled, { ThemeProvider } from "styled-components";
-import { LazyMotion, domMax } from "framer-motion";
 import GlobalStyle from "styles/GlobalStyle";
 import theme from "styles/Theme/theme";
-import useWindowSize from "src/hooks/useWindowSize";
 
 function App({ Component, pageProps }: AppProps) {
   return (

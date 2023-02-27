@@ -23,7 +23,7 @@ function ImageFolder() {
 export default ImageFolder;
 
 const StyledImageFolder = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
 `;
