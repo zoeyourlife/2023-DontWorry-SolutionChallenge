@@ -1,52 +1,39 @@
 import React from 'react';
 import styled from 'styled-components';
-import { m } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { NextRouter, useRouter } from 'next/router';
 import Link from 'next/link';
 import {
     defaultFadeInLeftVariants,
     defaultFadeInUpVariants,
 } from 'src/constants/motion';
-//FOL:Folder
-interface IImageFOL {
-    month: string;
-    quantity: number;
-}
-function onClickImageFOL(month: string, route: NextRouter) {
-    route.push({ pathname: '/ImageFolder/Detail', query: { month: month } });
-}
 
-function ImageFOL({ month, quantity }: IImageFOL) {
-    const route = useRouter();
+function ImageDetail() {
     return (
-        <StyledImageFOL
+        <StyledImageDetail
             initial="initial"
             animate="animate"
             exit="exit"
             variants={defaultFadeInUpVariants}
-            onClick={() => onClickImageFOL(month, route)}
         >
             <StyledTestImage />
-            <div>{month}</div>
-            <div>{quantity}</div>
-        </StyledImageFOL>
+        </StyledImageDetail>
     );
 }
 
-export default ImageFOL;
+export default ImageDetail;
 
-const StyledImageFOL = styled(m.div)`
+const StyledImageDetail = styled(motion.div)`
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     position: relative;
 
-    padding: 10px;
+    padding: 0.125rem;
 `;
 const StyledTestImage = styled.div`
     background-color: gray;
-    border-radius: 10px;
     width: 100%;
     padding-bottom: 100%;
 `;

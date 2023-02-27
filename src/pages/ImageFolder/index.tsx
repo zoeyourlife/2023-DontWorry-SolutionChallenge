@@ -2,6 +2,7 @@ import React from 'react';
 import ImageFOL from 'src/components/ImageFOL';
 import styled from 'styled-components';
 import Nav from 'src/components/Nav';
+import BottomNav from 'src/components/Nav/BottomNav';
 
 function ImageFolder() {
     return (
@@ -14,6 +15,7 @@ function ImageFolder() {
                 <ImageFOL month="1월" quantity={13} />
                 <ImageFOL month="1월" quantity={13} />
             </StyledImageFolder>
+            <BottomNav selected="Images" />
         </>
     );
 }
