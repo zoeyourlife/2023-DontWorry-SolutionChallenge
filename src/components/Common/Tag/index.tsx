@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-interface Props {
+interface IProps {
   category: string | string[] | undefined;
 }
 

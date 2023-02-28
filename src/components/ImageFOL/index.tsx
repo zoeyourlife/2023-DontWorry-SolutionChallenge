@@ -1,11 +1,6 @@
 import { m } from "framer-motion";
-import Link from "next/link";
 import { NextRouter, useRouter } from "next/router";
-import React from "react";
-import {
-  defaultFadeInLeftVariants,
-  defaultFadeInUpVariants,
-} from "src/constants/motion";
+import { defaultFadeInUpVariants } from "src/constants/motion";
 import styled from "styled-components";
 
 //FOL:Folder

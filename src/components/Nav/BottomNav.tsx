@@ -2,7 +2,6 @@ import CreateIcon from "@mui/icons-material/Create";
 import HomeIcon from "@mui/icons-material/Home";
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 import Link from "next/link";
-import React from "react";
 import useScroll from "src/hooks/useScroll";
 import styled, { css } from "styled-components";
 
@@ -59,7 +58,7 @@ const StyledBottomNavWrapper = styled.nav<{ hide: boolean }>`
   width: 100%;
   padding: 0.5rem;
   background-color: ${({ theme }) => theme.color.grey};
-  z-index: 10;
+  z-index: 3;
 
   ${(props) =>
     props.hide
