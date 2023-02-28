@@ -1,5 +1,10 @@
 import CloseIcon from "@mui/icons-material/Close";
+import { m } from "framer-motion";
 import React, { useState } from "react";
+import {
+  defaultFadeInVariants,
+  defaultFadeInScaleVariants,
+} from "src/constants/motion";
 import styled from "styled-components";
 
 interface IModal {
@@ -14,11 +19,19 @@ function Modal({ isOpen, content, title }: IModal) {
   return (
     <StyledModal
       isOpen={isOpenState}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={defaultFadeInVariants}
       onClick={() => {
         setIsOpenState(false);
       }}
     >
       <StyledModalMain
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        variants={defaultFadeInScaleVariants}
         onClick={(e) => {
           e.stopPropagation();
         }}
@@ -33,7 +46,7 @@ function Modal({ isOpen, content, title }: IModal) {
 
 export default Modal;
 
-const StyledModal = styled.div<{ isOpen: boolean }>`
+const StyledModal = styled(m.div)<{ isOpen: boolean }>`
   background-color: rgba(255, 255, 255, 0.2);
   position: fixed;
   width: 100%;
@@ -44,7 +57,7 @@ const StyledModal = styled.div<{ isOpen: boolean }>`
   align-items: center;
   z-index: 10000;
 `;
-const StyledModalMain = styled.div`
+const StyledModalMain = styled(m.div)`
   width: 20rem;
   height: fit-content;
   background-color: black;
