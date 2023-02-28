@@ -7,7 +7,7 @@ import {
 } from "src/constants/motion";
 import styled from "styled-components";
 
-interface Props {
+interface IProps {
   title: string;
   create_date: string;
   main_text: string;

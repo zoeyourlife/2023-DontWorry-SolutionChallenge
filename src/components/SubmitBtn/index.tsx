@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-interface SubmitBtnProps {
+interface ISubmitBtnProps {
   type: "submit" | "reset" | "button";
   name: string;
 }
 
-function SubmitBtn({ type, name }: SubmitBtnProps) {
+function SubmitBtn({ type, name }: ISubmitBtnProps) {
   return (
     <StyledSubmitBtn type={type}>
       <StyledSubmitP>{name}</StyledSubmitP>

@@ -1,20 +1,20 @@
 import { ChangeEvent } from "react";
 import styled from "styled-components";
 
-interface InputBaseProps {
+interface IInputBaseProps {
   type: "password" | "text" | "email";
   id?: "Password" | "ID" | "Email";
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   value: string;
 }
 
-interface LabelProps {
+interface ILabelProps {
   placeholder: "Password *" | "ID *" | "Email *";
 }
 
 function FormInput(
-  { type, id, onChange }: InputBaseProps,
-  { placeholder }: LabelProps,
+  { type, id, onChange }: IInputBaseProps,
+  { placeholder }: ILabelProps,
 ) {
   return (
     <StyledWrapper>
