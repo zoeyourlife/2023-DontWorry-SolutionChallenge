@@ -92,8 +92,15 @@ function Signup() {
             console.log("response:", res);
             if (res.status === 200) {
               console.log("회원가입 완료");
+              // 모달창 구현시 사용할 기능
+              // setPopup({
+              //   open: true,
+              //   title: "Confirm",
+              //   message: "Join Success!",
+              // })
+
               router.push("/Signin");
-            }
+            } // ID 중복 가입시? 이 부분도 고려예정.
           });
       } catch (err) {
         console.error(err);
