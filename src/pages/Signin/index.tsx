@@ -20,6 +20,8 @@ function Signin() {
   const [userId, setUserId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+  let sessionStorage = window.sessionStorage;
+
   const onChangeUserId = (e: ChangeEvent<HTMLInputElement>) => {
     setUserId(e.target.value);
   };
@@ -34,12 +36,11 @@ function Signin() {
       try {
         await axios
           .post(`${API_BASED_URL}/login`, {
-            Id: userId,
+            userId: userId,
             password: password,
           })
           .then((res) => {
             console.log(res.data);
-            console.log(res);
             console.log(res.data.userId);
             console.log(res.data.msg);
             if (res.data.userId === undefined) {
@@ -53,6 +54,7 @@ function Signin() {
               sessionStorage.setItem("userId", userId);
             }
             // sessionStorage.setItem("sessionId", userId);
+            console.log(sessionStorage.setItem("userId", userId));
             router.push("/Main");
           });
         // Id, Pw 에러
@@ -61,7 +63,7 @@ function Signin() {
         alert("Incorrect Info Id or Pw");
       }
     },
-    [userId, password, router]
+    [userId, password, router, sessionStorage]
   );
 
   return (
