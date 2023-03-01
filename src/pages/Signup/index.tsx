@@ -159,9 +159,6 @@ function Signup() {
         </StyledInputDiv>
 
         <StyledButtonDiv>
-          <Link href="/">
-            <SubmitBtn type="button" name="Back" />
-          </Link>
           <SubmitBtn type="submit" name="Submit" />
         </StyledButtonDiv>
       </StyledForm>
@@ -209,7 +206,7 @@ const StyledInputTitleLabel = styled.label`
 `;
 
 const StyledButtonDiv = styled.div`
-  margin-top: 1rem;
+  margin-top: 4rem;
 `;
 
 const StyledValidityDiv = styled.div`
