@@ -1,5 +1,6 @@
 import { m } from "framer-motion";
 import Nav from "src/components/Nav";
+import BottomNav from "src/components/Nav/BottomNav";
 import { defaultFadeInUpVariants } from "src/constants/motion";
 import styled from "styled-components";
 
@@ -47,6 +48,7 @@ function Help() {
           </tbody>
         </StyledTable>
       </StyledHelp>
+      <BottomNav />
     </>
   );
 }
