@@ -14,35 +14,37 @@ function Help() {
           exit="exit"
           variants={defaultFadeInUpVariants}
         >
-          <tr>
-            <th className="help">help</th>
-            <th>where you can reach</th>
-          </tr>
-          <tr>
-            <td>exam</td>
-            <td>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit
-              natus, quidem repellat culpa cupiditate ipsa magni sapiente minus?
-              Possimus quod doloribus iure. Hic dicta sed quas qui alias sunt
-              sit.
-            </td>
-          </tr>
-          <tr>
-            <td>exam2</td>
-            <td>exam</td>
-          </tr>
-          <tr>
-            <td>exam</td>
-            <td>exam</td>
-          </tr>
-          <tr>
-            <td>exam</td>
-            <td>exam</td>
-          </tr>
-          <tr>
-            <td>exam2</td>
-            <td>exam</td>
-          </tr>
+          <tbody>
+            <tr>
+              <th className="help">help</th>
+              <th>where you can reach</th>
+            </tr>
+            <tr>
+              <td>exam</td>
+              <td>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Impedit natus, quidem repellat culpa cupiditate ipsa magni
+                sapiente minus? Possimus quod doloribus iure. Hic dicta sed quas
+                qui alias sunt sit.
+              </td>
+            </tr>
+            <tr>
+              <td>exam2</td>
+              <td>exam</td>
+            </tr>
+            <tr>
+              <td>exam</td>
+              <td>exam</td>
+            </tr>
+            <tr>
+              <td>exam</td>
+              <td>exam</td>
+            </tr>
+            <tr>
+              <td>exam2</td>
+              <td>exam</td>
+            </tr>
+          </tbody>
         </StyledTable>
       </StyledHelp>
     </>
