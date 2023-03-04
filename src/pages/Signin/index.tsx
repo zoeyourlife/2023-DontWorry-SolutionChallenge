@@ -20,8 +20,6 @@ function Signin() {
   const [userId, setUserId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  let sessionStorage = window.sessionStorage;
-
   const onChangeUserId = (e: ChangeEvent<HTMLInputElement>) => {
     setUserId(e.target.value);
   };
@@ -63,7 +61,7 @@ function Signin() {
         alert("Incorrect Info Id or Pw");
       }
     },
-    [userId, password, router, sessionStorage]
+    [userId, password, router]
   );
 
   return (
