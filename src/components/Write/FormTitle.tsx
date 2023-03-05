@@ -24,6 +24,7 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   font-weight: ${({ theme }) => theme.fontWeight.bold};
+  margin: 0.5rem 0;
 `;
 
 const StyledRowWrapper = styled.div`

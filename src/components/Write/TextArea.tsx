@@ -49,7 +49,7 @@ const StyledTextArea = styled.textarea<ITextAreaProps>`
 
   :focus {
     outline: none;
-    border-color: ${({ theme }) => theme.color.blueGreen};
+    border: 1px solid ${({ theme }) => theme.color.blueGreen};
   }
 `;
 
