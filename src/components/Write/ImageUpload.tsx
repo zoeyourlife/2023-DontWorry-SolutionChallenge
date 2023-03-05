@@ -7,7 +7,7 @@ interface IImageUploadProps {
   src?: string;
 }
 
-//TODO api 연결
+//TODO: image api
 function ImageUpload({ value, onChange, src }: IImageUploadProps) {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [files, setFiles] = useState([]);

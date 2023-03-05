@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-interface IFormTitleProps {
+interface ITitleProps {
   title: string;
   subTitle: string;
   essential?: boolean;
 }
 
-function FormTitle({ essential, title, subTitle }: IFormTitleProps) {
+function Title({ essential, title, subTitle }: ITitleProps) {
   return (
     <StyledWrapper>
       <StyledRowWrapper>
@@ -18,13 +18,13 @@ function FormTitle({ essential, title, subTitle }: IFormTitleProps) {
   );
 }
 
-export default FormTitle;
+export default Title;
 
 const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  margin: 0.5rem 0;
+  margin: 1.3rem 0 0.5rem 0;
 `;
 
 const StyledRowWrapper = styled.div`
