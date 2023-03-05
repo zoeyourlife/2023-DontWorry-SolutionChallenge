@@ -1,9 +1,9 @@
+import "styled-components";
 import {
   BorderRadiusTypes,
   ColorsTypes,
   FontWeightTypes,
-} from "src/styles/Theme/theme";
-import "styled-components";
+} from "styles/Theme/theme";
 
 declare module "styled-components" {
   export interface DefaultTheme {
