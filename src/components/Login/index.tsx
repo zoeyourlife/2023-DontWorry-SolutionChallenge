@@ -44,12 +44,12 @@ function Login() {
     <div>
       <h3>구글 로그인 테스트</h3>
       <button onClick={handleGoogleLogin}>
-        <Image
+        {/* <Image
           src="/images/btn_google_signin_dark_normal_web@2x.png"
           alt="why?"
           width={250}
           height={100}
-        />
+        /> */}
         로그인
       </button>
       <div>
