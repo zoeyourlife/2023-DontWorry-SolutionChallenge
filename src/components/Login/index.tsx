@@ -1,10 +1,7 @@
 import {
-  AdditionalUserInfo,
-  getAdditionalUserInfo,
   GoogleAuthProvider,
   signInWithPopup,
   User,
-  UserCredential,
 } from "firebase/auth";
 import Image from "next/image";
 import { useRouter } from "next/router";

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Cookie } from "express-session";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ChangeEvent, useCallback, useState, useEffect } from "react";
@@ -9,13 +8,15 @@ import SubmitBtn from "src/components/SubmitBtn";
 import { API_BASED_URL } from "src/constants/apiUrl";
 import styled from "styled-components";
 
-interface SessionData {
-  cookie: Cookie;
-  Id: string;
-  Password: string;
-}
+// interface SessionData {
+//   Id: string;
+//   Password: string;
+// }
+
+axios.defaults.withCredentials = true;
 
 function Signin() {
+  axios.defaults.withCredentials = true;
   const router = useRouter();
   const [userId, setUserId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -38,9 +39,9 @@ function Signin() {
             password: password,
           })
           .then((res) => {
-            console.log(res.data);
+            console.log(res);
             console.log(res.data.userId);
-            console.log(res.data.msg);
+            console.log(res.data);
             if (res.data.userId === undefined) {
               console.log("==========", res.data.msg);
               alert("입력하신 id가 일치 X");
@@ -49,10 +50,9 @@ function Signin() {
               alert("비밀번호 일치 X");
             } else if (res.data.userId === userId) {
               console.log("===========", "로그인 성공");
-              sessionStorage.setItem("userId", userId);
+              // sessionStorage.setItem("userId", userId);
             }
-            // sessionStorage.setItem("sessionId", userId);
-            console.log(sessionStorage.setItem("userId", userId));
+            console.log(sessionStorage);
             router.push("/Main");
           });
         // Id, Pw 에러
