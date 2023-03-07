@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useCallback, useState } from "react";
 import FormInput from "src/components/FormInput";
+import BackBtnNav from "src/components/Nav/BackBtnNav";
 import SubmitBtn from "src/components/SubmitBtn";
 import { API_BASE_URL } from "src/constants/apiUrl";
 import styled from "styled-components";
@@ -103,6 +104,7 @@ function Signup() {
   );
   return (
     <>
+      <BackBtnNav />
       <StyledTextDiv>
         <StyledPageTitleH1>DontWorry</StyledPageTitleH1>
         <StyledPageIntroH3>
