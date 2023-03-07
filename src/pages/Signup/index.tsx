@@ -98,7 +98,6 @@ function Signup() {
               //   title: "Confirm",
               //   message: "Join Success!",
               // })
-
               router.push("/Signin");
             } // ID 중복 가입시? 이 부분도 고려예정.
           });
