@@ -130,12 +130,12 @@ const StyledImg = styled.div`
 `;
 
 const StyledTodayDateWrapper = styled.div`
-  margin: 2.5rem 0;
+  margin: 2.5rem 0 1rem 0;
 `;
 
 const StyledBtnWrapper = styled.div`
   position: relative;
-  min-height: 5.6rem;
+  min-height: 2rem;
   height: auto;
 `;
 
