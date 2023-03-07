@@ -17,5 +17,5 @@ export default ReportSubTitle;
 
 const StyledWrapper = styled.span`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  font-size: 1.15rem;
+  font-size: 1rem;
 `;
