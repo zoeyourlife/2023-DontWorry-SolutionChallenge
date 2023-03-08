@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-interface IProps {
+interface ITagProps {
   category: string | string[] | undefined;
 }
 
-function Tag() {
+function Tag({ category }: ITagProps) {
   return (
     <StyledTagShape>
-      <StyledTag>태그명</StyledTag>
+      <StyledTag>{category}</StyledTag>
     </StyledTagShape>
   );
 }
