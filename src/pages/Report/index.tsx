@@ -5,6 +5,7 @@ import BottomNav from "src/components/Nav/BottomNav";
 import Timeline from "src/components/Timeline";
 import styled from "styled-components";
 
+// 신고 버튼을 눌렀을 경우 모달창 이후 나오는 페이지 입니다
 function Report() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
