@@ -11,9 +11,18 @@ interface IModal {
   isOpen: boolean;
   title: string;
   content: string;
+  callback: Function;
 }
 
-function Modal({ isOpen, content, title }: IModal) {
+function onClickButton(
+  callback: Function,
+  _setIsOpenState: React.Dispatch<React.SetStateAction<boolean>>,
+) {
+  _setIsOpenState(false);
+  callback();
+}
+
+function Modal({ isOpen, content, title, callback }: IModal) {
   const [isOpenState, setIsOpenState] = useState<boolean>(isOpen);
 
   return (
@@ -39,6 +48,9 @@ function Modal({ isOpen, content, title }: IModal) {
         <CloseIcon className="close" onClick={() => setIsOpenState(false)} />
         <h1>{title}</h1>
         <p>{content}</p>
+        <StyledButton onClick={() => onClickButton(callback, setIsOpenState)}>
+          확인
+        </StyledButton>
       </StyledModalMain>
     </StyledModal>
   );
@@ -74,4 +86,17 @@ const StyledModalMain = styled(m.div)`
     align-self: center;
   }
   z-index: 10001;
+`;
+
+const StyledButton = styled.button`
+  display: flex;
+  align-self: center;
+  border: 1.5px solid ${({ theme }) => theme.color.borderGrey};
+  padding: 10px 30px;
+  border-radius: ${({ theme }) => theme.borderRadius.button};
+  transition: all 0.5s;
+
+  &:hover {
+    border: 1.5px solid ${({ theme }) => theme.color.white};
+  }
 `;
