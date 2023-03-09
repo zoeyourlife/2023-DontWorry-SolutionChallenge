@@ -11,6 +11,8 @@ import SubmitBtn from "src/components/SubmitBtn";
 import { API_BASED_URL } from "src/constants/apiUrl";
 import styled from "styled-components";
 
+axios.defaults.withCredentials = true;
+
 function Signin() {
   const router = useRouter();
   const [userId, setUserId] = useState<string>("");
@@ -26,35 +28,47 @@ function Signin() {
 
   const onSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
+      // const data = {
+      //   userId: userId,
+      //   password: password,
+      // };
       e.preventDefault();
+      //     fetch(`${API_BASED_URL}/login`,{
+      //       method: "POST",
+      //       credentials : 'include',
+      //       headers:{
+      //         "Content-Type" : "application/json; charset=utf-8",
+      //       },
+      //       redirect: 'follow',
+      //       body: JSON.stringify({userId, password})
+      //     }).then((res)=> console.log(res))
+      //     .catch((err)=>{
+      //       console.log(err);
+      //       alert("Occur Error");
+      //     })
+      //   },[userId, password]
+      // )
+
       {
         await axios
           .post(
             `${API_BASED_URL}/login`,
+            // data,
             {
               userId: userId,
               password: password,
             },
             {
               withCredentials: true,
+              headers: {
+                "Content-Type": "application/json",
+              },
             }
           )
           .then((res) => {
             console.log(res);
             console.log(res.data.userId);
-            console.log(res.headers);
-            // if (res.data.userId === undefined) {
-            //   console.log("==========", res.data.msg);
-            //   alert("입력하신 id가 일치 X");
-            // } else if (res.data.userId === null) {
-            //   console.log("==========", "입력된 비밀번호 일치 X");
-            //   alert("비밀번호 일치 X");
-            // } else if (res.data.userId === userId) {
-            //   console.log("===========", "로그인 성공");
-            //   sessionStorage.setItem("userId", userId);
-            // }
             sessionStorage.setItem("userId", userId);
-            sessionStorage.setItem("id", res.request);
             console.log(sessionStorage);
             router.push("/Main");
           })
@@ -64,6 +78,7 @@ function Signin() {
           });
       }
     },
+    // [userId, password]
     [userId, password, router]
   );
 
@@ -98,7 +113,6 @@ function Signin() {
         </StyledInputTitleLabel>
         <SubmitBtn type="submit" name="Login" />
       </StyledForm>
-      <Login />
 
       <div>
         <StyledRemHr />
