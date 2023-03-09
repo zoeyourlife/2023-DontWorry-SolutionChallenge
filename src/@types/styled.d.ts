@@ -1,8 +1,8 @@
 import "styled-components";
 import {
+  BorderRadiusTypes,
   ColorsTypes,
   FontWeightTypes,
-  BorderRadiusTypes,
 } from "styles/Theme/theme";
 
 declare module "styled-components" {

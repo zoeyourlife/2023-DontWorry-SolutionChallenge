@@ -1,13 +1,13 @@
+import { m } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import styled from "styled-components";
-import { motion } from "framer-motion";
 import {
   defaultFadeInLeftVariants,
   defaultFadeInUpVariants,
 } from "src/constants/motion";
+import styled from "styled-components";
 
-interface Props {
+interface IProps {
   title: string;
   create_date: string;
   main_text: string;
@@ -85,11 +85,11 @@ const StyledDate = styled.span`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
 `;
 
-const StyledTitle = styled(motion.h3)`
+const StyledTitle = styled(m.h3)`
   margin: 1rem 0 0.5rem 0;
 `;
 
-const StyledSummary = styled(motion.p)`
+const StyledSummary = styled(m.p)`
   font-weight: ${({ theme }) => theme.fontWeight.light};
   line-height: 1.3rem;
 `;
@@ -119,7 +119,7 @@ const StyledTimelineItem = styled.div`
   }
 `;
 
-const StyledImg = styled(motion.div)`
+const StyledImg = styled(m.div)`
   position: relative;
   width: 100%;
   height: 100%;

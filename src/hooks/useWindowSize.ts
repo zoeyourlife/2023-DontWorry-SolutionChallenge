@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-interface Size {
+interface ISize {
   width: number | undefined;
   height: number | undefined;
 }
 
-function useWindowSize(): Size {
-  const [windowSize, setWindowSize] = useState<Size>({
+function useWindowSize(): ISize {
+  const [windowSize, setWindowSize] = useState<ISize>({
     width: undefined,
     height: undefined,
   });

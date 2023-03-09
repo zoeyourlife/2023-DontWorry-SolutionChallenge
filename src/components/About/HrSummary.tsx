@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { defaultFadeInScaleVariants } from "src/constants/motion";
 import styled from "styled-components";
 
@@ -23,7 +23,7 @@ function HrSummary({ title, summary }: IProps) {
 
 export default HrSummary;
 
-const StyledIconSummaryWrapper = styled(motion.div)`
+const StyledIconSummaryWrapper = styled(m.div)`
   display: flex;
   flex-direction: column;
   text-align: center;

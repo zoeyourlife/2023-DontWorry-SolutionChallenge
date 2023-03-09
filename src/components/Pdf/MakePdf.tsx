@@ -23,7 +23,7 @@ function MakePdf() {
       imgWidth,
       imgHeight,
       undefined,
-      "FAST"
+      "FAST",
     );
     heightLeft -= pageHeight;
 
@@ -40,7 +40,7 @@ function MakePdf() {
         imgWidth,
         imgHeight,
         undefined,
-        "FAST"
+        "FAST",
       );
       heightLeft -= pageHeight;
     }

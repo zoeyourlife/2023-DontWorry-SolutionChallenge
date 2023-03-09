@@ -1,13 +1,12 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import Link from "next/link";
-import useScroll from "src/hooks/useScroll";
+import CreateIcon from "@mui/icons-material/Create";
 import HomeIcon from "@mui/icons-material/Home";
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
-import EscalatorWarningIcon from "@mui/icons-material/EscalatorWarning";
+import Link from "next/link";
+import useScroll from "src/hooks/useScroll";
+import styled, { css } from "styled-components";
 
 interface IProps {
-  selected: "Images" | "Home" | "DontWorry";
+  selected?: "Images" | "Home" | "Write";
 }
 // * param: selected = "Image" or "Home" or "DontWorry"
 
@@ -32,11 +31,11 @@ function BottomNav({ selected }: IProps) {
           </StyledHomePageBtn>
         </StyledBtnWrapper>
       </Link>
-      <Link href="/DontWorry">
+      <Link href="/Main/Write">
         <StyledBtnWrapper>
           <StyledDontWorryPageBtn color={selected}>
-            <EscalatorWarningIcon />
-            <p>DontWorry</p>
+            <CreateIcon />
+            <p>Write</p>
           </StyledDontWorryPageBtn>
         </StyledBtnWrapper>
       </Link>
@@ -59,7 +58,7 @@ const StyledBottomNavWrapper = styled.nav<{ hide: boolean }>`
   width: 100%;
   padding: 0.5rem;
   background-color: ${({ theme }) => theme.color.grey};
-  z-index: 10;
+  z-index: 3;
 
   ${(props) =>
     props.hide
@@ -98,5 +97,5 @@ const StyledImageFolderPageBtn = styled.div`
 
 const StyledDontWorryPageBtn = styled.div`
   color: ${({ color, theme }) =>
-    color === "DontWorry" ? theme.color.white : theme.color.grey100};
+    color === "Write" ? theme.color.white : theme.color.grey100};
 `;
