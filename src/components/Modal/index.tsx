@@ -1,19 +1,27 @@
 import CloseIcon from "@mui/icons-material/Close";
 import { m } from "framer-motion";
+import Link from "next/link";
 import React, { useState } from "react";
 import {
-  defaultFadeInVariants,
   defaultFadeInScaleVariants,
+  defaultFadeInVariants,
 } from "src/constants/motion";
 import styled from "styled-components";
 
 interface IModal {
   isOpen: boolean;
-  title: string;
+  title?: string;
   content: string;
+  path: string;
 }
 
-function Modal({ isOpen, content, title }: IModal) {
+function onClickButton(
+  _setIsOpenState: React.Dispatch<React.SetStateAction<boolean>>,
+) {
+  _setIsOpenState(false);
+}
+
+function Modal({ isOpen, content, title, path }: IModal) {
   const [isOpenState, setIsOpenState] = useState<boolean>(isOpen);
 
   return (
@@ -39,6 +47,13 @@ function Modal({ isOpen, content, title }: IModal) {
         <CloseIcon className="close" onClick={() => setIsOpenState(false)} />
         <h1>{title}</h1>
         <p>{content}</p>
+        <div className="link">
+          <Link href={path}>
+            <StyledButton onClick={() => onClickButton(setIsOpenState)}>
+              okay
+            </StyledButton>
+          </Link>
+        </div>
       </StyledModalMain>
     </StyledModal>
   );
@@ -57,6 +72,7 @@ const StyledModal = styled(m.div)<{ isOpen: boolean }>`
   align-items: center;
   z-index: 10000;
 `;
+
 const StyledModalMain = styled(m.div)`
   width: 20rem;
   height: fit-content;
@@ -66,12 +82,42 @@ const StyledModalMain = styled(m.div)`
   display: flex;
   flex-direction: column;
   gap: 0.6125rem;
+  word-spacing: 0.2px;
+
   .close {
     align-self: flex-end;
     cursor: pointer;
   }
+
   h1 {
     align-self: center;
+    font-size: 1.54rem;
+    line-height: 1.73rem;
+    margin-top: 1rem;
   }
+
+  p {
+    font-weight: ${({ theme }) => theme.fontWeight.light};
+    line-height: 1.3rem;
+  }
+
   z-index: 10001;
+
+  .link {
+    align-self: center;
+  }
+`;
+
+const StyledButton = styled.button`
+  display: flex;
+  border: 1.5px solid ${({ theme }) => theme.color.borderGrey};
+  border-radius: ${({ theme }) => theme.borderRadius.button};
+  padding: 10px 30px;
+  transition: all 0.5s;
+  margin: 1rem 0;
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+
+  &:hover {
+    border: 1.5px solid ${({ theme }) => theme.color.white};
+  }
 `;
