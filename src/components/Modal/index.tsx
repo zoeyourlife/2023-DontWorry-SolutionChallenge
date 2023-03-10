@@ -1,28 +1,27 @@
 import CloseIcon from "@mui/icons-material/Close";
 import { m } from "framer-motion";
+import Link from "next/link";
 import React, { useState } from "react";
 import {
   defaultFadeInVariants,
   defaultFadeInScaleVariants,
 } from "src/constants/motion";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 interface IModal {
   isOpen: boolean;
-  title: string;
+  title?: string;
   content: string;
-  callback: Function;
+  path: string;
 }
 
 function onClickButton(
-  callback: Function,
   _setIsOpenState: React.Dispatch<React.SetStateAction<boolean>>,
 ) {
   _setIsOpenState(false);
-  callback();
 }
 
-function Modal({ isOpen, content, title, callback }: IModal) {
+function Modal({ isOpen, content, title, path }: IModal) {
   const [isOpenState, setIsOpenState] = useState<boolean>(isOpen);
 
   return (
@@ -48,9 +47,13 @@ function Modal({ isOpen, content, title, callback }: IModal) {
         <CloseIcon className="close" onClick={() => setIsOpenState(false)} />
         <h1>{title}</h1>
         <p>{content}</p>
-        <StyledButton onClick={() => onClickButton(callback, setIsOpenState)}>
-          확인
-        </StyledButton>
+        <div className="link">
+          <Link href={path}>
+            <StyledButton onClick={() => onClickButton(setIsOpenState)}>
+              okay
+            </StyledButton>
+          </Link>
+        </div>
       </StyledModalMain>
     </StyledModal>
   );
@@ -86,11 +89,13 @@ const StyledModalMain = styled(m.div)`
     align-self: center;
   }
   z-index: 10001;
+  .link {
+    align-self: center;
+  }
 `;
 
 const StyledButton = styled.button`
   display: flex;
-  align-self: center;
   border: 1.5px solid ${({ theme }) => theme.color.borderGrey};
   padding: 10px 30px;
   border-radius: ${({ theme }) => theme.borderRadius.button};
