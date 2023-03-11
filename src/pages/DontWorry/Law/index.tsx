@@ -1,5 +1,7 @@
+import { m } from "framer-motion";
 import Nav from "src/components/Nav";
 import BottomNav from "src/components/Nav/BottomNav";
+import { defaultFadeInUpVariants } from "src/constants/motion";
 import styled from "styled-components";
 
 interface ILawUnit {
@@ -25,8 +27,22 @@ const lawData: any = [
 function LawUnit(title: string, content: string) {
   return (
     <>
-      <StyledTitle>{title}</StyledTitle>
-      <StyledContent>{content}</StyledContent>
+      <StyledTitle
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        variants={defaultFadeInUpVariants}
+      >
+        {title}
+      </StyledTitle>
+      <StyledContent
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        variants={defaultFadeInUpVariants}
+      >
+        {content}
+      </StyledContent>
     </>
   );
 }
@@ -36,7 +52,14 @@ function Law() {
     <>
       <Nav />
       <StyledLaw>
-        <StyledCountry>🇺🇸 US</StyledCountry>
+        <StyledCountry
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          variants={defaultFadeInUpVariants}
+        >
+          🇺🇸 US
+        </StyledCountry>
         {lawData.map((data: ILawUnit) => LawUnit(data.title, data.content))}
       </StyledLaw>
       <BottomNav />
@@ -53,17 +76,17 @@ const StyledLaw = styled.div`
   gap: 1.5rem;
 `;
 
-const StyledTitle = styled.div`
+const StyledTitle = styled(m.div)`
   font-size: 1.25rem;
 `;
 
-const StyledContent = styled.div`
+const StyledContent = styled(m.div)`
   font-size: 0.75rem;
   margin-left: 1.25rem;
   margin-bottom: 1rem;
 `;
 
-const StyledCountry = styled.div`
+const StyledCountry = styled(m.div)`
   font-size: 2rem;
   font-weight: 600;
 `;
