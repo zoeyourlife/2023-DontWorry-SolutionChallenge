@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import styled from "styled-components";
 
 interface IImageUploadProps {
@@ -10,19 +10,28 @@ interface IImageUploadProps {
 //TODO: image api
 function ImageUpload({ value, onChange, src }: IImageUploadProps) {
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const [files, setFiles] = useState([]);
   const [previewImage, setPreviewImage] = useState<string>("");
+
+  const saveFileImage = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files !== null) {
+      setPreviewImage(URL.createObjectURL(event.target.files[0]));
+    }
+  };
 
   return (
     <StyledWrapper>
       <StyledPreviewWrapper>
-        {value ? (
+        {previewImage && (
           <StyledPreview src={previewImage} alt="preview image" />
-        ) : (
-          "Image Upload"
         )}
       </StyledPreviewWrapper>
-      <StyledInput type="file" accept="image/*" ref={inputRef} multiple />
+      <StyledInput
+        type="file"
+        accept="image/*"
+        ref={inputRef}
+        multiple
+        onChange={saveFileImage}
+      />
     </StyledWrapper>
   );
 }
@@ -46,7 +55,7 @@ const StyledPreviewWrapper = styled.div`
 
   background-color: ${({ theme }) => theme.color.grey500};
   border-radius: ${({ theme }) => theme.borderRadius.imgCard};
-
+  overflow: hidden;
   cursor: pointer;
 `;
 
