@@ -5,7 +5,7 @@ import React, { useCallback, useState } from "react";
 import FormInput from "src/components/FormInput";
 import BackBtnNav from "src/components/Nav/BackBtnNav";
 import SubmitBtn from "src/components/SubmitBtn";
-import { API_BASE_URL } from "src/constants/apiUrl";
+import { API_BASED_URL } from "src/constants/apiUrl";
 import styled from "styled-components";
 
 function Signup() {
@@ -84,7 +84,7 @@ function Signup() {
       e.preventDefault();
       try {
         await axios
-          .post(`${API_BASE_URL}/signup`, {
+          .post(`${API_BASED_URL}/signup`, {
             userId: userId,
             password: password,
             email: email,
@@ -93,8 +93,14 @@ function Signup() {
             console.log("response:", res);
             if (res.status === 200) {
               console.log("회원가입 완료");
+              // 모달창 구현시 사용할 기능
+              // setPopup({
+              //   open: true,
+              //   title: "Confirm",
+              //   message: "Join Success!",
+              // })
               router.push("/Signin");
-            }
+            } // ID 중복 가입시? 이 부분도 고려예정.
           });
       } catch (err) {
         console.error(err);
@@ -161,9 +167,6 @@ function Signup() {
         </StyledInputDiv>
 
         <StyledButtonDiv>
-          <Link href="/">
-            <SubmitBtn type="button" name="Back" />
-          </Link>
           <SubmitBtn type="submit" name="Submit" />
         </StyledButtonDiv>
       </StyledForm>
@@ -211,7 +214,7 @@ const StyledInputTitleLabel = styled.label`
 `;
 
 const StyledButtonDiv = styled.div`
-  margin-top: 1rem;
+  margin-top: 4rem;
 `;
 
 const StyledValidityDiv = styled.div`

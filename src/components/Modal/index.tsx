@@ -6,7 +6,7 @@ import {
   defaultFadeInScaleVariants,
   defaultFadeInVariants,
 } from "src/constants/motion";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 interface IModal {
   isOpen: boolean;
@@ -103,7 +103,7 @@ const StyledModalMain = styled(m.div)`
   }
 
   z-index: 10001;
-
+  
   .link {
     align-self: center;
   }
