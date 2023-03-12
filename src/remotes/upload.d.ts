@@ -1,8 +1,8 @@
-/*eslint no-undef: "off"*/
+import { IPhoto } from "src/remotes/photo";
 
-interface IPostWriteData {
+export interface IPostWriteData {
   title: string;
-  category: string;
+  category: string | string[];
   mainText: string;
   userId: string;
   location: string;
