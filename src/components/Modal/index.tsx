@@ -74,15 +74,16 @@ const StyledModal = styled(m.div)<{ isOpen: boolean }>`
 `;
 
 const StyledModalMain = styled(m.div)`
-  width: 20rem;
+  width: 22rem;
   height: fit-content;
-  background-color: black;
+  background-color: ${({ theme }) => theme.color.black};
   padding: 2rem;
   border-radius: ${({ theme }) => theme.borderRadius.imgCard};
   display: flex;
   flex-direction: column;
   gap: 0.6125rem;
   word-spacing: 0.2px;
+  opacity: background-color 0.5;
 
   .close {
     align-self: flex-end;

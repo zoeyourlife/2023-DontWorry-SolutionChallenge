@@ -52,13 +52,13 @@ const StyledWrapper = styled.div`
   width: 100%;
   height: 100%;
   padding: 1rem;
-  margin-top: 3.6rem;
+  margin-top: 4rem;
 `;
 
 const StyledBalloonWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 5.5rem;
+  margin-top: 6rem;
 `;
 
 const StyledBtnWrapper = styled.div`
@@ -69,5 +69,6 @@ const StyledBtnWrapper = styled.div`
 const StyledCarouselWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin: 2.7rem 0;
+  margin-top: 3rem;
+  margin-bottom: 4.5rem;
 `;
