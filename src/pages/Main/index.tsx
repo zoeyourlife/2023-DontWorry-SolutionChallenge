@@ -1,30 +1,40 @@
-import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
+import Carousel from "src/components/Carousel";
+import ReportBalloon from "src/components/Common/Balloon/ReportBalloon";
+import ReportBtn from "src/components/Common/Button/ReportBtn";
+import MainMsg from "src/components/Common/Text/MainMsg";
+import Modal from "src/components/Modal";
 import Nav from "src/components/Nav";
 import BottomNav from "src/components/Nav/BottomNav";
-import Timeline from "src/components/Timeline";
 import styled from "styled-components";
 
 function Main() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  function toggle() {
-    setIsOpen((isOpen) => !isOpen);
-  }
+  const [showModal, setShowModal] = useState(false);
+  const clickModal = () => setShowModal(!showModal);
 
   return (
     <>
+      {showModal && (
+        <Modal
+          isOpen={showModal}
+          title="Would you like to see what you wrote?"
+          content="In the meantime, you can see what you wrote, and PDF conversion function is also available to organize the report data. Are you ready?"
+          path="/Report"
+        />
+      )}
       <Nav />
-      <StyledBtn
-        onClick={() => {
-          setIsOpen((e) => !e);
-        }}
-      >
-        <DeleteIcon />
-        <StyledTrashText>Trash</StyledTrashText>
-      </StyledBtn>
       <StyledWrapper>
-        <div onClick={() => toggle()}>{isOpen && <Timeline />}</div>
+        <MainMsg />
+        <StyledCarouselWrapper>
+          <Carousel />
+        </StyledCarouselWrapper>
+        <StyledBalloonWrapper>
+          <ReportBalloon />
+        </StyledBalloonWrapper>
+
+        <StyledBtnWrapper onClick={clickModal}>
+          <ReportBtn />
+        </StyledBtnWrapper>
       </StyledWrapper>
       <BottomNav selected="Home" />
     </>
@@ -35,23 +45,29 @@ export default Main;
 
 const StyledWrapper = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
   width: 100%;
-  padding: 1rem 1rem;
+  height: 100%;
+  padding: 1rem;
+  margin-top: 3.6rem;
 `;
 
-const StyledBtn = styled.button`
+const StyledBalloonWrapper = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 0.5rem 0.5rem;
-  color: ${({ theme }) => theme.color.grey100};
-  :hover {
-    transition: all 0.3s;
-    color: #ffffffd2;
-  }
+  margin-top: 5.5rem;
 `;
 
-const StyledTrashText = styled.span`
-  margin-left: 0.1rem;
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+const StyledBtnWrapper = styled.div`
+  text-align: center;
+  margin-top: 1.3rem;
+`;
+
+const StyledCarouselWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 2.7rem 0;
 `;
