@@ -9,7 +9,7 @@ interface ILawUnit {
   content: string;
 }
 
-const lawData: any = [
+const lawData: ILawUnit[] = [
   { title: "Form", content: "School Violence shape simply write" },
   { title: "Policy", content: "Own Policy in this country ex) 무관용정책?" },
   { title: "Law", content: "Simple Content about law" },
@@ -72,7 +72,7 @@ export default Law;
 const StyledLaw = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 4em 1.56rem 1.56rem 1.56rem;
+  padding: 4rem 1.56rem 1.56rem 1.56rem;
   gap: 1.5rem;
 `;
 
@@ -88,5 +88,5 @@ const StyledContent = styled(m.div)`
 
 const StyledCountry = styled(m.div)`
   font-size: 2rem;
-  font-weight: 600;
+  font-weight: ${({ theme }) => theme.fontWeight.semibold};
 `;
