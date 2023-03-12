@@ -1,59 +1,111 @@
 import React, { useState } from "react";
+import CountryDropDown from "./CountryDropDown";
 import styled from "styled-components";
 
-interface ISelectCountries {
-  label: string;
-  value: number;
-}
+// interface ISelectCountries {
+//   label: string;
+//   value: number;
+// }
 
-function SelectCountry() {
-  const [isShowOptions, setIsShowOptions] = useState<boolean>(false);
-  const [isOpenCountry, setIsOpenCountry] = useState<boolean>(false);
-  const [selectedOption, setSelectedOption] = useState<string>("");
+// const options = [
+//   { value: "korea", label: "KR" },
+//   { value: "Japan", label: "JA" },
+//   { value: "United States", label: "US" },
+//   { value: "China", label: "CN" },
+// ];
 
-  const dropClickCountry = () => {
-    setIsOpenCountry(!isOpenCountry);
+const SelectCountry: React.FC = (): JSX.Element => {
+  const [showDropDown, setShowDropDown] = useState<boolean>(false);
+  const [selectCountry, setSelectCountry] = useState<string>("");
+  const countries = () => {
+    return ["KR, Korea", "US, United States", "CN, China", "JP, Japan"];
   };
 
-  const selectOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-    setSelectedOption(value);
+  const toggleDropDown = () => {
+    setShowDropDown(!showDropDown);
   };
 
-  // select 태그는 커스텀 제한이 있기 떄문에 button 태그와 ul + li 태그로 구현 예정
-  // 해야할 것 Lists
-  // 선택한 기준(dropdown item)이 버튼 안에 들어가게
-  // dropdown arrow 아이콘이 isOpen에 따라서 위 아래 바꾸기
-  // dropwdown item 선택하면 버튼들은 초기화 되기
-  // 한 번에 하나의 버튼만 open 되게 하기 (이 부분은 고려 X, 애초에 드랍다운 버튼 하나만 있을 예정)
-  // active 효과: border, shadw
-  // dropdown item 선택하면 api 연결하기
-  // 위에 카테고리가 선택되지 않았을 때 disabled 처리하기.
+  const outFoucsHandler = (e: React.FocusEvent<HTMLButtonElement>): void => {
+    if (e.currentTarget === e.target) {
+      setShowDropDown(false);
+    }
+  };
+
+  const countrySelection = (country: string): void => {
+    setSelectCountry(country);
+  };
+
   return (
     <>
       <div>
-        <select onChange={selectOnChange}>
-          <option selected disabled>
-            Korea
-          </option>
-          <option value="1">us</option>
-          <option value="2">us</option>
-          <option value="3">us</option>
-          <option value="4">us</option>
-        </select>
+        <div>
+          {selectCountry
+            ? `You selected ${selectCountry}`
+            : "Select Your Country"}
+        </div>
       </div>
-      {/* label tag & ul, li tag */}
-      <div>
-        <label>현재 값</label>
-        <ul>
-          <li>kr</li>
-          <li>us</li>
-          <li>ja</li>
-        </ul>
-      </div>
+      <StyledButtonDiv>
+        <StyledButton
+          className={showDropDown ? "active" : undefined}
+          onClick={(): void => toggleDropDown()}
+          onBlur={(e: React.FocusEvent<HTMLButtonElement>): void =>
+            outFoucsHandler(e)
+          }
+        >
+          <div>
+            {/* {selectCountry ? "Selected: " + selectCountry : "Select ..."} */}
+            {selectCountry ? "" + selectCountry : "Select ..."}
+          </div>
+          {showDropDown && (
+            <CountryDropDown
+              countries={countries()}
+              showDropDown={false}
+              toggleDropDown={(): void => toggleDropDown()}
+              countrySelection={countrySelection}
+            />
+          )}
+        </StyledButton>
+      </StyledButtonDiv>
     </>
   );
-}
+};
+
+// function SelectCountry() {
+//   // const [isOpenCountry, setIsOpenCountry] = useState<boolean>(false);
+//   // const [selectedOption, setSelectedOption] = useState<string>("");
+
+//   // const dropClickCountry = () => {
+//   //   setIsOpenCountry(!isOpenCountry);
+//   // };
+
+//   // const selectOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+//   //   const value = e.target.value;
+//   //   setSelectedOption(value);
+//   // };
+//   return (
+//     <>
+//       {/* <Select
+//         placeholder={"countries"}
+//         options={options}
+//         onChange={selectOnChange}
+//       /> */}
+
+//       {/* --------------------------------------- */}
+//       {/* <div>
+//         <select onChange={selectOnChange}>
+//           <option selected disabled>
+//             Korea
+//           </option>
+//           <option value="1">us</option>
+//           <option value="2">us</option>
+//           <option value="3">us</option>
+//           <option value="4">us</option>
+//         </select>
+//       </div> */}
+//       {/* ------------------------------------ */}
+//     </>
+//   );
+// }
 
 export default SelectCountry;
 
@@ -74,4 +126,62 @@ const StyledSelectBox = styled.div`
     color: #49c181;
     font-size: 1.25rem;
   }
+`;
+
+const StyledButton = styled.button`
+  position: relative;
+  padding: 0.375rem 0.88rem;
+  color: ${({ theme }) => theme.color.white};
+  background-color: ${({ theme }) => theme.color.grey};
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  user-select: none;
+  border: 0.125rem solid transparent;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  border-radius: ${({ theme }) => theme.borderRadius.imgCard};
+  cursor: pointer;
+  :hover {
+    color: ${({ theme }) => theme.color.white};
+    background-color: ${({ theme }) => theme.color.blueGreen};
+  }
+  .active {
+    color: ${({ theme }) => theme.color.white};
+    background-color: ${({ theme }) => theme.color.blueGreen};
+  }
+  .dropdown {
+    position: absolute;
+    top: 2.375rem;
+    left: -0.0625rem;
+    border: 0.0625rem solid rgb(197, 197, 197);
+    background: ${({ theme }) => theme.color.white};
+    padding: 0;
+    color: ${({ theme }) => theme.color.blueGreen};
+    text-align: left;
+    border-radius: 0.25rem;
+  }
+  .dropdown > p {
+    margin: 0;
+    padding: 0.375rem 0.88rem;
+    border-bottom: 0.0625rem solid ${({ theme }) => theme.color.white};
+    min-width: 5rem;
+  }
+  .dropdown > p:hover {
+    color: ${({ theme }) => theme.color.white};
+    background-color: ${({ theme }) => theme.color.blueGreen};
+  }
+  .dropdown > p:last-child {
+    border-bottom: 0 none;
+  }
+`;
+
+const StyledButtonDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* position: absolute;
+  left: 800px; */
 `;
