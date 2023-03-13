@@ -2,14 +2,16 @@ import { ChangeEvent } from "react";
 import styled from "styled-components";
 
 interface IInputProps {
+  type?: string;
   placeholder?: string;
   value: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-function Input({ placeholder, onChange }: IInputProps) {
+function Input({ type, placeholder, onChange }: IInputProps) {
   return (
     <StyledInput
+      type={type}
       placeholder={placeholder}
       required={true}
       onChange={onChange}

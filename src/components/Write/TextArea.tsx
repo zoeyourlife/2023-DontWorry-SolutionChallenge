@@ -16,6 +16,7 @@ function TextArea({ count, maxCount, placeholder }: ITextAreaProps) {
         onChange={(e) => {
           setContent(e.target.value);
         }}
+        value={content}
         placeholder={placeholder}
         required
         maxLength={3000}
