@@ -3,8 +3,8 @@ import { m } from "framer-motion";
 import Link from "next/link";
 import React, { useState } from "react";
 import {
-  defaultFadeInVariants,
   defaultFadeInScaleVariants,
+  defaultFadeInVariants,
 } from "src/constants/motion";
 import styled, { css } from "styled-components";
 
@@ -72,23 +72,38 @@ const StyledModal = styled(m.div)<{ isOpen: boolean }>`
   align-items: center;
   z-index: 10000;
 `;
+
 const StyledModalMain = styled(m.div)`
-  width: 20rem;
+  width: 22rem;
   height: fit-content;
-  background-color: black;
+  background-color: ${({ theme }) => theme.color.black};
   padding: 2rem;
   border-radius: ${({ theme }) => theme.borderRadius.imgCard};
   display: flex;
   flex-direction: column;
   gap: 0.6125rem;
+  word-spacing: 0.2px;
+  opacity: background-color 0.5;
+
   .close {
     align-self: flex-end;
     cursor: pointer;
   }
+
   h1 {
     align-self: center;
+    font-size: 1.54rem;
+    line-height: 1.73rem;
+    margin-top: 1rem;
   }
+
+  p {
+    font-weight: ${({ theme }) => theme.fontWeight.light};
+    line-height: 1.3rem;
+  }
+
   z-index: 10001;
+  
   .link {
     align-self: center;
   }
@@ -97,9 +112,11 @@ const StyledModalMain = styled(m.div)`
 const StyledButton = styled.button`
   display: flex;
   border: 1.5px solid ${({ theme }) => theme.color.borderGrey};
-  padding: 10px 30px;
   border-radius: ${({ theme }) => theme.borderRadius.button};
+  padding: 10px 30px;
   transition: all 0.5s;
+  margin: 1rem 0;
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
 
   &:hover {
     border: 1.5px solid ${({ theme }) => theme.color.white};
