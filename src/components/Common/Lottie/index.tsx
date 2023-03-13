@@ -14,7 +14,7 @@ function LottieWrapper({ lottieData }: ILottieWrapper) {
 
   return (
     <StyledWrapper>
-      <Lottie options={lottieOptions} isClickToPauseDisabled />;
+      <Lottie options={lottieOptions} isClickToPauseDisabled />
     </StyledWrapper>
   );
 }
