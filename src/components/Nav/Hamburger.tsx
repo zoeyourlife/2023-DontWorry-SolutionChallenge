@@ -19,7 +19,7 @@ function HamburgerNav() {
             <Link href="/DontWorry/Case">Case</Link>
           </StyledListItem>
           <StyledListItem>
-            <Link href="/">Help</Link>
+            <Link href="/DontWorry/Help">Help</Link>
           </StyledListItem>
           <StyledListItem>
             <Link href="/DontWorry/Law">Law</Link>

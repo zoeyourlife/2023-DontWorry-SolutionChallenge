@@ -8,11 +8,14 @@ const color = {
   grey: "#353535", // input, buttomNavbar color
   grey100: "#808080",
   grey500: "#6e6e6e",
+  borderBackground: "#2e2c2c",
+  borderGrey: "#707070",
 };
 
 const fontWeight = {
   light: 300,
   normal: 500,
+  semibold: 600,
   bold: 700,
 };
 

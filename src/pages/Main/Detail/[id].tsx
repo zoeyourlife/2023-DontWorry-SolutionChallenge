@@ -1,8 +1,9 @@
-import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useRef } from "react";
+import TodayDate from "src/components/Common/Date/TodayDate";
 import Tag from "src/components/Common/Tag";
+import ReportSubTitle from "src/components/Common/Text/ReportSubTitle";
 import Nav from "src/components/Nav";
 import BottomNav from "src/components/Nav/BottomNav";
 import MakePdf from "src/components/Pdf/MakePdf";
@@ -34,28 +35,38 @@ function Detail() {
     <>
       <Nav />
       <StyledWrapper ref={colorChangeRef} className="pdfWrapper">
-        <StyledTitle>글 제목</StyledTitle>
-        <StyledDate>날짜</StyledDate>
-        <StyledTagWrapper>
-          <Tag />
-        </StyledTagWrapper>
         <StyledContentWrapper>
-          <StyledContent>글내용</StyledContent>
+          <StyledTagWrapper>
+            <Tag category="DontWorry" />
+          </StyledTagWrapper>
+          <StyledTitle>An incident to report</StyledTitle>
+          <ReportSubTitle number={1} title="When" />
+          <StyledContent>글 작성 날짜</StyledContent>
+          <ReportSubTitle number={2} title="The day of the incident" />
+          <StyledContent>사건 발생일</StyledContent>
+          <ReportSubTitle
+            number={3}
+            title="The place where the incident occurred"
+          />
+          <StyledContent>발생 위치</StyledContent>
+          <ReportSubTitle number={4} title="Incident details" />
+          <StyledContent>사건 내용</StyledContent>
+          <ReportSubTitle number={5} title="Attached photo" />
+          <StyledImgWrapper>
+            <StyledImg>
+              <Image
+                src="/images/food.jpg"
+                alt="cardImg"
+                layout="fill"
+                sizes="13.5rem"
+                quality={100}
+              />
+            </StyledImg>
+          </StyledImgWrapper>
+          <StyledTodayDateWrapper>
+            <TodayDate />
+          </StyledTodayDateWrapper>
         </StyledContentWrapper>
-        <StyledLocationWrapper>
-          <StyledLocationIcon /> <StyledLocation>장소 명</StyledLocation>
-        </StyledLocationWrapper>
-        <StyledImgWrapper>
-          <StyledImg>
-            <Image
-              src="/images/food.jpg"
-              alt="cardImg"
-              layout="fill"
-              sizes="13.5rem"
-              quality={100}
-            />
-          </StyledImg>
-        </StyledImgWrapper>
       </StyledWrapper>
       <StyledBtnWrapper>
         <StyledBtn onClick={onSaveBtnClick}>save as pdf</StyledBtn>
@@ -68,42 +79,18 @@ function Detail() {
 export default Detail;
 
 const StyledWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
   min-height: 100%;
   padding: 1rem 1rem;
 `;
 
-const StyledTitle = styled.span`
+const StyledTitle = styled.h1`
+  text-align: center;
+  font-size: 1.43rem;
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  font-size: 1.5rem;
-`;
-
-const StyledDate = styled.p`
-  opacity: 0.5;
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
-  font-size: 0.8rem;
-  margin: 0.5rem 0;
-`;
-
-const StyledLocationWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: fit-content;
-  cursor: pointer;
-`;
-
-const StyledLocationIcon = styled(LocationOnIcon)`
-  color: ${({ theme }) => theme.color.grey};
-  width: 1.2rem;
-  margin-left: 0.2rem;
-`;
-
-const StyledLocation = styled.span`
-  opacity: 0.5;
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
-  font-size: 0.8rem;
-  margin-left: 0.2rem;
+  margin: 1rem 0;
 `;
 
 const StyledTagWrapper = styled.div`
@@ -112,15 +99,15 @@ const StyledTagWrapper = styled.div`
   width: 100%;
 `;
 
-const StyledContentWrapper = styled.div`
-  height: auto;
-  margin: 2rem 0;
+const StyledContent = styled.span`
+  font-weight: ${({ theme }) => theme.fontWeight.light};
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
 `;
 
-const StyledContent = styled.p`
-  line-height: 1.3rem;
-  font-weight: ${({ theme }) => theme.fontWeight.light};
-  font-size: 1rem;
+const StyledContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 const StyledImgWrapper = styled.div`
@@ -142,9 +129,13 @@ const StyledImg = styled.div`
   overflow: hidden;
 `;
 
+const StyledTodayDateWrapper = styled.div`
+  margin: 2.5rem 0 1rem 0;
+`;
+
 const StyledBtnWrapper = styled.div`
   position: relative;
-  min-height: 5.6rem;
+  min-height: 2rem;
   height: auto;
 `;
 

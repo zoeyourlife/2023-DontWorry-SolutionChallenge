@@ -14,7 +14,7 @@ function Nav() {
           router.back();
         }}
       ></StyledBackBtn>
-      <Link href="/DontWorry/About">
+      <Link href="/">
         <StyledLogo>DontWorry</StyledLogo>
       </Link>
       <HamburgerNav />
