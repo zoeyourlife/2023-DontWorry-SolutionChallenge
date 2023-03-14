@@ -82,29 +82,12 @@ const SelectCountry: React.FC = (): JSX.Element => {
 //   //   const value = e.target.value;
 //   //   setSelectedOption(value);
 //   // };
-//   return (
-//     <>
-//       {/* <Select
-//         placeholder={"countries"}
-//         options={options}
-//         onChange={selectOnChange}
-//       /> */}
-
-//       {/* --------------------------------------- */}
-//       {/* <div>
-//         <select onChange={selectOnChange}>
-//           <option selected disabled>
-//             Korea
-//           </option>
-//           <option value="1">us</option>
-//           <option value="2">us</option>
-//           <option value="3">us</option>
-//           <option value="4">us</option>
-//         </select>
-//       </div> */}
-//       {/* ------------------------------------ */}
-//     </>
-//   );
+// {
+//   <Select
+//     placeholder={"countries"}
+//     options={options}
+//     onChange={selectOnChange}
+//   />;
 // }
 
 export default SelectCountry;
