@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 
 // CountryDropDownProps 타입 지정
-type CountryDropDownProps = {
+interface ICountryDropDownProps {
   countries: string[];
   showDropDown: boolean;
   toggleDropDown: Function;
   countrySelection: Function;
-};
+}
 
-const CountryDropDown: React.FC<CountryDropDownProps> = ({
+const CountryDropDown = ({
   countries,
   countrySelection,
-}: CountryDropDownProps): JSX.Element => {
+}: ICountryDropDownProps) => {
   const [showDropDown, setShowDropDown] = useState<boolean>(false);
 
-  const onClickHandler = (country: string): void => {
+  const onClickHandler = (country: string) => {
     countrySelection(country);
   };
 
@@ -23,22 +23,20 @@ const CountryDropDown: React.FC<CountryDropDownProps> = ({
   }, [showDropDown]);
 
   return (
-    <>
-      <div className={showDropDown ? "dropdown" : "dropdown active"}>
-        {countries.map((country: string, index: number): JSX.Element => {
-          return (
-            <p
-              key={index}
-              onClick={(): void => {
-                onClickHandler(country);
-              }}
-            >
-              {country}
-            </p>
-          );
-        })}
-      </div>
-    </>
+    <div className={showDropDown ? "dropdown" : "dropdown active"}>
+      {countries.map((country, index) => {
+        return (
+          <p
+            key={index}
+            onClick={(): void => {
+              onClickHandler(country);
+            }}
+          >
+            {country}
+          </p>
+        );
+      })}
+    </div>
   );
 };
 

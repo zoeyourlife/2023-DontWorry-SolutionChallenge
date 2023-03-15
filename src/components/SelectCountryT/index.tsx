@@ -10,8 +10,8 @@ function SelectCountryT() {
   };
   return (
     <StyledSelectDiv>
-      <StyledSelect onChange={selectChange}>
-        <option selected disabled>
+      <StyledSelect onChange={selectChange} defaultValue={"country" || ""}>
+        <option value="country" disabled>
           Choose Country ...
         </option>
         <option value="US">🇺🇸 | United States</option>
@@ -36,10 +36,13 @@ const StyledSelectDiv = styled.div`
 const StyledSelect = styled.select`
   width: 10rem;
   padding: 0.5rem;
+
   border: 0.0425rem solid ${({ theme }) => theme.color.grey100};
   border-radius: ${({ theme }) => theme.borderRadius.imgCard};
+
   background-color: ${({ theme }) => theme.color.background};
   color: ${({ theme }) => theme.color.white};
+
   cursor: pointer;
 
   :hover {
@@ -48,16 +51,16 @@ const StyledSelect = styled.select`
   }
 
   :focus {
-    border-color: #aaa;
+    border-color: ${({ theme }) => theme.color.grey100};
     box-shadow: 0 0 1px 1px rgba(151, 200, 252, 0.4);
-    color: white;
+    color: ${({ theme }) => theme.color.white};
     outline: none;
   }
 
-  > option[value="US"] {
+  /* > option[value="US"] {
     background-image: url("/images/america.png");
     background-repeat: no-repeat;
-  }
+  } */
 
   option:checked {
     background-color: ${({ theme }) => theme.color.grey100};

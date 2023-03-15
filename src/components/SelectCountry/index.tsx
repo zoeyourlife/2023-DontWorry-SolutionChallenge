@@ -2,19 +2,7 @@ import React, { useState } from "react";
 import CountryDropDown from "./CountryDropDown";
 import styled from "styled-components";
 
-// interface ISelectCountries {
-//   label: string;
-//   value: number;
-// }
-
-// const options = [
-//   { value: "korea", label: "KR" },
-//   { value: "Japan", label: "JA" },
-//   { value: "United States", label: "US" },
-//   { value: "China", label: "CN" },
-// ];
-
-const SelectCountry: React.FC = (): JSX.Element => {
+function SelectCountry() {
   const [showDropDown, setShowDropDown] = useState<boolean>(false);
   const [selectCountry, setSelectCountry] = useState<string>("");
   const countries = () => {
@@ -25,13 +13,13 @@ const SelectCountry: React.FC = (): JSX.Element => {
     setShowDropDown(!showDropDown);
   };
 
-  const outFoucsHandler = (e: React.FocusEvent<HTMLButtonElement>): void => {
+  const outFoucsHandler = (e: React.FocusEvent<HTMLButtonElement>) => {
     if (e.currentTarget === e.target) {
       setShowDropDown(false);
     }
   };
 
-  const countrySelection = (country: string): void => {
+  const countrySelection = (country: string) => {
     setSelectCountry(country);
   };
 
@@ -60,7 +48,7 @@ const SelectCountry: React.FC = (): JSX.Element => {
             <CountryDropDown
               countries={countries()}
               showDropDown={false}
-              toggleDropDown={(): void => toggleDropDown()}
+              toggleDropDown={() => toggleDropDown()}
               countrySelection={countrySelection}
             />
           )}
@@ -68,63 +56,27 @@ const SelectCountry: React.FC = (): JSX.Element => {
       </StyledButtonDiv>
     </>
   );
-};
-
-// function SelectCountry() {
-//   // const [isOpenCountry, setIsOpenCountry] = useState<boolean>(false);
-//   // const [selectedOption, setSelectedOption] = useState<string>("");
-
-//   // const dropClickCountry = () => {
-//   //   setIsOpenCountry(!isOpenCountry);
-//   // };
-
-//   // const selectOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-//   //   const value = e.target.value;
-//   //   setSelectedOption(value);
-//   // };
-// {
-//   <Select
-//     placeholder={"countries"}
-//     options={options}
-//     onChange={selectOnChange}
-//   />;
-// }
+}
 
 export default SelectCountry;
-
-const StyledSelectBox = styled.div`
-  position: relative;
-  width: 200px;
-  padding: 8px;
-  border-radius: 12px;
-  background-color: #fff;
-  align-self: center;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  &::before {
-    content: "∨";
-    position: absoulte;
-    top: 1px;
-    right: 8px;
-    color: #49c181;
-    font-size: 1.25rem;
-  }
-`;
 
 const StyledButton = styled.button`
   position: relative;
   padding: 0.375rem 0.88rem;
-  color: ${({ theme }) => theme.color.white};
-  background-color: ${({ theme }) => theme.color.grey};
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
-  text-align: left;
   white-space: nowrap;
   vertical-align: middle;
-  -webkit-user-select: none;
   user-select: none;
-  border: 0.125rem solid transparent;
+  -webkit-user-select: none;
+
+  color: ${({ theme }) => theme.color.white};
+  background-color: ${({ theme }) => theme.color.grey};
+
   font-size: 0.85rem;
+  text-align: left;
   line-height: 1.5;
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
+
+  border: 0.125rem solid transparent;
   border-radius: ${({ theme }) => theme.borderRadius.imgCard};
   cursor: pointer;
   :hover {
@@ -165,6 +117,4 @@ const StyledButtonDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* position: absolute;
-  left: 800px; */
 `;
