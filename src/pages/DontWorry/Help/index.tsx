@@ -1,10 +1,25 @@
 import { m } from "framer-motion";
+import { useRouter } from "next/router";
+import Loading from "src/components/Common/Loading";
 import Nav from "src/components/Nav";
 import BottomNav from "src/components/Nav/BottomNav";
 import { defaultFadeInUpVariants } from "src/constants/motion";
+import useGetHelp from "src/hooks/api/useGetHelp";
 import styled from "styled-components";
 
 function Help() {
+  const {
+    query: { country },
+  } = useRouter();
+
+  const { helpData, isLoading } = useGetHelp({
+    country,
+  });
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <>
       <Nav />
@@ -20,31 +35,12 @@ function Help() {
               <th className="help">help</th>
               <th>where you can reach</th>
             </tr>
-            <tr>
-              <td>exam</td>
-              <td>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Impedit natus, quidem repellat culpa cupiditate ipsa magni
-                sapiente minus? Possimus quod doloribus iure. Hic dicta sed quas
-                qui alias sunt sit.
-              </td>
-            </tr>
-            <tr>
-              <td>exam2</td>
-              <td>exam</td>
-            </tr>
-            <tr>
-              <td>exam</td>
-              <td>exam</td>
-            </tr>
-            <tr>
-              <td>exam</td>
-              <td>exam</td>
-            </tr>
-            <tr>
-              <td>exam2</td>
-              <td>exam</td>
-            </tr>
+            {helpData.map((data, i) => (
+              <tr key={i}>
+                <td>{data.number}</td>
+                <td key={i}>{data.summary}</td>
+              </tr>
+            ))}
           </tbody>
         </StyledTable>
       </StyledHelp>
@@ -59,19 +55,28 @@ const StyledHelp = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 2rem;
+  background-color: ${({ theme }) => theme.color.background};
 `;
+
 const StyledTable = styled(m.table)`
+  margin-bottom: 3.3rem;
   border-collapse: collapse;
   border: 1px solid ${({ theme }) => theme.color.borderGrey};
   th,
   td {
+    cursor: pointer;
     border: 1px solid ${({ theme }) => theme.color.borderGrey};
   }
   th {
+    font-size: 1.15rem;
     height: 3.625rem;
   }
   td {
+    font-weight: ${({ theme }) => theme.fontWeight.normal};
     padding: 0.3125rem;
+    letter-spacing: 0.3px;
+    line-height: 1.7rem;
   }
   tr {
     transition: all 0.5s;
