@@ -14,6 +14,7 @@ function Signin() {
   const router = useRouter();
   const [userId, setUserId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   const onChangeUserId = (e: ChangeEvent<HTMLInputElement>) => {
     setUserId(e.target.value);
@@ -65,8 +66,18 @@ function Signin() {
           .then((res) => {
             console.log(res);
             console.log(res.data.userId);
+            console.log(res.headers);
+            // const cookies = res.headers.get('Set-Cookie');
+            // if(cookies){
+            //   const jsessionid = cookies.split(';').find((cookie: string)=> cookie.trim().startsWith('JSESSIONID='));
+            //   if(jsessionid){
+            //     const jsessionidValue = jsessionid.split('=')[1];
+            //     console.log('JSESSIONID value : ${jsessionidValue}');
+            //   }
+            // }
             sessionStorage.setItem("userId", userId);
             console.log(sessionStorage);
+            setIsLoggedIn(true);
             router.push("/Main");
           })
           .catch((err) => {
@@ -79,7 +90,45 @@ function Signin() {
     [userId, password, router],
   );
 
-  // await axios.get(`${API_BASED_URL}/user`)
+  const logout = () => {
+    async (e: React.FormEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      {
+        await axios
+          // 요청 헤더에 sessionID가 있다면 서버에게 전달 후, 서버에서 session 삭제.
+          .post(`${API_BASED_URL}/logout`, null, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log(res);
+            sessionStorage.removeItem("userId");
+            setIsLoggedIn(false);
+            router.push("/Signin");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    };
+  };
+
+  const deleteUser = () => {
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      if (window.confirm("당신의 학교폭력이 해결 됐나요?")) {
+        axios
+          .delete(`${API_BASED_URL}/members`, {
+            withCredentials: true,
+          })
+          .then(() => {
+            sessionStorage.clear();
+            alert("I'm gald to your happy.");
+            router.push("/Main");
+          })
+          .catch((err) => alert(err));
+      }
+    };
+  };
 
   return (
     <>
