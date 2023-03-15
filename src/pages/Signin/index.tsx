@@ -1,10 +1,7 @@
 import axios from "axios";
-import session, { Cookie } from "express-session";
-import { request } from "http";
-import { ResponseCookies } from "next/dist/server/web/spec-extension/cookies";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { ChangeEvent, useCallback, useState, useEffect } from "react";
+import React, { ChangeEvent, useCallback, useState, useEffect } from "react";
 import FormInput from "src/components/FormInput";
 import Login from "src/components/Login";
 import SubmitBtn from "src/components/SubmitBtn";
@@ -63,7 +60,7 @@ function Signin() {
               headers: {
                 "Content-Type": "application/json",
               },
-            }
+            },
           )
           .then((res) => {
             console.log(res);
@@ -79,7 +76,7 @@ function Signin() {
       }
     },
     // [userId, password]
-    [userId, password, router]
+    [userId, password, router],
   );
 
   // await axios.get(`${API_BASED_URL}/user`)
