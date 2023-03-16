@@ -11,7 +11,7 @@ interface ICountryHelp {
   summary: string;
 }
 
-function SelectCountryT() {
+function SelectCountry() {
   const router = useRouter();
   const [selectedCountry, setSelectedCountry] = useState<String>("");
   const [country, setCountry] = useState<String>("");
@@ -74,7 +74,7 @@ function SelectCountryT() {
   );
 }
 
-export default SelectCountryT;
+export default SelectCountry;
 
 const StyledSelectDiv = styled.div`
   margin-top: 4rem;
@@ -106,11 +106,6 @@ const StyledSelect = styled.select`
     color: ${({ theme }) => theme.color.white};
     outline: none;
   }
-
-  /* > option[value="US"] {
-    background-image: url("/images/america.png");
-    background-repeat: no-repeat;
-  } */
 
   option:checked {
     background-color: ${({ theme }) => theme.color.grey100};
