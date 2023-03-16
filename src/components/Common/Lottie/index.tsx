@@ -1,4 +1,4 @@
-// import Lottie, { Options } from "react-lottie";
+import Lottie, { Options } from "react-lottie";
 import styled from "styled-components";
 
 interface ILottieWrapper {
@@ -6,15 +6,15 @@ interface ILottieWrapper {
 }
 
 function LottieWrapper({ lottieData }: ILottieWrapper) {
-  // const lottieOptions: Options = {
-  //   animationData: lottieData,
-  //   loop: true,
-  //   autoplay: true,
-  // };
+  const lottieOptions: Options = {
+    animationData: lottieData,
+    loop: true,
+    autoplay: true,
+  };
 
   return (
     <StyledWrapper>
-      {/* <Lottie options={lottieOptions} isClickToPauseDisabled /> */}
+      <Lottie options={lottieOptions} isClickToPauseDisabled />
     </StyledWrapper>
   );
 }
