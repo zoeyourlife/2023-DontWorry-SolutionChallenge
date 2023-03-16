@@ -16,14 +16,6 @@
       }
     }
   },
-  "overrides": [
-    {
-      "files": ["*.ts", "*.tsx"],
-      "rules": {
-        "no-undef": "off"
-      }
-    }
-  ],
   "rules": {
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["warn"],
