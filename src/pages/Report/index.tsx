@@ -1,31 +1,29 @@
-import DeleteIcon from "@mui/icons-material/Delete";
-import { useState } from "react";
+import Loading from "src/components/Common/Loading";
 import Nav from "src/components/Nav";
 import BottomNav from "src/components/Nav/BottomNav";
 import Timeline from "src/components/Timeline";
+import useGetMain from "src/hooks/api/useGetMain";
 import styled from "styled-components";
 
-// 신고 버튼을 눌렀을 경우 모달창 이후 나오는 페이지 입니다
 function Report() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const { mainData, isLoading } = useGetMain();
 
-  function toggle() {
-    setIsOpen((isOpen) => !isOpen);
+  if (isLoading) {
+    return <Loading />;
   }
 
   return (
     <>
       <Nav />
-      <StyledBtn
-        onClick={() => {
-          setIsOpen((e) => !e);
-        }}
-      >
-        <DeleteIcon />
-        <StyledTrashText>Trash</StyledTrashText>
-      </StyledBtn>
       <StyledWrapper>
-        <div onClick={() => toggle()}>{isOpen && <Timeline />}</div>
+        {mainData.map((data, i) => (
+          <Timeline
+            key={i}
+            title={data.title}
+            create_date={data.createdDate}
+            storeFileName={data.storeFileName}
+          />
+        ))}
       </StyledWrapper>
       <BottomNav selected="Home" />
     </>
@@ -38,21 +36,4 @@ const StyledWrapper = styled.div`
   position: relative;
   width: 100%;
   padding: 1rem 1rem;
-`;
-
-const StyledBtn = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5rem 0.5rem;
-  color: ${({ theme }) => theme.color.grey100};
-  :hover {
-    transition: all 0.3s;
-    color: #ffffffd2;
-  }
-`;
-
-const StyledTrashText = styled.span`
-  margin-left: 0.1rem;
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
 `;
