@@ -10,26 +10,25 @@ import styled from "styled-components";
 interface IProps {
   title: string;
   create_date: string;
-  main_text: string;
+  storeFileName: string;
 }
 
-//TODO 글 내용 부분 받아올 때 최대 length 두기, img props
-
-function Timeline() {
+// signin 해결 후 적용 예정
+function Timeline({ title, create_date, storeFileName }: IProps) {
   return (
     <StyledTimelineList>
       {/* 글이 있다면 */}
       <Link href={`/Main/Detail/$id값`}>
         <StyledTimelineContainer>
           <StyledTimelineItem>
-            <StyledDate>글 작성 날짜</StyledDate>
+            <StyledDate>{create_date}</StyledDate>
             <StyledTitle
               initial="initial"
               animate="animate"
               exit="exit"
               variants={defaultFadeInLeftVariants}
             >
-              글 제목
+              {title}
             </StyledTitle>
             <StyledSummary
               initial="initial"
@@ -37,7 +36,7 @@ function Timeline() {
               exit="exit"
               variants={defaultFadeInUpVariants}
             >
-              글 내용
+              {storeFileName}
             </StyledSummary>
           </StyledTimelineItem>
         </StyledTimelineContainer>
@@ -47,7 +46,7 @@ function Timeline() {
       <Link href={`/Main/Detail/$id값`}>
         <StyledTimelineContainer>
           <StyledTimelineItem>
-            <StyledDate>글 작성 날짜</StyledDate>
+            <StyledDate>{create_date}</StyledDate>
             <StyledImg
               initial="initial"
               animate="animate"
@@ -55,7 +54,7 @@ function Timeline() {
               variants={defaultFadeInUpVariants}
             >
               <Image
-                src="/images/food.jpg"
+                src={storeFileName}
                 alt="cardImg"
                 width={100}
                 height={100}
