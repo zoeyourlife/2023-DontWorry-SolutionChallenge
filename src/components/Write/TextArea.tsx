@@ -1,20 +1,21 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import styled from "styled-components";
 
 interface ITextAreaProps {
   count?: boolean;
   maxCount?: number;
   placeholder?: string;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-function TextArea({ count, maxCount, placeholder }: ITextAreaProps) {
+function TextArea({ count, maxCount, placeholder, onChange }: ITextAreaProps) {
   const [content, setContent] = useState<string>("");
 
   return (
     <>
       <StyledTextArea
         onChange={(e) => {
-          setContent(e.target.value);
+          setContent(e.target.value), { onChange };
         }}
         value={content}
         placeholder={placeholder}

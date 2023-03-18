@@ -1,15 +1,13 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 import Input from "src/components/Write/Input";
 import Title from "src/components/Write/Title";
 import { writeExplain } from "src/constants/writeExplain";
 
-function FormTitle() {
-  const [title, setTitle] = useState<string>("");
+interface IProps {
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+}
 
-  const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  };
-
+function FormTitle({ onChange }: IProps) {
   return (
     <>
       <Title
@@ -17,7 +15,7 @@ function FormTitle() {
         title={writeExplain[0].title}
         subTitle={writeExplain[0].subTitle}
       />
-      <Input placeholder="Enter Title" value={title} onChange={onChangeTitle} />
+      <Input placeholder="Enter Title" onChange={onChange} />
     </>
   );
 }

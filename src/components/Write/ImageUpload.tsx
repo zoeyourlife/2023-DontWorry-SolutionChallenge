@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 interface IImageUploadProps {
   value?: string | null;
-  onChange?: (value: string | null) => void;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   src?: string;
 }
 
@@ -30,7 +30,12 @@ function ImageUpload({ value, onChange, src }: IImageUploadProps) {
         accept="image/*"
         ref={inputRef}
         multiple
-        onChange={saveFileImage}
+        onChange={(e) => {
+          saveFileImage(e),
+            () => {
+              onChange;
+            };
+        }}
       />
     </StyledWrapper>
   );

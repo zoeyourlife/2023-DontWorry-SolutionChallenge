@@ -4,8 +4,12 @@ import Title from "src/components/Write/Title";
 import { writeExplain } from "src/constants/writeExplain";
 import styled from "styled-components";
 
+interface IProps {
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+
 //TODO: 여러개 입력받기
-function FormTag() {
+function FormTag({ onChange }: IProps) {
   const [category, setCategory] = useState<string>("");
 
   const onChangeCategory = (e: ChangeEvent<HTMLInputElement>) => {
@@ -22,7 +26,9 @@ function FormTag() {
         <Input
           placeholder="Enter Tag"
           value={category}
-          onChange={onChangeCategory}
+          onChange={(e) => {
+            onChangeCategory(e), { onChange };
+          }}
         />
       </StyledInputWrapper>
     </>

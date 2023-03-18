@@ -1,16 +1,13 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 import Input from "src/components/Write/Input";
 import Title from "src/components/Write/Title";
 import { writeExplain } from "src/constants/writeExplain";
 
-//TODO: date 양식
-function FormDate() {
-  const [date, setDate] = useState<string>("");
+interface IProps {
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+}
 
-  const onChangeDate = (e: ChangeEvent<HTMLInputElement>) => {
-    setDate(e.target.value);
-  };
-
+function FormDate({ onChange }: IProps) {
   return (
     <>
       <Title
@@ -18,12 +15,7 @@ function FormDate() {
         title={writeExplain[1].title}
         subTitle={writeExplain[1].subTitle}
       />
-      <Input
-        type="date"
-        placeholder="Enter Date"
-        value={date}
-        onChange={onChangeDate}
-      />
+      <Input type="date" placeholder="Enter Date" onChange={onChange} />
     </>
   );
 }

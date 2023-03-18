@@ -1,8 +1,13 @@
+import { ChangeEvent } from "react";
 import TextArea from "src/components/Write/TextArea";
 import Title from "src/components/Write/Title";
 import { writeExplain } from "src/constants/writeExplain";
 
-function FormSummary() {
+interface IProps {
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+
+function FormSummary({ onChange }: IProps) {
   return (
     <>
       <Title
@@ -10,7 +15,12 @@ function FormSummary() {
         title={writeExplain[3].title}
         subTitle={writeExplain[3].subTitle}
       />
-      <TextArea maxCount={3000} count={true} placeholder="Enter Summary" />
+      <TextArea
+        maxCount={3000}
+        count={true}
+        placeholder="Enter Summary"
+        onChange={onChange}
+      />
     </>
   );
 }

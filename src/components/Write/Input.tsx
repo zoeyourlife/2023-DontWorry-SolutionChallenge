@@ -4,7 +4,7 @@ import styled from "styled-components";
 interface IInputProps {
   type?: string;
   placeholder?: string;
-  value: string;
+  value?: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
