@@ -1,3 +1,4 @@
+import { NextPageContext } from "next";
 import Loading from "src/components/Common/Loading";
 import Nav from "src/components/Nav";
 import BottomNav from "src/components/Nav/BottomNav";
@@ -6,6 +7,7 @@ import useGetMain from "src/hooks/api/useGetMain";
 import styled from "styled-components";
 
 function Report() {
+  typeof window !== "undefined" ? (document.cookie = "SameSite=Lax") : null;
   const { mainData, isLoading } = useGetMain();
 
   if (isLoading) {
@@ -28,6 +30,13 @@ function Report() {
       <BottomNav selected="Home" />
     </>
   );
+}
+
+export async function getServerSideProps(context: NextPageContext) {
+  const cookie = context.req ? context.req.headers.cookie : "";
+  return {
+    props: { cookie },
+  };
 }
 
 export default Report;
