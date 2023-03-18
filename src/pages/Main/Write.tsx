@@ -1,4 +1,8 @@
 import SendIcon from "@mui/icons-material/Send";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { ChangeEvent, useState } from "react";
+import { useForm } from "react-hook-form";
 import Nav from "src/components/Nav";
 import BottomNav from "src/components/Nav/BottomNav";
 import FormDate from "src/components/Write/Form/FormDate";
@@ -7,25 +11,84 @@ import FormLocation from "src/components/Write/Form/FormLocation";
 import FormSummary from "src/components/Write/Form/FormSummary";
 import FormTag from "src/components/Write/Form/FormTag";
 import FormTitle from "src/components/Write/Form/FormTitle";
-import FormVideo from "src/components/Write/Form/FormVideo";
+import { API_BASED_URL } from "src/constants/apiUrl";
+import { IPostWriteData } from "src/remotes/upload";
 import styled from "styled-components";
 
 function Write() {
+  const [title, setTitle] = useState<string>("");
+  const [incidentDate, setIncidentDate] = useState<string>("");
+  const [mainText, setMainText] = useState<string>("");
+  const [location, setLocation] = useState<string>("");
+  const [category, setCategory] = useState<string[]>();
+
+  const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  };
+
+  const onChangeIncidentDate = (e: ChangeEvent<HTMLInputElement>) => {
+    setIncidentDate(e.target.value);
+  };
+  const onChangeMainText = (e: ChangeEvent<HTMLInputElement>) => {
+    setMainText(e.target.value);
+  };
+
+  const onChangeLocation = (e: ChangeEvent<HTMLInputElement>) => {
+    setLocation(e.target.value);
+  };
+  const onChangeCategory = (e: ChangeEvent<HTMLInputElement>) => {
+    setCategory([e.target.value]);
+  };
+
+  function onSubmit() {
+    const formData = new FormData();
+
+    formData.append("title", title);
+    console.log(title);
+    formData.append("incidentDate", incidentDate);
+    formData.append("mainText", mainText);
+    formData.append("location", location);
+    formData.append("category", category);
+    // formData.append("files", files);
+
+    axios
+      .post<{}, IPostWriteData>(`${API_BASED_URL}/write`, formData, {
+        headers: {
+          Accept: "*/*",
+          "Content-Type": "application/json",
+          withCredentials: true,
+        },
+      })
+      .then((res) => {
+        router.push("/Main");
+      });
+  }
+
+  const router = useRouter();
+  const { register, handleSubmit } = useForm<IPostWriteData>();
+
   return (
     <>
       <Nav />
       <StyledWrapper>
         <h2>Write form</h2>
         <StyledHr />
-        <StyledForm>
+        <StyledForm
+          onSubmit={handleSubmit(onSubmit)}
+          encType="application/json"
+          method="post"
+        >
           <StyledProjectWrapper>
-            <FormTitle />
-            <FormDate />
-            <FormTag />
-            <FormSummary />
+            <FormTitle {...register("title")} onChange={onChangeTitle} />
+            <FormDate
+              {...register("incidentDate")}
+              onChange={onChangeIncidentDate}
+            />
+            <FormTag {...register("category")} onChange={onChangeCategory} />
+            <FormSummary {...register("title")} onChange={onChangeMainText} />
             <FormImages />
-            <FormVideo />
-            <FormLocation />
+            {/* <FormVideo /> */}
+            <FormLocation {...register("title")} onChange={onChangeLocation} />
             <StyledBtnWrapper>
               <StyledBtnHover>
                 <SendIcon fontSize="small" />
@@ -34,6 +97,7 @@ function Write() {
             </StyledBtnWrapper>
           </StyledProjectWrapper>
         </StyledForm>
+        
       </StyledWrapper>
       <BottomNav selected="Write" />
     </>
