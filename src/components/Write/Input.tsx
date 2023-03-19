@@ -5,15 +5,16 @@ interface IInputProps {
   type?: string;
   placeholder?: string;
   value?: string;
+  required: boolean;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-function Input({ type, placeholder, onChange }: IInputProps) {
+function Input({ type, placeholder, required, onChange }: IInputProps) {
   return (
     <StyledInput
       type={type}
       placeholder={placeholder}
-      required={true}
+      required={required}
       onChange={onChange}
     />
   );

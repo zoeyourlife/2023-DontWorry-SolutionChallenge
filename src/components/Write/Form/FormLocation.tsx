@@ -16,7 +16,7 @@ function FormLocation({ onChange }: IProps) {
         title={writeExplain[4].title}
         subTitle={writeExplain[4].subTitle}
       />
-      <Input onChange={onChange} />
+      <Input placeholder="Enter Location" required={true} onChange={onChange} />
     </>
   );
 }

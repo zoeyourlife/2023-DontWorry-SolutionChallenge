@@ -15,7 +15,7 @@ function FormTitle({ onChange }: IProps) {
         title={writeExplain[0].title}
         subTitle={writeExplain[0].subTitle}
       />
-      <Input placeholder="Enter Title" onChange={onChange} />
+      <Input placeholder="Enter Title" required={true} onChange={onChange} />
     </>
   );
 }

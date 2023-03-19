@@ -15,7 +15,12 @@ function FormDate({ onChange }: IProps) {
         title={writeExplain[1].title}
         subTitle={writeExplain[1].subTitle}
       />
-      <Input type="date" placeholder="Enter Date" onChange={onChange} />
+      <Input
+        type="date"
+        placeholder="Enter Date"
+        required={true}
+        onChange={onChange}
+      />
     </>
   );
 }
