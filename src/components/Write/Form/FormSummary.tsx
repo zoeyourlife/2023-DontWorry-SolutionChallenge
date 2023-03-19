@@ -4,10 +4,11 @@ import Title from "src/components/Write/Title";
 import { writeExplain } from "src/constants/writeExplain";
 
 interface IProps {
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  value: string;
+  onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-function FormSummary({ onChange }: IProps) {
+function FormSummary({ value, onChange }: IProps) {
   return (
     <>
       <Title
@@ -17,6 +18,7 @@ function FormSummary({ onChange }: IProps) {
       />
       <TextArea
         maxCount={3000}
+        value={value}
         count={true}
         placeholder="Enter Summary"
         onChange={onChange}
