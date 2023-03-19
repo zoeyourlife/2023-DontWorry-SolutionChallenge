@@ -3,17 +3,18 @@ import { useRouter } from "next/router";
 import Loading from "src/components/Common/Loading";
 import Nav from "src/components/Nav";
 import BottomNav from "src/components/Nav/BottomNav";
+import SelectCountry from "src/components/SelectCountry";
 import { defaultFadeInUpVariants } from "src/constants/motion";
 import useGetHelp from "src/hooks/api/useGetHelp";
 import styled from "styled-components";
 
 function Help() {
   const {
-    query: { country },
+    query: { countryName },
   } = useRouter();
 
   const { helpData, isLoading } = useGetHelp({
-    country,
+    countryName,
   });
 
   if (isLoading) {
@@ -24,6 +25,9 @@ function Help() {
     <>
       <Nav />
       <StyledHelp>
+        <StyledSelectWrapper>
+          <SelectCountry />
+        </StyledSelectWrapper>
         <StyledTable
           initial="initial"
           animate="animate"
@@ -53,6 +57,7 @@ export default Help;
 
 const StyledHelp = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
@@ -91,4 +96,10 @@ const StyledTable = styled(m.table)`
   }
   width: 95%;
   margin-top: 1.25rem;
+`;
+
+const StyledSelectWrapper = styled.div`
+  width: 100%;
+  margin-top: 1rem;
+  padding: 1rem;
 `;

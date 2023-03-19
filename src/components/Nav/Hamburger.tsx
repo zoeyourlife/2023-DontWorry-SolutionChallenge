@@ -10,22 +10,33 @@ function HamburgerNav() {
     <StyledMenuLabel onClick={handleClick}>
       <StyledMenu click={click}></StyledMenu>
       <StyledBg click={click}></StyledBg>
-      <StyledNavWrapper click={click} onClick={handleClick}>
+      <StyledNavWrapper click={click}>
         <StyledList>
           <StyledListItem>
-            <Link href="/">About</Link>
+            <Link href="/">
+              <StyledItemWidth>About</StyledItemWidth>
+            </Link>
           </StyledListItem>
           <StyledListItem>
-            <Link href="/DontWorry/Case">Case</Link>
+            <Link href="/DontWorry/Case">
+              {" "}
+              <StyledItemWidth>Case</StyledItemWidth>
+            </Link>
           </StyledListItem>
           <StyledListItem>
-            <Link href="/DontWorry/Help">Help</Link>
+            <Link href="/DontWorry/Help/USA">
+              <StyledItemWidth>Help</StyledItemWidth>
+            </Link>
           </StyledListItem>
           <StyledListItem>
-            <Link href="/DontWorry/Law">Law</Link>
+            <Link href="/DontWorry/Law">
+              <StyledItemWidth>Law</StyledItemWidth>
+            </Link>
           </StyledListItem>
           <StyledListItem>
-            <Link href="/Signin">Login</Link>
+            <Link href="/Signin">
+              <StyledItemWidth>Login</StyledItemWidth>
+            </Link>
           </StyledListItem>
         </StyledList>
       </StyledNavWrapper>
@@ -103,16 +114,15 @@ const StyledNavWrapper = styled.div<{ click: boolean }>`
   transition: width 0.9s;
 `;
 
-const StyledList = styled.ul`
+const StyledList = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100%;
 `;
 
-const StyledListItem = styled.li`
+const StyledListItem = styled.div`
   display: inline-block;
-
   font-size: 1.65rem;
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   letter-spacing: 0.2px;
@@ -122,4 +132,11 @@ const StyledListItem = styled.li`
   &:hover {
     transform: translateY(-0.75rem);
   }
+`;
+
+const StyledItemWidth = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 3rem;
 `;
