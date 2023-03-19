@@ -7,7 +7,6 @@ import useGetMain from "src/hooks/api/useGetMain";
 import styled from "styled-components";
 
 function Report() {
-  typeof window !== "undefined" ? (document.cookie = "SameSite=Lax") : null;
   const { mainData, isLoading } = useGetMain();
 
   if (isLoading) {
