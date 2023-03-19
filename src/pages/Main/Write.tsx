@@ -1,5 +1,6 @@
 import SendIcon from "@mui/icons-material/Send";
 import axios from "axios";
+import { NextPageContext } from "next";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -20,7 +21,8 @@ function Write() {
   const [incidentDate, setIncidentDate] = useState<string>("");
   const [mainText, setMainText] = useState<string>("");
   const [location, setLocation] = useState<string>("");
-  const [category, setCategory] = useState<string[]>();
+  const [category, setCategory] = useState<string>("");
+  const [files, setFiles] = useState<File>();
 
   const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -29,33 +31,72 @@ function Write() {
   const onChangeIncidentDate = (e: ChangeEvent<HTMLInputElement>) => {
     setIncidentDate(e.target.value);
   };
-  const onChangeMainText = (e: ChangeEvent<HTMLInputElement>) => {
+
+  const onChangeMainText = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setMainText(e.target.value);
   };
 
   const onChangeLocation = (e: ChangeEvent<HTMLInputElement>) => {
     setLocation(e.target.value);
   };
+
   const onChangeCategory = (e: ChangeEvent<HTMLInputElement>) => {
-    setCategory([e.target.value]);
+    setCategory(e.target.value);
+  };
+
+  const onChangeFiles = (e: ChangeEvent<HTMLInputElement>) => {
+    const formData = new FormData();
+    const target = e.currentTarget;
+    const files = (target.files as FileList)[0];
+    formData.append("file", e.currentTarget.value[0]);
+    setFiles(files);
   };
 
   function onSubmit() {
     const formData = new FormData();
-
-    formData.append("title", title);
+    formData.append(
+      "title",
+      new Blob([JSON.stringify(title)], {
+        type: "application/json",
+      }),
+    );
     console.log(title);
-    formData.append("incidentDate", incidentDate);
-    formData.append("mainText", mainText);
-    formData.append("location", location);
-    formData.append("category", category);
-    // formData.append("files", files);
+    formData.append(
+      "incidentDate",
+      new Blob([JSON.stringify(incidentDate)], {
+        type: "application/json",
+      }),
+    );
+    console.log(incidentDate);
+    formData.append(
+      "mainText",
+      new Blob([JSON.stringify(mainText)], {
+        type: "application/json",
+      }),
+    );
+    console.log(mainText);
+    formData.append(
+      "location",
+      new Blob([JSON.stringify(location)], {
+        type: "application/json",
+      }),
+    );
+    console.log(location);
+    formData.append(
+      "category",
+      new Blob([JSON.stringify(category)], {
+        type: "application/json",
+      }),
+    );
+
+    console.log(category);
+    formData.append("files", files);
 
     axios
       .post<{}, IPostWriteData>(`${API_BASED_URL}/write`, formData, {
         headers: {
           Accept: "*/*",
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
           withCredentials: true,
         },
       })
@@ -75,7 +116,7 @@ function Write() {
         <StyledHr />
         <StyledForm
           onSubmit={handleSubmit(onSubmit)}
-          encType="application/json"
+          encType="multipart/form-data"
           method="post"
         >
           <StyledProjectWrapper>
@@ -85,10 +126,17 @@ function Write() {
               onChange={onChangeIncidentDate}
             />
             <FormTag {...register("category")} onChange={onChangeCategory} />
-            <FormSummary {...register("title")} onChange={onChangeMainText} />
-            <FormImages />
+            <FormSummary
+              {...register("mainText")}
+              value={mainText}
+              onChange={onChangeMainText}
+            />
             {/* <FormVideo /> */}
-            <FormLocation {...register("title")} onChange={onChangeLocation} />
+            <FormLocation
+              {...register("location")}
+              onChange={onChangeLocation}
+            />
+            <FormImages {...register("files")} onChange={onChangeFiles} />
             <StyledBtnWrapper>
               <StyledBtnHover>
                 <SendIcon fontSize="small" />
@@ -97,11 +145,17 @@ function Write() {
             </StyledBtnWrapper>
           </StyledProjectWrapper>
         </StyledForm>
-        
       </StyledWrapper>
       <BottomNav selected="Write" />
     </>
   );
+}
+
+export async function getServerSideProps(context: NextPageContext) {
+  const cookie = context.req ? context.req.headers.cookie : "";
+  return {
+    props: { cookie },
+  };
 }
 
 export default Write;

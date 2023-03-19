@@ -1,9 +1,4 @@
-import axios from "axios";
-import { useRouter } from "next/router";
 import { ChangeEvent, useRef, useState } from "react";
-import { useForm } from "react-hook-form";
-import { API_BASED_URL } from "src/constants/apiUrl";
-import { IPostWriteData } from "src/remotes/upload";
 import styled from "styled-components";
 
 interface IImageUploadProps {
@@ -14,9 +9,6 @@ interface IImageUploadProps {
 
 //TODO: image api
 function ImageUpload({ value, onChange, src }: IImageUploadProps) {
-  const router = useRouter();
-  const { register, handleSubmit } = useForm<IPostWriteData>();
-
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [previewImage, setPreviewImage] = useState<string>("");
 
@@ -26,30 +18,6 @@ function ImageUpload({ value, onChange, src }: IImageUploadProps) {
     }
   };
 
-  const [files, setFiles] = useState<File>();
-
-  const onChangeFiles = (e: ChangeEvent<HTMLInputElement>) => {
-    const formData = new FormData();
-    const target = e.currentTarget;
-    const files = (target.files as FileList)[0];
-    formData.append("file", e.currentTarget.value[0]);
-    setFiles(files);
-  };
-
-  const formFileData = new FormData();
-  formFileData.append("files", files);
-
-  axios
-    .post<{}, IPostWriteData>(`${API_BASED_URL}/write`, formFileData, {
-      headers: {
-        Accept: "*/*",
-        "Content-Type": "multipart/form-data",
-        withCredentials: true,
-      },
-    })
-    .then((res) => {
-      router.push("/Main");
-    });
   return (
     <StyledWrapper>
       <StyledPreviewWrapper>
@@ -58,7 +26,6 @@ function ImageUpload({ value, onChange, src }: IImageUploadProps) {
         )}
       </StyledPreviewWrapper>
       <StyledInput
-        {...register("title")}
         type="file"
         accept="image/png, image/jpeg, image/jpg"
         ref={inputRef}
@@ -66,7 +33,7 @@ function ImageUpload({ value, onChange, src }: IImageUploadProps) {
         onChange={(e) => {
           saveFileImage(e),
             {
-              onChangeFiles,
+              onChange,
             };
         }}
       />
