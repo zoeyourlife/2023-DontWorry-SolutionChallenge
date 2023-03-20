@@ -9,7 +9,7 @@ function custom404() {
       <LottieWrapper lottieData={lottie404} />
       <div>
         <h1>NOT FOUND</h1>
-        <h3>That page can't be found</h3>
+        <h3>That page can&apos;t be found</h3>
       </div>
     </StyledCustom404>
   );
