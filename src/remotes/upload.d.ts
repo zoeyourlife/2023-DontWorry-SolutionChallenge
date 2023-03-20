@@ -1,6 +1,6 @@
 import { IPhoto } from "src/remotes/photo";
 
-export interface IPostWriteData {
+interface IPostWriteData {
   title: string;
   category: IPostCategory[];
   mainText: string;
