@@ -1,5 +1,4 @@
 import { m } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import {
   defaultFadeInLeftVariants,
@@ -13,11 +12,10 @@ interface IProps {
   storeFileName: string;
 }
 
-// signin 해결 후 적용 예정
+//TODO 백에서 이미지와 글 구분되면 이미지 적용하기
 function Timeline({ title, create_date, storeFileName }: IProps) {
   return (
     <StyledTimelineList>
-      {/* 글이 있다면 */}
       <Link href={`/Main/Detail/$id값`}>
         <StyledTimelineContainer>
           <StyledTimelineItem>
@@ -53,6 +51,7 @@ function Timeline({ title, create_date, storeFileName }: IProps) {
               exit="exit"
               variants={defaultFadeInUpVariants}
             >
+              {/*               
               <Image
                 src={storeFileName}
                 alt="cardImg"
@@ -60,7 +59,7 @@ function Timeline({ title, create_date, storeFileName }: IProps) {
                 height={100}
                 layout="responsive"
                 quality={100}
-              />
+              /> */}
             </StyledImg>
           </StyledTimelineItem>
         </StyledTimelineContainer>
