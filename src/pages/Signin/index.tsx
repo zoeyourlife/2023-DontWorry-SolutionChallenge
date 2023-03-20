@@ -1,12 +1,8 @@
-import { request } from "http";
 import axios from "axios";
-import session, { Cookie } from "express-session";
-import { ResponseCookies } from "next/dist/server/web/spec-extension/cookies";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { ChangeEvent, useCallback, useState, useEffect } from "react";
+import React, { ChangeEvent, useCallback, useState } from "react";
 import FormInput from "src/components/FormInput";
-import Login from "src/components/Login";
 import SubmitBtn from "src/components/SubmitBtn";
 import { API_BASED_URL } from "src/constants/apiUrl";
 import styled from "styled-components";
@@ -67,14 +63,10 @@ function Signin() {
             },
           )
           .then((res) => {
-            console.log(res);
-            console.log(res.data.userId);
             sessionStorage.setItem("userId", userId);
-            console.log(sessionStorage);
-            router.push("/Main");
+            router.push("/DontWorry/About");
           })
           .catch((err) => {
-            console.log(err);
             alert("Wrong");
           });
       }

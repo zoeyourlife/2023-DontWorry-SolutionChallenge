@@ -13,9 +13,7 @@ function HamburgerNav() {
       <StyledNavWrapper click={click}>
         <StyledList>
           <StyledListItem>
-            <Link href="/">
-              <StyledItemWidth>About</StyledItemWidth>
-            </Link>
+            <Link href="/DontWorry/About">About</Link>
           </StyledListItem>
           <StyledListItem>
             <Link href="/DontWorry/Case">
