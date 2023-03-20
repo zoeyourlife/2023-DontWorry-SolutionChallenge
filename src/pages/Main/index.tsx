@@ -11,6 +11,8 @@ import styled from "styled-components";
 function Main() {
   const [showModal, setShowModal] = useState(false);
   const clickModal = () => setShowModal(!showModal);
+  const user =
+    typeof window !== "undefined" ? sessionStorage.getItem("userId") : null;
 
   return (
     <>
@@ -24,6 +26,9 @@ function Main() {
       )}
       <Nav />
       <StyledWrapper>
+        <StyledUserMsg>
+          <b>{user}</b>, how was your day today?
+        </StyledUserMsg>
         <MainMsg />
         <StyledCarouselWrapper>
           <Carousel />
@@ -31,7 +36,6 @@ function Main() {
         <StyledBalloonWrapper>
           <ReportBalloon />
         </StyledBalloonWrapper>
-
         <StyledBtnWrapper onClick={clickModal}>
           <ReportBtn />
         </StyledBtnWrapper>
@@ -71,4 +75,10 @@ const StyledCarouselWrapper = styled.div`
   justify-content: center;
   margin-top: 3rem;
   margin-bottom: 4.5rem;
+`;
+
+const StyledUserMsg = styled.div`
+  font-size: 0.88rem;
+  font-weight: ${({ theme }) => theme.fontWeight.light};
+  margin-bottom: 0.8rem;
 `;
