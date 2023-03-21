@@ -1,4 +1,5 @@
 import { domMax, LazyMotion } from "framer-motion";
+import { NextPageContext } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { PropsWithChildren, useEffect } from "react";
@@ -30,6 +31,13 @@ function App({ Component, pageProps }: AppProps) {
 }
 
 export default App;
+
+export async function getinitialProps(context: NextPageContext) {
+  const cookie = context.req ? context.req.headers.cookie : "";
+  return {
+    props: { cookie },
+  };
+}
 
 let vh = 0;
 

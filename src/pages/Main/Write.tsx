@@ -1,4 +1,8 @@
 import SendIcon from "@mui/icons-material/Send";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { ChangeEvent, useState } from "react";
+import { useForm } from "react-hook-form";
 import Nav from "src/components/Nav";
 import BottomNav from "src/components/Nav/BottomNav";
 import FormDate from "src/components/Write/Form/FormDate";
@@ -7,25 +11,106 @@ import FormLocation from "src/components/Write/Form/FormLocation";
 import FormSummary from "src/components/Write/Form/FormSummary";
 import FormTag from "src/components/Write/Form/FormTag";
 import FormTitle from "src/components/Write/Form/FormTitle";
-import FormVideo from "src/components/Write/Form/FormVideo";
+import { API_BASED_URL } from "src/constants/apiUrl";
+import { IPostWriteData } from "src/remotes/upload";
 import styled from "styled-components";
 
+axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
+
 function Write() {
+  const [title, setTitle] = useState<string>("");
+  const [incidentDate, setIncidentDate] = useState<string>("");
+  const [mainText, setMainText] = useState<string>("");
+  const [location, setLocation] = useState<string>("");
+  const [category, setCategory] = useState<string[]>();
+  const [files, setFiles] = useState<File>();
+
+  const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  };
+
+  const onChangeIncidentDate = (e: ChangeEvent<HTMLInputElement>) => {
+    setIncidentDate(e.target.value);
+  };
+
+  const onChangeMainText = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setMainText(e.target.value);
+  };
+
+  const onChangeLocation = (e: ChangeEvent<HTMLInputElement>) => {
+    setLocation(e.target.value);
+  };
+
+  const onChangeCategory = (e: ChangeEvent<HTMLInputElement>) => {
+    setCategory([e.target.value]);
+  };
+
+  const onChangeFiles = (e: ChangeEvent<HTMLInputElement>) => {
+    const formData = new FormData();
+    const target = e.currentTarget;
+    const files = (target.files as FileList)[0];
+    formData.append("files", e.currentTarget.value[0]);
+    setFiles(files);
+  };
+
+  function onSubmit() {
+    if (files === undefined) {
+      alert("I can't find the image");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("incidentDate", incidentDate);
+    formData.append("mainText", mainText);
+    formData.append("location", location);
+    formData.append("category", category);
+    formData.append("files", files);
+
+    axios
+      .post<{}, IPostWriteData>(`${API_BASED_URL}/write`, formData, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then(() => {
+        router.push("/");
+      });
+  }
+
+  const router = useRouter();
+  const { register, handleSubmit } = useForm<IPostWriteData>();
+
   return (
     <>
       <Nav />
       <StyledWrapper>
         <h2>Write form</h2>
         <StyledHr />
-        <StyledForm>
+        <StyledForm
+          onSubmit={handleSubmit(onSubmit)}
+          encType="multipart/form-data"
+          method="post"
+        >
           <StyledProjectWrapper>
-            <FormTitle />
-            <FormDate />
-            <FormTag />
-            <FormSummary />
-            <FormImages />
-            <FormVideo />
-            <FormLocation />
+            <FormTitle {...register("title")} onChange={onChangeTitle} />
+            <FormDate
+              {...register("incidentDate")}
+              onChange={onChangeIncidentDate}
+            />
+            <FormTag {...register("category")} onChange={onChangeCategory} />
+            <FormSummary
+              {...register("mainText")}
+              value={mainText}
+              onChange={onChangeMainText}
+            />
+            {/* <FormVideo /> */}
+            <FormLocation
+              {...register("location")}
+              onChange={onChangeLocation}
+            />
+            <FormImages {...register("files")} onChange={onChangeFiles} />
             <StyledBtnWrapper>
               <StyledBtnHover>
                 <SendIcon fontSize="small" />

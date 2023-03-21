@@ -1,26 +1,31 @@
-import { useState } from "react";
+import { ChangeEvent } from "react";
 import styled from "styled-components";
 
 interface ITextAreaProps {
   count?: boolean;
   maxCount?: number;
   placeholder?: string;
+  value: string;
+  onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-function TextArea({ count, maxCount, placeholder }: ITextAreaProps) {
-  const [content, setContent] = useState<string>("");
-
+function TextArea({
+  value,
+  count,
+  maxCount,
+  placeholder,
+  onChange,
+}: ITextAreaProps) {
   return (
     <>
       <StyledTextArea
-        onChange={(e) => {
-          setContent(e.target.value);
-        }}
+        onChange={onChange}
+        value={value}
         placeholder={placeholder}
         required
         maxLength={3000}
       />
-      {count && <StyledCount>{`${content.length} / ${maxCount}`}</StyledCount>}
+      {count && <StyledCount>{`${value.length} / ${maxCount}`}</StyledCount>}
     </>
   );
 }
