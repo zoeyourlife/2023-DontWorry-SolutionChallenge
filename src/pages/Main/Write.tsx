@@ -113,8 +113,10 @@ function Write() {
             <FormImages {...register("files")} onChange={onChangeFiles} />
             <StyledBtnWrapper>
               <StyledBtnHover>
-                <SendIcon fontSize="small" />
-                <StyledBtn type="submit">Send</StyledBtn>
+                <StyledBtn type="submit">
+                  <SendIcon fontSize="small" />
+                  <span>Send</span>
+                </StyledBtn>
               </StyledBtnHover>
             </StyledBtnWrapper>
           </StyledProjectWrapper>
@@ -171,6 +173,15 @@ const StyledBtnHover = styled.div`
 `;
 
 const StyledBtn = styled.button`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   margin-left: 0.3rem;
+  min-width: 10rem;
+
+  span {
+    margin-left: 0.3rem;
+  }
 `;
