@@ -3,6 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
+import Loading from "src/components/Common/Loading";
 import Nav from "src/components/Nav";
 import BottomNav from "src/components/Nav/BottomNav";
 import FormDate from "src/components/Write/Form/FormDate";
@@ -23,7 +24,7 @@ function Write() {
   const [mainText, setMainText] = useState<string>("");
   const [location, setLocation] = useState<string>("");
   const [category, setCategory] = useState<string[]>();
-  const [files, setFiles] = useState<File>();
+  const [files, setFiles] = useState<File | null>(null);
 
   const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -75,6 +76,7 @@ function Write() {
         },
       })
       .then(() => {
+        <Loading />;
         router.push("/");
       });
   }

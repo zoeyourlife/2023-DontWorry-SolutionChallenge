@@ -1,4 +1,5 @@
 import { m } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import {
   defaultFadeInLeftVariants,
@@ -10,10 +11,10 @@ interface IProps {
   title: string;
   create_date: string;
   storeFileName: string;
+  mainText: string;
 }
 
-//TODO 백에서 이미지와 글 구분되면 이미지 적용하기
-function Timeline({ title, create_date, storeFileName }: IProps) {
+function Timeline({ title, create_date, storeFileName, mainText }: IProps) {
   return (
     <StyledTimelineList>
       <Link href={`/Main/Detail/$id값`}>
@@ -28,39 +29,27 @@ function Timeline({ title, create_date, storeFileName }: IProps) {
             >
               {title}
             </StyledTitle>
-            <StyledSummary
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              variants={defaultFadeInUpVariants}
-            >
-              {storeFileName}
-            </StyledSummary>
-          </StyledTimelineItem>
-        </StyledTimelineContainer>
-      </Link>
-
-      {/* 글이 없다면 */}
-      <Link href={`/Main/Detail/$id값`}>
-        <StyledTimelineContainer>
-          <StyledTimelineItem>
-            <StyledDate>{create_date}</StyledDate>
-            <StyledImg
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              variants={defaultFadeInUpVariants}
-            >
-              {/*               
-              <Image
-                src={storeFileName}
-                alt="cardImg"
-                width={100}
-                height={100}
-                layout="responsive"
-                quality={100}
-              /> */}
-            </StyledImg>
+            {storeFileName === null ? (
+              <StyledSummary
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                variants={defaultFadeInUpVariants}
+              >
+                {mainText}
+              </StyledSummary>
+            ) : (
+              <StyledImg>
+                <Image
+                  src={storeFileName}
+                  alt="cardImg"
+                  width={100}
+                  height={100}
+                  layout="responsive"
+                  quality={100}
+                />
+              </StyledImg>
+            )}
           </StyledTimelineItem>
         </StyledTimelineContainer>
       </Link>
@@ -124,4 +113,8 @@ const StyledImg = styled(m.div)`
   margin: 1rem 0 0.5rem 0;
   border-radius: ${({ theme }) => theme.borderRadius.imgCard};
   overflow: hidden;
+
+  span {
+    border-radius: ${({ theme }) => theme.borderRadius.imgCard};
+  }
 `;
