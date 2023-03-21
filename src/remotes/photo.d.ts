@@ -1,4 +1,4 @@
-export interface IPhoto {
+interface IPhoto {
   id: number;
   uploadFileName: string;
   storeFileName: string;

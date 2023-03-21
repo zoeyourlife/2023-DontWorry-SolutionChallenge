@@ -6,7 +6,7 @@ interface IPostWriteData {
   mainText: string;
   userId: string;
   location: string;
-  imagesFiles: IPhoto[];
+  files: IPhoto[];
   incidentDate: string;
 }
 
