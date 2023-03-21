@@ -82,14 +82,10 @@ function Write() {
   const router = useRouter();
   const { register, handleSubmit } = useForm<IPostWriteData>();
 
-  const user =
-    typeof window !== "undefined" ? sessionStorage.getItem("userId") : null;
-
   return (
     <>
       <Nav />
       <StyledWrapper>
-        <h1>{user}</h1>
         <h2>Write form</h2>
         <StyledHr />
         <StyledForm
