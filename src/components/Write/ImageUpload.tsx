@@ -1,41 +1,36 @@
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent } from "react";
 import styled from "styled-components";
 
 interface IImageUploadProps {
-  value?: string | null;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  src?: string;
+  required?: boolean;
 }
 
-//TODO: image api
-function ImageUpload({ value, onChange, src }: IImageUploadProps) {
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const [previewImage, setPreviewImage] = useState<string>("");
+function ImageUpload({ onChange, required }: IImageUploadProps) {
+  // 이미지 업로드 기능
+  // const inputRef = useRef<HTMLInputElement | null>(null);
+  // const [previewImage, setPreviewImage] = useState<string>("");
 
-  const saveFileImage = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files !== null) {
-      setPreviewImage(URL.createObjectURL(event.target.files[0]));
-    }
-  };
+  // const saveFileImage = (event: ChangeEvent<HTMLInputElement>) => {
+  //   if (event.target.files !== null) {
+  //     setPreviewImage(URL.createObjectURL(event.target.files[0]));
+  //   }
+  // };
 
   return (
     <StyledWrapper>
-      <StyledPreviewWrapper>
+      {/* <StyledPreviewWrapper>
         {previewImage && (
           <StyledPreview src={previewImage} alt="preview image" />
         )}
-      </StyledPreviewWrapper>
+      </StyledPreviewWrapper> */}
       <StyledInput
         type="file"
         accept="image/png, image/jpeg, image/jpg"
-        ref={inputRef}
+        // ref={inputRef}
         multiple
-        onChange={(e) => {
-          saveFileImage(e),
-            {
-              onChange,
-            };
-        }}
+        onChange={onChange}
+        required={required}
       />
     </StyledWrapper>
   );
@@ -72,6 +67,5 @@ const StyledPreview = styled.img`
 `;
 
 const StyledInput = styled.input`
-  margin-left: 0.5rem;
   font-weight: ${({ theme }) => theme.fontWeight.light};
 `;

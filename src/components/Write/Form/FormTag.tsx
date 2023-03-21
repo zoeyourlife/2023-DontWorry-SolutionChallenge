@@ -17,7 +17,7 @@ function FormTag({ onChange }: IProps) {
         subTitle={writeExplain[2].subTitle}
       />
       <StyledInputWrapper>
-        <Input placeholder="Enter Tag" required={false} onChange={onChange} />
+        <Input placeholder="Enter Tag" required={true} onChange={onChange} />
       </StyledInputWrapper>
     </>
   );
