@@ -1,6 +1,5 @@
 import SendIcon from "@mui/icons-material/Send";
 import axios from "axios";
-import { NextPageContext } from "next";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -16,12 +15,14 @@ import { API_BASED_URL } from "src/constants/apiUrl";
 import { IPostWriteData } from "src/remotes/upload";
 import styled from "styled-components";
 
+axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
+
 function Write() {
   const [title, setTitle] = useState<string>("");
   const [incidentDate, setIncidentDate] = useState<string>("");
   const [mainText, setMainText] = useState<string>("");
   const [location, setLocation] = useState<string>("");
-  const [category, setCategory] = useState<string>("");
+  const [category, setCategory] = useState<string[]>();
   const [files, setFiles] = useState<File>();
 
   const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
@@ -41,77 +42,54 @@ function Write() {
   };
 
   const onChangeCategory = (e: ChangeEvent<HTMLInputElement>) => {
-    setCategory(e.target.value);
+    setCategory([e.target.value]);
   };
 
   const onChangeFiles = (e: ChangeEvent<HTMLInputElement>) => {
     const formData = new FormData();
     const target = e.currentTarget;
     const files = (target.files as FileList)[0];
-    formData.append("file", e.currentTarget.value[0]);
+    formData.append("files", e.currentTarget.value[0]);
     setFiles(files);
   };
 
   function onSubmit() {
-    const formData = new FormData();
-    formData.append(
-      "title",
-      new Blob([JSON.stringify(title)], {
-        type: "application/json",
-      }),
-    );
-    console.log(title);
-    formData.append(
-      "incidentDate",
-      new Blob([JSON.stringify(incidentDate)], {
-        type: "application/json",
-      }),
-    );
-    console.log(incidentDate);
-    formData.append(
-      "mainText",
-      new Blob([JSON.stringify(mainText)], {
-        type: "application/json",
-      }),
-    );
-    console.log(mainText);
-    formData.append(
-      "location",
-      new Blob([JSON.stringify(location)], {
-        type: "application/json",
-      }),
-    );
-    console.log(location);
-    formData.append(
-      "category",
-      new Blob([JSON.stringify(category)], {
-        type: "application/json",
-      }),
-    );
+    if (files === undefined) {
+      alert("I can't find the image");
+      return;
+    }
 
-    console.log(category);
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("incidentDate", incidentDate);
+    formData.append("mainText", mainText);
+    formData.append("location", location);
+    formData.append("category", category);
     formData.append("files", files);
 
     axios
       .post<{}, IPostWriteData>(`${API_BASED_URL}/write`, formData, {
+        withCredentials: true,
         headers: {
-          Accept: "*/*",
           "Content-Type": "multipart/form-data",
-          withCredentials: true,
         },
       })
-      .then((res) => {
-        router.push("/Main");
+      .then(() => {
+        router.push("/");
       });
   }
 
   const router = useRouter();
   const { register, handleSubmit } = useForm<IPostWriteData>();
 
+  const user =
+    typeof window !== "undefined" ? sessionStorage.getItem("userId") : null;
+
   return (
     <>
       <Nav />
       <StyledWrapper>
+        <h1>{user}</h1>
         <h2>Write form</h2>
         <StyledHr />
         <StyledForm
@@ -149,13 +127,6 @@ function Write() {
       <BottomNav selected="Write" />
     </>
   );
-}
-
-export async function getServerSideProps(context: NextPageContext) {
-  const cookie = context.req ? context.req.headers.cookie : "";
-  return {
-    props: { cookie },
-  };
 }
 
 export default Write;
