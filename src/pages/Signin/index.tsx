@@ -1,12 +1,8 @@
 import axios from "axios";
-import session, { Cookie } from "express-session";
-import { request } from "http";
-import { ResponseCookies } from "next/dist/server/web/spec-extension/cookies";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { ChangeEvent, useCallback, useState, useEffect } from "react";
+import React, { ChangeEvent, useCallback, useState } from "react";
 import FormInput from "src/components/FormInput";
-import Login from "src/components/Login";
 import SubmitBtn from "src/components/SubmitBtn";
 import { API_BASED_URL } from "src/constants/apiUrl";
 import styled from "styled-components";
@@ -27,6 +23,7 @@ function Signin() {
   };
 
   const onSubmit = useCallback(
+    // eslint-disable-next-line no-undef
     async (e: React.FormEvent<HTMLFormElement>) => {
       // const data = {
       //   userId: userId,
@@ -63,23 +60,19 @@ function Signin() {
               headers: {
                 "Content-Type": "application/json",
               },
-            }
+            },
           )
           .then((res) => {
-            console.log(res);
-            console.log(res.data.userId);
             sessionStorage.setItem("userId", userId);
-            console.log(sessionStorage);
-            router.push("/Main");
+            router.push("/DontWorry/About");
           })
           .catch((err) => {
-            console.log(err);
             alert("Wrong");
           });
       }
     },
     // [userId, password]
-    [userId, password, router]
+    [userId, password, router],
   );
 
   // await axios.get(`${API_BASED_URL}/user`)

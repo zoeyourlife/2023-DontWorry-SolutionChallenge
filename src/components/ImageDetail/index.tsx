@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { NextRouter, useRouter } from "next/router";
 import React from "react";
@@ -6,9 +7,11 @@ import {
   defaultFadeInLeftVariants,
   defaultFadeInUpVariants,
 } from "src/constants/motion";
-import styled from "styled-components";
-
-function ImageDetail() {
+import styled, { css } from "styled-components";
+interface IImageDetail {
+  imageSrc: string;
+}
+function ImageDetail({ imageSrc }: IImageDetail) {
   return (
     <StyledImageDetail
       initial="initial"
@@ -16,7 +19,11 @@ function ImageDetail() {
       exit="exit"
       variants={defaultFadeInUpVariants}
     >
-      <StyledTestImage />
+      <StyledTestImage>
+        <Image src={imageSrc} alt="imageDetail" fill />
+      </StyledTestImage>
+      {/* 
+      <StyledTestImage bgSrc={imageSrc} /> */}
     </StyledImageDetail>
   );
 }
@@ -33,7 +40,6 @@ const StyledImageDetail = styled(motion.div)`
   padding: 0.125rem;
 `;
 const StyledTestImage = styled.div`
-  background-color: gray;
   width: 100%;
   padding-bottom: 100%;
 `;

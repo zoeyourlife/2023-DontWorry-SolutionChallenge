@@ -15,6 +15,7 @@ const color = {
 const fontWeight = {
   light: 300,
   normal: 500,
+  semibold: 600,
   bold: 700,
 };
 
