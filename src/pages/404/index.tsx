@@ -1,5 +1,4 @@
 import React from "react";
-import Lottie from "react-lottie";
 import lottie404 from "src/assets/lottieJSON/404.json";
 import LottieWrapper from "src/components/Common/Lottie";
 import Nav from "src/components/Nav";
