@@ -7,16 +7,16 @@ import {
 import styled from "styled-components";
 
 interface IProps {
+  id: number;
   title: string;
   create_date: string;
   storeFileName: string;
 }
 
-//TODO 백에서 이미지와 글 구분되면 이미지 적용하기
-function Timeline({ title, create_date, storeFileName }: IProps) {
+function Timeline({ id, title, create_date, storeFileName }: IProps) {
   return (
     <StyledTimelineList>
-      <Link href={`/Main/Detail/$id값`}>
+      <Link href={`/Main/Detail/${id}`}>
         <StyledTimelineContainer>
           <StyledTimelineItem>
             <StyledDate>{create_date}</StyledDate>
@@ -39,9 +39,7 @@ function Timeline({ title, create_date, storeFileName }: IProps) {
           </StyledTimelineItem>
         </StyledTimelineContainer>
       </Link>
-
-      {/* 글이 없다면 */}
-      <Link href={`/Main/Detail/$id값`}>
+      <Link href={`/Main/Detail/${id}`}>
         <StyledTimelineContainer>
           <StyledTimelineItem>
             <StyledDate>{create_date}</StyledDate>
