@@ -1,11 +1,23 @@
+import { ChangeEvent } from "react";
 import styled from "styled-components";
 
 interface IInputProps {
+  type?: string;
   placeholder?: string;
+  value?: string;
+  required: boolean;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-function Input({ placeholder }: IInputProps) {
-  return <StyledInput placeholder={placeholder} required={true} />;
+function Input({ type, placeholder, required, onChange }: IInputProps) {
+  return (
+    <StyledInput
+      type={type}
+      placeholder={placeholder}
+      required={required}
+      onChange={onChange}
+    />
+  );
 }
 
 export default Input;

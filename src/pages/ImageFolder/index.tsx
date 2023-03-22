@@ -1,4 +1,3 @@
-import { NextPageContext } from "next";
 import Loading from "src/components/Common/Loading";
 import ImageFOL from "src/components/ImageFOL";
 import Nav from "src/components/Nav";
@@ -26,12 +25,6 @@ function ImageFolder() {
   );
 }
 
-export async function getServerSideProps(context: NextPageContext) {
-  const cookie = context.req ? context.req.headers.cookie : "";
-  return {
-    props: { cookie },
-  };
-}
 export default ImageFolder;
 
 const StyledImageFolder = styled.div`

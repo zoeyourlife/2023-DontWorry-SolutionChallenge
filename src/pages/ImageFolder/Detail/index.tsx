@@ -1,4 +1,3 @@
-import { NextPageContext } from "next";
 import { useRouter } from "next/router";
 import Loading from "src/components/Common/Loading";
 import ImageDetail from "src/components/ImageDetail";
@@ -10,6 +9,7 @@ import styled from "styled-components";
 function Detail() {
   const route = useRouter();
   let month = route?.query.month;
+
   const { imageFolderDetailData, isLoading } = useGetImageFolderDetail(
     month as string,
   );
@@ -17,6 +17,7 @@ function Detail() {
   if (isLoading) {
     return <Loading />;
   }
+
   return (
     <>
       <Nav />
@@ -28,12 +29,6 @@ function Detail() {
       <BottomNav selected="Images" />
     </>
   );
-}
-export async function getServerSideProps(context: NextPageContext) {
-  const cookie = context.req ? context.req.headers.cookie : "";
-  return {
-    props: { cookie },
-  };
 }
 
 export default Detail;

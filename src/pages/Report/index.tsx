@@ -1,4 +1,3 @@
-import { NextPageContext } from "next";
 import Loading from "src/components/Common/Loading";
 import Nav from "src/components/Nav";
 import BottomNav from "src/components/Nav/BottomNav";
@@ -29,13 +28,6 @@ function Report() {
       <BottomNav selected="Home" />
     </>
   );
-}
-
-export async function getServerSideProps(context: NextPageContext) {
-  const cookie = context.req ? context.req.headers.cookie : "";
-  return {
-    props: { cookie },
-  };
 }
 
 export default Report;

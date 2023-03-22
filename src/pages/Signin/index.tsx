@@ -107,12 +107,12 @@ function Signin() {
         <SubmitBtn type="submit" name="Login" />
       </StyledForm>
 
-      <div>
+      <StyledBottomWrapper>
         <StyledRemHr />
         <Link href="/Signup">
           <SubmitBtn type="submit" name="Create account" />
         </Link>
-      </div>
+      </StyledBottomWrapper>
     </>
   );
 }
@@ -173,4 +173,8 @@ const StyledRemHr = styled.hr`
 
 const StyledRemSpan = styled.span`
   margin-left: 0.5rem;
+`;
+
+const StyledBottomWrapper = styled.div`
+  padding-bottom: 5.5rem;
 `;
