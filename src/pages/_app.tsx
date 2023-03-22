@@ -1,7 +1,10 @@
+import axios from "axios";
 import { domMax, LazyMotion } from "framer-motion";
+import { NextPageContext } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { PropsWithChildren, useEffect } from "react";
+import { API_BASED_URL } from "src/constants/apiUrl";
 import useWindowSize from "src/hooks/useWindowSize";
 import styled, { ThemeProvider } from "styled-components";
 import GlobalStyle from "styles/GlobalStyle";
@@ -28,6 +31,24 @@ function App({ Component, pageProps }: AppProps) {
     </>
   );
 }
+
+// export async function getinitialProps(context: NextPageContext) {
+//   const cookie = context.req ? context.req.headers.cookie : "";
+//   return {
+//     props: { cookie },
+//   };
+// }
+
+App.getinitalProps = async (context: { ctx: any; Component: any }) => {
+  const { ctx, Component } = context;
+  let pageProps = {};
+
+  if (Component.getinitialProps) {
+    pageProps = await Component.getinitialProps(ctx);
+  }
+
+  return { pageProps };
+};
 
 export default App;
 
