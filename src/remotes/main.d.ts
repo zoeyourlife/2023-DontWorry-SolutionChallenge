@@ -3,7 +3,10 @@ interface IGetMainData {
 }
 
 export interface IGetMainDataItem {
+  id: number;
   title: string;
   createdDate: string;
+  incidentDate: string;
   storeFileName: string;
+  mainText: string;
 }
