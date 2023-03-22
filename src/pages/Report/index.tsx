@@ -20,6 +20,7 @@ function Report() {
         {mainData.map((data, i) => (
           <Timeline
             key={i}
+            id={data.id}
             title={data.title}
             create_date={data.createdDate}
             storeFileName={data.storeFileName}
