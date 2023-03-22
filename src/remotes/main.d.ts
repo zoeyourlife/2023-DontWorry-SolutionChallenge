@@ -5,6 +5,7 @@ interface IGetMainData {
 export interface IGetMainDataItem {
   title: string;
   createdDate: string;
+  incidentDate: string;
   storeFileName: string;
   mainText: string;
 }
