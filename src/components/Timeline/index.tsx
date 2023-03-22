@@ -9,18 +9,28 @@ import styled from "styled-components";
 
 interface IProps {
   title: string;
-  create_date: string;
+  createdDate: string;
+  incidentDate: string;
   storeFileName: string;
   mainText: string;
 }
 
-function Timeline({ title, create_date, storeFileName, mainText }: IProps) {
+function Timeline({
+  title,
+  createdDate,
+  incidentDate,
+  storeFileName,
+  mainText,
+}: IProps) {
   return (
     <StyledTimelineList>
       <Link href={`/Main/Detail/$id값`}>
         <StyledTimelineContainer>
           <StyledTimelineItem>
-            <StyledDate>{create_date}</StyledDate>
+            <StyledDate>{incidentDate}</StyledDate>
+            <StyledCreatedDate>
+              date of writing: {createdDate}
+            </StyledCreatedDate>
             <StyledTitle
               initial="initial"
               animate="animate"
@@ -72,6 +82,11 @@ const StyledDate = styled.span`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
 `;
 
+const StyledCreatedDate = styled.span`
+  font-weight: ${({ theme }) => theme.fontWeight.light};
+  font-size: 0.8rem;
+`;
+
 const StyledTitle = styled(m.h3)`
   margin: 1rem 0 0.5rem 0;
 `;
@@ -84,6 +99,9 @@ const StyledSummary = styled(m.p)`
 const StyledTimelineItem = styled.div`
   position: relative;
   padding: 1.8rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+
   &:hover {
     cursor: pointer;
     transition: all 0.3s;
