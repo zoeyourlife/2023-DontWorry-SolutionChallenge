@@ -6,4 +6,5 @@ export interface IGetMainDataItem {
   title: string;
   createdDate: string;
   storeFileName: string;
+  mainText: string;
 }

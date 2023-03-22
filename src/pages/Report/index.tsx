@@ -23,6 +23,7 @@ function Report() {
             title={data.title}
             create_date={data.createdDate}
             storeFileName={data.storeFileName}
+            mainText={data.mainText}
           />
         ))}
       </StyledWrapper>

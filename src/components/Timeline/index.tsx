@@ -110,7 +110,7 @@ const StyledImg = styled(m.div)`
   position: relative;
   width: 100%;
   height: 100%;
-  margin: 1rem 0 0.5rem 0;
+  margin: 1rem 0 1rem 0;
   border-radius: ${({ theme }) => theme.borderRadius.imgCard};
   overflow: hidden;
 
