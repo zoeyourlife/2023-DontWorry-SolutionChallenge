@@ -34,6 +34,7 @@ export default App;
 
 export async function getinitialProps(context: NextPageContext) {
   const cookie = context.req ? context.req.headers.cookie : "";
+
   return {
     props: { cookie },
   };

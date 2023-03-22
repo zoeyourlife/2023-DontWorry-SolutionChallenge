@@ -1,5 +1,4 @@
 import axios from "axios";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useCallback, useState } from "react";
 import FormInput from "src/components/FormInput";
@@ -202,6 +201,7 @@ const StyledForm = styled.form`
   flex-direction: column;
   justify-content: center;
   margin-top: 4rem;
+  padding-bottom: 5.5rem;
 `;
 
 const StyledInputDiv = styled.div`
