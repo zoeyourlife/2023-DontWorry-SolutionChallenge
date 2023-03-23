@@ -66,6 +66,7 @@ const StyledModal = styled(m.div)<{ isOpen: boolean }>`
   position: fixed;
   width: 100%;
   height: 100vh;
+  top: 0;
   left: 0;
   display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
   justify-content: center;
@@ -103,7 +104,7 @@ const StyledModalMain = styled(m.div)`
   }
 
   z-index: 10001;
-  
+
   .link {
     align-self: center;
   }

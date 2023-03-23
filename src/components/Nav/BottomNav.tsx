@@ -2,6 +2,8 @@ import CreateIcon from "@mui/icons-material/Create";
 import HomeIcon from "@mui/icons-material/Home";
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 import Link from "next/link";
+import { useState } from "react";
+import Modal from "src/components/Modal";
 import useScroll from "src/hooks/useScroll";
 import styled, { css } from "styled-components";
 
@@ -12,34 +14,48 @@ interface IProps {
 
 function BottomNav({ selected }: IProps) {
   const { scrollDown, scrollTop } = useScroll();
+  const [showModal, setShowModal] = useState(false);
+
+  function onClickImageFolderPageBtn() {
+    setShowModal(!showModal);
+  }
 
   return (
-    <StyledBottomNavWrapper hide={scrollDown && !scrollTop}>
-      <Link href="/ImageFolder">
-        <StyledBtnWrapper>
+    <>
+      {showModal && (
+        <Modal
+          isOpen={showModal}
+          title="Would you like to see what you wrote image?"
+          content="In the meantime, you can see what you wrote image. Are you ready?"
+          path="/ImageFolder"
+        />
+      )}
+      <StyledBottomNavWrapper hide={scrollDown && !scrollTop}>
+        <StyledBtnWrapper onClick={onClickImageFolderPageBtn}>
           <StyledImageFolderPageBtn color={selected}>
             <PhotoLibraryIcon />
             <p>Images</p>
           </StyledImageFolderPageBtn>
         </StyledBtnWrapper>
-      </Link>
-      <Link href="/Main">
-        <StyledBtnWrapper>
-          <StyledHomePageBtn color={selected}>
-            <HomeIcon />
-            <p>Home</p>
-          </StyledHomePageBtn>
-        </StyledBtnWrapper>
-      </Link>
-      <Link href="/Main/Write">
-        <StyledBtnWrapper>
-          <StyledDontWorryPageBtn color={selected}>
-            <CreateIcon />
-            <p>Write</p>
-          </StyledDontWorryPageBtn>
-        </StyledBtnWrapper>
-      </Link>
-    </StyledBottomNavWrapper>
+
+        <Link href="/Main">
+          <StyledBtnWrapper>
+            <StyledHomePageBtn color={selected}>
+              <HomeIcon />
+              <p>Home</p>
+            </StyledHomePageBtn>
+          </StyledBtnWrapper>
+        </Link>
+        <Link href="/Main/Write">
+          <StyledBtnWrapper>
+            <StyledDontWorryPageBtn color={selected}>
+              <CreateIcon />
+              <p>Write</p>
+            </StyledDontWorryPageBtn>
+          </StyledBtnWrapper>
+        </Link>
+      </StyledBottomNavWrapper>
+    </>
   );
 }
 
