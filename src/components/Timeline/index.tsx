@@ -17,13 +17,13 @@ interface IProps {
 }
 
 function Timeline({
+  id,
   title,
-  createdDate,
   incidentDate,
+  createdDate,
   storeFileName,
   mainText,
 }: IProps) {
-function Timeline({ id, title, incidentDate, createdDate, storeFileName }: IProps) {
   return (
     <StyledTimelineList>
       <Link href={`/Main/Detail/${id}`}>

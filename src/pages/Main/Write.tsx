@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import Loading from "src/components/Common/Loading";
+import Modal from "src/components/Modal";
 import Nav from "src/components/Nav";
 import BottomNav from "src/components/Nav/BottomNav";
 import FormDate from "src/components/Write/Form/FormDate";
@@ -23,8 +24,8 @@ function Write() {
   const [incidentDate, setIncidentDate] = useState<string>("");
   const [mainText, setMainText] = useState<string>("");
   const [location, setLocation] = useState<string>("");
-  const [category, setCategory] = useState<string[]>();
-  const [files, setFiles] = useState<File>();
+  const [category, setCategory] = useState<string>("");
+  const [files, setFiles] = useState<string | Blob>(Object);
 
   const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -43,7 +44,7 @@ function Write() {
   };
 
   const onChangeCategory = (e: ChangeEvent<HTMLInputElement>) => {
-    setCategory([e.target.value]);
+    setCategory(e.target.value);
   };
 
   const onChangeFiles = (e: ChangeEvent<HTMLInputElement>) => {
@@ -63,8 +64,8 @@ function Write() {
     formData.append("category", category);
     formData.append("files", files);
 
-    if (files === undefined || files === null) {
-      formData.delete("files", files);
+    if (files === undefined) {
+      formData.delete("files");
     }
 
     axios
@@ -82,10 +83,25 @@ function Write() {
 
   const router = useRouter();
   const { register, handleSubmit } = useForm<IPostWriteData>();
+  const [showModal, setShowModal] = useState(false);
+
+  function onClickIUploadBtn() {
+    setShowModal(!showModal);
+  }
 
   return (
     <>
       <Nav />
+      {showModal && (
+        <Modal
+          isOpen={showModal}
+          title="Are you going to post a post?"
+          content="This article written now cannot be edited or deleted later. dontworry is blocking edits and deletes to be a stronger fence on your side
+          Please submit carefully before clicking submit.
+          thank you for your effort"
+          path="/Main"
+        />
+      )}
       <StyledWrapper>
         <h2>Write form</h2>
         <StyledHr />
@@ -114,7 +130,7 @@ function Write() {
             <FormImages {...register("files")} onChange={onChangeFiles} />
             <StyledBtnWrapper>
               <StyledBtnHover>
-                <StyledBtn type="submit">
+                <StyledBtn type="submit" onClick={onClickIUploadBtn}>
                   <SendIcon fontSize="small" />
                   <span>Send</span>
                 </StyledBtn>

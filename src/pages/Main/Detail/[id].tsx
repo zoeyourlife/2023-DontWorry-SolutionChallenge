@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useRef } from "react";
 import TodayDate from "src/components/Common/Date/TodayDate";
@@ -10,7 +11,6 @@ import MakePdf from "src/components/Pdf/MakePdf";
 import useGetMainById from "src/hooks/api/useGetMainById";
 import styled from "styled-components";
 
-//TODO: file 배열 타입 보고 map 돌기
 function Detail() {
   const {
     query: { id },
@@ -62,24 +62,25 @@ function Detail() {
           <ReportSubTitle number={4} title="Incident details" />
           <StyledContent>{post?.mainText}</StyledContent>
 
-          {post?.storeFileName ? null : (
+          {post?.storeFileName ? (
             <>
               <ReportSubTitle number={5} title="Attached photo" />
               <StyledImgWrapper>
                 <StyledImg>
-                  {/* {post.map((item) => (
-              <Image
-                src={item.}
-                alt="cardImg"
-                layout="fill"
-                sizes="13.5rem"
-                quality={100}
-              />
-            ))} */}
+                  {post?.storeFileName.map((i, index) => (
+                    <Image
+                      key={index}
+                      src={i}
+                      alt="cardImg"
+                      layout="fill"
+                      sizes="13.5rem"
+                      quality={100}
+                    />
+                  ))}
                 </StyledImg>
               </StyledImgWrapper>
             </>
-          )}
+          ) : null}
           <StyledTodayDateWrapper>
             <TodayDate />
           </StyledTodayDateWrapper>
