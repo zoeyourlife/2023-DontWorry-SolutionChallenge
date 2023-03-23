@@ -10,13 +10,11 @@ export const writeExplain: IType[] = [
   },
   {
     title: "Date",
-    subTitle:
-      "Please enter the date the incident occurred. If you can't remember the exact date, you don't have to enter it.",
+    subTitle: "Please enter the date the incident occurred.",
   },
   {
     title: "Tag",
-    subTitle:
-      "Who gives you a hard time? This is for sorting, so you don't have to type it.",
+    subTitle: "Who gives you a hard time?",
   },
   {
     title: "Summary",
@@ -29,7 +27,7 @@ export const writeExplain: IType[] = [
   {
     title: "Images",
     subTitle:
-      "If you have a picture related to it, you can post it. To be a more reliable source, dontworry gets the location of the image.",
+      "If you have a picture related to it, you can post it. This isn't required.",
   },
   {
     title: "Video",
