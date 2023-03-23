@@ -3,8 +3,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 import Link from "next/link";
 import { useState } from "react";
+import Modal from "src/components/Modal";
 import useScroll from "src/hooks/useScroll";
-import Modal from "../Modal";
 import styled, { css } from "styled-components";
 
 interface IProps {
@@ -18,7 +18,6 @@ function BottomNav({ selected }: IProps) {
 
   function onClickImageFolderPageBtn() {
     setShowModal(!showModal);
-    console.log(showModal);
   }
 
   return (
