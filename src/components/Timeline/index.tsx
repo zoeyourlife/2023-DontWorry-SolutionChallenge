@@ -8,6 +8,7 @@ import {
 import styled from "styled-components";
 
 interface IProps {
+  id: number;
   title: string;
   createdDate: string;
   incidentDate: string;
@@ -22,9 +23,10 @@ function Timeline({
   storeFileName,
   mainText,
 }: IProps) {
+function Timeline({ id, title, incidentDate, createdDate, storeFileName }: IProps) {
   return (
     <StyledTimelineList>
-      <Link href={`/Main/Detail/$id값`}>
+      <Link href={`/Main/Detail/${id}`}>
         <StyledTimelineContainer>
           <StyledTimelineItem>
             <StyledDate>{incidentDate}</StyledDate>
