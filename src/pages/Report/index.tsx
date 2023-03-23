@@ -21,8 +21,10 @@ function Report() {
             key={i}
             id={data.id}
             title={data.title}
-            create_date={data.createdDate}
+            incidentDate={data.incidentDate}
+            createdDate={data.createdDate}
             storeFileName={data.storeFileName}
+            mainText={data.mainText}
           />
         ))}
       </StyledWrapper>

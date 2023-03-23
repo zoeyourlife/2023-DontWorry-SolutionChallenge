@@ -1,4 +1,5 @@
 import { m } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import {
   defaultFadeInLeftVariants,
@@ -9,17 +10,29 @@ import styled from "styled-components";
 interface IProps {
   id: number;
   title: string;
-  create_date: string;
+  createdDate: string;
+  incidentDate: string;
   storeFileName: string;
+  mainText: string;
 }
 
-function Timeline({ id, title, create_date, storeFileName }: IProps) {
+function Timeline({
+  title,
+  createdDate,
+  incidentDate,
+  storeFileName,
+  mainText,
+}: IProps) {
+function Timeline({ id, title, incidentDate, createdDate, storeFileName }: IProps) {
   return (
     <StyledTimelineList>
       <Link href={`/Main/Detail/${id}`}>
         <StyledTimelineContainer>
           <StyledTimelineItem>
-            <StyledDate>{create_date}</StyledDate>
+            <StyledDate>{incidentDate}</StyledDate>
+            <StyledCreatedDate>
+              date of writing: {createdDate}
+            </StyledCreatedDate>
             <StyledTitle
               initial="initial"
               animate="animate"
@@ -28,37 +41,27 @@ function Timeline({ id, title, create_date, storeFileName }: IProps) {
             >
               {title}
             </StyledTitle>
-            <StyledSummary
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              variants={defaultFadeInUpVariants}
-            >
-              {storeFileName}
-            </StyledSummary>
-          </StyledTimelineItem>
-        </StyledTimelineContainer>
-      </Link>
-      <Link href={`/Main/Detail/${id}`}>
-        <StyledTimelineContainer>
-          <StyledTimelineItem>
-            <StyledDate>{create_date}</StyledDate>
-            <StyledImg
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              variants={defaultFadeInUpVariants}
-            >
-              {/*               
-              <Image
-                src={storeFileName}
-                alt="cardImg"
-                width={100}
-                height={100}
-                layout="responsive"
-                quality={100}
-              /> */}
-            </StyledImg>
+            {storeFileName === null ? (
+              <StyledSummary
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                variants={defaultFadeInUpVariants}
+              >
+                {mainText}
+              </StyledSummary>
+            ) : (
+              <StyledImg>
+                <Image
+                  src={storeFileName}
+                  alt="cardImg"
+                  width={100}
+                  height={100}
+                  layout="responsive"
+                  quality={100}
+                />
+              </StyledImg>
+            )}
           </StyledTimelineItem>
         </StyledTimelineContainer>
       </Link>
@@ -81,6 +84,11 @@ const StyledDate = styled.span`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
 `;
 
+const StyledCreatedDate = styled.span`
+  font-weight: ${({ theme }) => theme.fontWeight.light};
+  font-size: 0.8rem;
+`;
+
 const StyledTitle = styled(m.h3)`
   margin: 1rem 0 0.5rem 0;
 `;
@@ -93,6 +101,9 @@ const StyledSummary = styled(m.p)`
 const StyledTimelineItem = styled.div`
   position: relative;
   padding: 1.8rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+
   &:hover {
     cursor: pointer;
     transition: all 0.3s;
@@ -119,7 +130,11 @@ const StyledImg = styled(m.div)`
   position: relative;
   width: 100%;
   height: 100%;
-  margin: 1rem 0 0.5rem 0;
+  margin: 1rem 0 1rem 0;
   border-radius: ${({ theme }) => theme.borderRadius.imgCard};
   overflow: hidden;
+
+  span {
+    border-radius: ${({ theme }) => theme.borderRadius.imgCard};
+  }
 `;

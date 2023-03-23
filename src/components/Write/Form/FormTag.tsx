@@ -13,6 +13,7 @@ function FormTag({ onChange }: IProps) {
   return (
     <>
       <Title
+        essential
         title={writeExplain[2].title}
         subTitle={writeExplain[2].subTitle}
       />

@@ -14,7 +14,7 @@ function FormImages({ onChange }: IProps) {
         title={writeExplain[5].title}
         subTitle={writeExplain[5].subTitle}
       />
-      <ImageUpload onChange={onChange} required={true} />
+      <ImageUpload onChange={onChange} required={false} />
     </>
   );
 }

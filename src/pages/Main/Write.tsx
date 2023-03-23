@@ -3,6 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
+import Loading from "src/components/Common/Loading";
 import Nav from "src/components/Nav";
 import BottomNav from "src/components/Nav/BottomNav";
 import FormDate from "src/components/Write/Form/FormDate";
@@ -54,11 +55,6 @@ function Write() {
   };
 
   function onSubmit() {
-    if (files === undefined) {
-      alert("I can't find the image");
-      return;
-    }
-
     const formData = new FormData();
     formData.append("title", title);
     formData.append("incidentDate", incidentDate);
@@ -66,6 +62,10 @@ function Write() {
     formData.append("location", location);
     formData.append("category", category);
     formData.append("files", files);
+
+    if (files === undefined || files === null) {
+      formData.delete("files", files);
+    }
 
     axios
       .post<{}, IPostWriteData>(`${API_BASED_URL}/write`, formData, {
@@ -75,6 +75,7 @@ function Write() {
         },
       })
       .then(() => {
+        <Loading />;
         router.push("/");
       });
   }
@@ -113,8 +114,10 @@ function Write() {
             <FormImages {...register("files")} onChange={onChangeFiles} />
             <StyledBtnWrapper>
               <StyledBtnHover>
-                <SendIcon fontSize="small" />
-                <StyledBtn type="submit">Send</StyledBtn>
+                <StyledBtn type="submit">
+                  <SendIcon fontSize="small" />
+                  <span>Send</span>
+                </StyledBtn>
               </StyledBtnHover>
             </StyledBtnWrapper>
           </StyledProjectWrapper>
@@ -171,6 +174,15 @@ const StyledBtnHover = styled.div`
 `;
 
 const StyledBtn = styled.button`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   margin-left: 0.3rem;
+  min-width: 10rem;
+
+  span {
+    margin-left: 0.3rem;
+  }
 `;
