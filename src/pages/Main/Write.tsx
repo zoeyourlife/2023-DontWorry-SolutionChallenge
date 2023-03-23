@@ -24,7 +24,7 @@ function Write() {
   const [mainText, setMainText] = useState<string>("");
   const [location, setLocation] = useState<string>("");
   const [category, setCategory] = useState<string[]>();
-  const [files, setFiles] = useState<File | null>(null);
+  const [files, setFiles] = useState<File>();
 
   const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -55,11 +55,6 @@ function Write() {
   };
 
   function onSubmit() {
-    if (files === undefined) {
-      alert("I can't find the image");
-      return;
-    }
-
     const formData = new FormData();
     formData.append("title", title);
     formData.append("incidentDate", incidentDate);
@@ -67,6 +62,10 @@ function Write() {
     formData.append("location", location);
     formData.append("category", category);
     formData.append("files", files);
+
+    if (files === undefined || files === null) {
+      formData.delete("files", files);
+    }
 
     axios
       .post<{}, IPostWriteData>(`${API_BASED_URL}/write`, formData, {
