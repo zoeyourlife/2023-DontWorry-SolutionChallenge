@@ -1,9 +1,11 @@
 import Loading from "src/components/Common/Loading";
 import Nav from "src/components/Nav";
 import BottomNav from "src/components/Nav/BottomNav";
+import Search from "src/components/Search";
 import Timeline from "src/components/Timeline";
 import useGetMain from "src/hooks/api/useGetMain";
 import styled from "styled-components";
+
 
 function Report() {
   const { mainData, isLoading } = useGetMain();
@@ -16,6 +18,7 @@ function Report() {
     <>
       <Nav />
       <StyledWrapper>
+        <Search />
         {mainData.map((data, i) => (
           <Timeline
             key={i}
