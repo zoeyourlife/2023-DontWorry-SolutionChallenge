@@ -5,11 +5,12 @@ import BottomNav from "src/components/Nav/BottomNav";
 import Search from "src/components/Search";
 import Timeline from "src/components/Timeline";
 import useGetMain from "src/hooks/api/useGetMain";
+import {IGetMainDataItem } from "src/remotes/main";
 import styled from "styled-components";
 
 function Report() {
   const { mainData, isLoading } = useGetMain();
-  const [searchData, setSearchData] = useState([]);
+  const [searchData, setSearchData] = useState<IGetMainDataItem[]>([]);
 
   if (isLoading) {
     return <Loading />;
