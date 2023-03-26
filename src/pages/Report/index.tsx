@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Loading from "src/components/Common/Loading";
 import Nav from "src/components/Nav";
 import BottomNav from "src/components/Nav/BottomNav";
@@ -6,19 +7,41 @@ import Timeline from "src/components/Timeline";
 import useGetMain from "src/hooks/api/useGetMain";
 import styled from "styled-components";
 
-
 function Report() {
   const { mainData, isLoading } = useGetMain();
+  const [searchData, setSearchData] = useState([]);
 
   if (isLoading) {
     return <Loading />;
+  }
+  if (searchData.length !== 0) {
+    return (
+      <>
+        <Nav />
+        <StyledWrapper>
+          <Search />
+          {searchData.map((data, i) => (
+            <Timeline
+              key={i}
+              id={data.id}
+              title={data.title}
+              incidentDate={data.incidentDate}
+              createdDate={data.createdDate}
+              storeFileName={data.storeFileName}
+              mainText={data.mainText}
+            />
+          ))}
+        </StyledWrapper>
+        <BottomNav selected="Home" />
+      </>
+    );
   }
 
   return (
     <>
       <Nav />
       <StyledWrapper>
-        <Search />
+        <Search searchSet={setSearchData} />
         {mainData.map((data, i) => (
           <Timeline
             key={i}

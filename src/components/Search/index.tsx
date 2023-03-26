@@ -1,19 +1,46 @@
 import SearchIcon from "@mui/icons-material/Search";
-import React from "react";
+import axios from "axios";
+import React, { ChangeEvent, useState, FormEvent } from "react";
+import { API_BASED_URL } from "src/constants/apiUrl";
 import styled from "styled-components";
 
-function Search() {
+function Search({ searchSet }: any) {
+  const [searchData, setSearchData] = useState<string>("");
+  const [searchOption, setSearchOption] = useState<string>("title");
+  const onChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchData(e.target.value);
+    console.log(searchData);
+  };
+  const onChangeSearchOption = (e: ChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value);
+    setSearchOption(e.target.value)
+  };
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(searchData);
+    axios
+      .get(`${API_BASED_URL}/main/${searchOption}/${searchData}`)
+      .then((res) => {
+        console.log(res.data);
+        searchSet(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+
+        alert("Search Err : " + e.response.status);
+      });
+  };
   return (
     <StyledSearch>
-      <StyledSearchBar>
-        <StyledInput />
-        <div>
+      <StyledSearchBar onSubmit={onSubmit}>
+        <StyledInput onChange={onChangeSearch} value={searchData} />
+        <button type="submit">
           <SearchIcon />
-        </div>
+        </button>
       </StyledSearchBar>
-      <select className="option">
-        <option>title</option>
-        <option>category</option>
+      <select className="option" onChange={onChangeSearchOption}>
+        <option value="title">title</option>
+        <option value="category">category</option>
       </select>
     </StyledSearch>
   );
@@ -45,7 +72,7 @@ const StyledSearch = styled.div`
     }
   }
 `;
-const StyledSearchBar = styled.div`
+const StyledSearchBar = styled.form`
   display: flex;
   background-color: ${({ theme }) => theme.color.grey500};
   width: 70%;
