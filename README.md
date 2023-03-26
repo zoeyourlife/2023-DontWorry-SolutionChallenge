@@ -2,11 +2,11 @@
 
 <div align=center>
 
-# <b>Don't Worry</b><p style="font-weight: 100; font-size: 17px">2023 Solution Challenge
-
-</p></img>
+# <b>Don't Worry</b><p style="font-weight: 100; font-size: 17px">2023 Solution Challenge</p>
 
 </div>
+
+<br/><br/><br/>
 
 ## 👊🏻 Don't Worry is a service for
 
@@ -112,8 +112,7 @@ In addition, various pages such as help page, law page, and recording function f
 
 **DontWorry** is applying the [MIT License](https://opensource.org/licenses/MIT).
 
-<br/>
-<hr />
+<br/><br/>
+
 <p align="center">
-<img width="11.5%" alt="GDSC SKHU LOGO - rectangle" src="https://user-images.githubusercontent.com/63100352/227494775-64bbbcc8-5928-441a-a341-05c9b8367652.png">
-</p>
+<img width="10%" alt="GDSC SKHU LOGO - rectangle" src="https://user-images.githubusercontent.com/63100352/227494775-64bbbcc8-5928-441a-a341-05c9b8367652.png">
