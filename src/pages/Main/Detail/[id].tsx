@@ -153,16 +153,16 @@ const StyledTodayDateWrapper = styled.div`
 
 const StyledBtnWrapper = styled.div`
   position: relative;
-  min-height: 2rem;
+  min-height: 11rem;
   height: auto;
 `;
 
 const StyledBtn = styled.button`
   position: absolute;
   right: 0;
-  bottom: 0;
   margin: 1rem 1rem;
   padding: 0.3rem 0.8rem;
+
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   background-color: ${({ theme }) => theme.color.blueGreen};
   border-radius: ${({ theme }) => theme.borderRadius.imgCard};

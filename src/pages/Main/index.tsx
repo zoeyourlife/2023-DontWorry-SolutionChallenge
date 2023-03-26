@@ -68,6 +68,7 @@ const StyledBalloonWrapper = styled.div`
 const StyledBtnWrapper = styled.div`
   text-align: center;
   margin-top: 1.3rem;
+  margin-bottom: 5.5rem;
 `;
 
 const StyledCarouselWrapper = styled.div`
