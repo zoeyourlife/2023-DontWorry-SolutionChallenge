@@ -148,6 +148,7 @@ export default Write;
 
 const StyledWrapper = styled.div`
   padding: 1rem;
+  padding-bottom: 5.5rem;
 `;
 
 const StyledForm = styled.form`
