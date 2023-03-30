@@ -2,13 +2,15 @@
 
 <div align=center>
 
-# <b>Don't Worry</b><p style="font-weight: 100; font-size: 17px">2023 Solution Challenge</p>
+# <b>DontWorry</b><p style="font-weight: 100; font-size: 17px">2023 Solution Challenge</p>
 
 <a href="#Introduction">Introduction</a> •
 <a href="#getting-started">Getting Started</a> •
+<a href="#Pages">Pages and features</a> •
 <a href="#demo">Demo</a> •
 <a href="#backend-repo">Backend repo</a> •
-<a href="#contributors">Contributors</a>
+<a href="#contributors">Contributors</a> •
+<a href="#license">License</a>
 
 </div>
 
@@ -16,12 +18,28 @@
 
 <div id="Introduction">
 
-## 👊🏻 Don't Worry is a service for
+## 👊🏻 DontWorry is a service for
 
 </div>
 
+<div style="display: flex; margin: 1.2rem 0;">
+
+<div>
+<img src="https://user-images.githubusercontent.com/63100352/228765576-576e8ec1-71de-4326-936d-4e17fe45675b.png" alt="img" width="100rem" />
+</div>
+
+<div style="margin-left: 2rem">
 1. To solve school violence under the theme of UN Goal 16
+
+<p>
 2. To help victims of school violence
+</p>
+
+</div>
+
+</div>
+
+<br />
 
 ## Getting Started
 
@@ -29,13 +47,21 @@
 
 <h3>
 
-[`https://www.dontworry.com`](https://2023-dont-worry-solution-challenge.vercel.app/Signin)
+**[`https://www.dontworry.com`](https://2023-dont-worry-solution-challenge.vercel.app/Signin)**
 
 </h3>
 
+Dontworry is currently being serviced at the above URL.
+
 </div>
 
-## Demo
+<br />
+
+<div id="Pages">
+
+## Pages and features
+
+</div>
 
 ### Signup, Signin
 
@@ -126,17 +152,31 @@ Click on your country to tell you where to get help in that country.
 
 In addition, various pages such as help page, law page, and recording function for each country are organized and developed.
 
+<br/>
+
+## Demo
+
+[`DontWorry - GDSC Solution Challenge 2023`](https://www.youtube.com/watch?v=ekCQYyNcRmM)
+
+This is DontWorry submission video.
+
+<br />
+
 ## Backend repo
 
-[2023-DontWorry-SolutionChallenge-BackEnd](https://github.com/GDSC-SKHU/2023-DontWorry-SolutionChallenge-BackEnd)
+[`2023-DontWorry-SolutionChallenge-BackEnd`](https://github.com/GDSC-SKHU/2023-DontWorry-SolutionChallenge-BackEnd)
 
 The project's backend repo can be found here.
+
+<br />
 
 ## Contributors
 
 | <img src="https://avatars.githubusercontent.com/u/50818389?v=4" width="150px" /> | <img src="https://avatars.githubusercontent.com/u/38286505?v=4" width="150px" /> | <img src="https://user-images.githubusercontent.com/63100352/227492140-86b2de5a-fc04-41c5-a359-cc587a89fba1.jpg" width="150px" /> | <img src="https://avatars.githubusercontent.com/u/80959635?v=4" width="150px" /> |
 | :------------------------------------------------------------------------------: | :------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------: |
 |                  FE: [jaegwan kim](https://github.com/jaegwans)                  |                FE: [jaehun choi](https://github.com/zoeyourlife)                 |                                         FE: [seulhee han](https://github.com/hanseulhee)                                          |               BE: [myoungjin seo](https://github.com/myoungjinseo)               |
+
+<br/>
 
 ## License
 
