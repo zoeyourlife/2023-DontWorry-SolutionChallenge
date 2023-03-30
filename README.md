@@ -22,20 +22,15 @@
 
 </div>
 
-<div style="display: flex; margin: 1.2rem 0;">
+<div style="display: flex; flex-direction: column;">
 
-<div>
-<img src="https://user-images.githubusercontent.com/63100352/228765576-576e8ec1-71de-4326-936d-4e17fe45675b.png" alt="img" width="100rem" />
-</div>
-
-<div style="margin-left: 2rem">
+<p>
 1. To solve school violence under the theme of UN Goal 16
+</p>
 
 <p>
 2. To help victims of school violence
 </p>
-
-</div>
 
 </div>
 
@@ -156,7 +151,7 @@ In addition, various pages such as help page, law page, and recording function f
 
 ## Demo
 
-[`DontWorry - GDSC Solution Challenge 2023`](https://www.youtube.com/watch?v=ekCQYyNcRmM)
+**[`DontWorry - GDSC Solution Challenge 2023`](https://www.youtube.com/watch?v=ekCQYyNcRmM)**
 
 This is DontWorry submission video.
 
@@ -164,7 +159,7 @@ This is DontWorry submission video.
 
 ## Backend repo
 
-[`2023-DontWorry-SolutionChallenge-BackEnd`](https://github.com/GDSC-SKHU/2023-DontWorry-SolutionChallenge-BackEnd)
+**[`2023-DontWorry-SolutionChallenge-BackEnd`](https://github.com/GDSC-SKHU/2023-DontWorry-SolutionChallenge-BackEnd)**
 
 The project's backend repo can be found here.
 
