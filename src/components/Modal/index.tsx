@@ -101,6 +101,7 @@ const StyledModalMain = styled(m.div)`
   p {
     font-weight: ${({ theme }) => theme.fontWeight.light};
     line-height: 1.3rem;
+    text-align: center;
   }
 
   z-index: 10001;
