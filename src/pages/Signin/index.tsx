@@ -23,34 +23,12 @@ function Signin() {
   };
 
   const onSubmit = useCallback(
-    // eslint-disable-next-line no-undef
     async (e: React.FormEvent<HTMLFormElement>) => {
-      // const data = {
-      //   userId: userId,
-      //   password: password,
-      // };
       e.preventDefault();
-      //     fetch(`${API_BASED_URL}/login`,{
-      //       method: "POST",
-      //       credentials : 'include',
-      //       headers:{
-      //         "Content-Type" : "application/json; charset=utf-8",
-      //       },
-      //       redirect: 'follow',
-      //       body: JSON.stringify({userId, password})
-      //     }).then((res)=> console.log(res))
-      //     .catch((err)=>{
-      //       console.log(err);
-      //       alert("Occur Error");
-      //     })
-      //   },[userId, password]
-      // )
-
       {
         await axios
           .post(
             `${API_BASED_URL}/login`,
-            // data,
             {
               userId: userId,
               password: password,
@@ -71,11 +49,8 @@ function Signin() {
           });
       }
     },
-    // [userId, password]
     [userId, password, router],
   );
-
-  // await axios.get(`${API_BASED_URL}/user`)
 
   return (
     <>

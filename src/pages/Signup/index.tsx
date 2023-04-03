@@ -1,28 +1,29 @@
 import axios from "axios";
 import { useRouter } from "next/router";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import Loading from "src/components/Common/Loading";
 import FormInput from "src/components/FormInput";
+import Modal from "src/components/Modal";
 import BackBtnNav from "src/components/Nav/BackBtnNav";
 import SubmitBtn from "src/components/SubmitBtn";
 import { API_BASED_URL } from "src/constants/apiUrl";
 import styled from "styled-components";
 
 function Signup() {
-  // id, pw, email check
   const router = useRouter();
   const [userId, setUserId] = useState<string>("");
   const [password, setPassWord] = useState<string>("");
   const [email, setEmail] = useState<string>("");
 
-  // error message state
   const [userIdMessage, setUserIdMessage] = useState<string>("");
   const [passwordMessage, setPasswordMessage] = useState<string>("");
   const [emailMessage, setEmailMessage] = useState<string>("");
 
-  // validity test
   const [isUserId, setIsUserId] = useState<boolean>(false);
   const [isPassword, setIsPassword] = useState<boolean>(false);
   const [isEmail, setIsEmail] = useState<boolean>(false);
+
+  const [showErrModal, setShowErrModal] = useState(false);
 
   const onChangeUserId = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -80,6 +81,9 @@ function Signup() {
 
   const onSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
+      function errorModal() {
+        setShowErrModal(!showErrModal);
+      }
       e.preventDefault();
       try {
         await axios
@@ -89,26 +93,27 @@ function Signup() {
             email: email,
           })
           .then((res) => {
-            console.log("response:", res);
             if (res.status === 200) {
-              console.log("회원가입 완료");
-              // 모달창 구현시 사용할 기능
-              // setPopup({
-              //   open: true,
-              //   title: "Confirm",
-              //   message: "Join Success!",
-              // })
               router.push("/Signin");
-            } // ID 중복 가입시? 이 부분도 고려예정.
+            }
           });
       } catch (err) {
+        errorModal();
         console.error(err);
       }
     },
-    [email, userId, password, router],
+    [email, userId, password, router, showErrModal],
   );
   return (
     <>
+      {showErrModal && (
+        <Modal
+          isOpen={showErrModal}
+          title="Occur Error"
+          content="Please rewrite your ID or PW"
+          path="/Signup"
+        />
+      )}
       <BackBtnNav />
       <StyledTextDiv>
         <StyledPageTitleH1>DontWorry</StyledPageTitleH1>
@@ -206,11 +211,6 @@ const StyledForm = styled.form`
 
 const StyledInputDiv = styled.div`
   margin-top: 4rem;
-`;
-
-const StyledInputTitleLabel = styled.label`
-  padding: 1rem 0 1rem 2rem;
-  color: ${({ theme }) => theme.color.grey100};
 `;
 
 const StyledButtonDiv = styled.div`
