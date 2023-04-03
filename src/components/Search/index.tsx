@@ -13,7 +13,7 @@ function Search({ searchSet }: any) {
   };
   const onChangeSearchOption = (e: ChangeEvent<HTMLSelectElement>) => {
     console.log(e.target.value);
-    setSearchOption(e.target.value)
+    setSearchOption(e.target.value);
   };
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,7 +27,11 @@ function Search({ searchSet }: any) {
       .catch((e) => {
         console.log(e);
 
-        alert("Search Err : " + e.response.status);
+        alert(
+          "Search Err " +
+            e.response.status +
+            "\n No matching posts were found. ",
+        );
       });
   };
   return (
