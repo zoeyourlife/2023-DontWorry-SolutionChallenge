@@ -1,7 +1,11 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-function SelectCountry() {
+interface IProps {
+  pageName: string;
+}
+
+function SelectCountry({ pageName }: IProps) {
   const router = useRouter();
 
   const country = [
@@ -15,7 +19,7 @@ function SelectCountry() {
     <StyledWrapper>
       <StyledSelect
         onChange={(e) => {
-          router.push(`/DontWorry/Help/${e.target.value}`);
+          router.push(`/DontWorry/${pageName}/${e.target.value}`);
         }}
         defaultValue={"country" || ""}
       >
