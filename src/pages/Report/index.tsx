@@ -70,6 +70,7 @@ const StyledBack = styled.button`
   background-color: ${({ theme }) => theme.color.borderGrey};
   width: 100%;
   height: 3.25rem;
+  margin: 1rem 0rem;
   display: flex;
   justify-content: center;
   align-items: center;
