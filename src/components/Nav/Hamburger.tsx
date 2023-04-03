@@ -27,7 +27,7 @@ function HamburgerNav() {
             </Link>
           </StyledListItem>
           <StyledListItem>
-            <Link href="/DontWorry/Law">
+            <Link href="/DontWorry/Law/USA">
               <StyledItemWidth>Law</StyledItemWidth>
             </Link>
           </StyledListItem>

@@ -26,7 +26,7 @@ function Help() {
       <Nav />
       <StyledHelp>
         <StyledSelectWrapper>
-          <SelectCountry />
+          <SelectCountry pageName={"Help"} />
         </StyledSelectWrapper>
         <StyledTable
           initial="initial"
