@@ -7,15 +7,17 @@ import styled from "styled-components";
 function Search({ searchSet }: any) {
   const [searchData, setSearchData] = useState<string>("");
   const [searchOption, setSearchOption] = useState<string>("title");
-  const onChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
+  function onChangeSearch(e: ChangeEvent<HTMLInputElement>) {
     setSearchData(e.target.value);
     console.log(searchData);
-  };
-  const onChangeSearchOption = (e: ChangeEvent<HTMLSelectElement>) => {
+  }
+
+  function onChangeSearchOption(e: ChangeEvent<HTMLSelectElement>) {
     console.log(e.target.value);
     setSearchOption(e.target.value);
-  };
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  }
+
+  function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log(searchData);
     axios
@@ -33,7 +35,8 @@ function Search({ searchSet }: any) {
             "\n No matching posts were found. ",
         );
       });
-  };
+  }
+
   return (
     <StyledSearch>
       <StyledSearchBar onSubmit={onSubmit}>
