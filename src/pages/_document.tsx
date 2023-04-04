@@ -42,7 +42,11 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <meta charSet="utf-8" />
-
+          {/* Google Font */}
+          <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700&display=swap"
+            rel="stylesheet"
+          />
           {/* google analytics */}
           <script
             async
