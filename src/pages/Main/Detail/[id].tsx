@@ -66,21 +66,15 @@ function Detail() {
             <>
               <ReportSubTitle number={5} title="Attached photo" />
               <StyledImgWrapper>
-                <StyledImg>
-                  {post?.storeFileName.map((i, index) => (
-                    <Image
-                      key={index}
-                      src={i}
-                      alt="cardImg"
-                      layout="fill"
-                      sizes="13.5rem"
-                      quality={100}
-                    />
-                  ))}
-                </StyledImg>
+                {post?.storeFileName.map((i, index) => (
+                  <StyledImg key={index}>
+                    <Image src={i} alt="cardImg" layout="fill" quality={100} />{" "}
+                  </StyledImg>
+                ))}
               </StyledImgWrapper>
             </>
           ) : null}
+
           <StyledTodayDateWrapper>
             <TodayDate />
           </StyledTodayDateWrapper>

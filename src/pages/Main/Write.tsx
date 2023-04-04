@@ -3,7 +3,6 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
-import Loading from "src/components/Common/Loading";
 import Modal from "src/components/Modal";
 import Nav from "src/components/Nav";
 import BottomNav from "src/components/Nav/BottomNav";
@@ -25,7 +24,7 @@ function Write() {
   const [mainText, setMainText] = useState<string>("");
   const [location, setLocation] = useState<string>("");
   const [category, setCategory] = useState<string>("");
-  const [files, setFiles] = useState<string | Blob>(Object);
+  const [files, setFiles] = useState<FileList>();
 
   const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -50,34 +49,36 @@ function Write() {
   const onChangeFiles = (e: ChangeEvent<HTMLInputElement>) => {
     const formData = new FormData();
     const target = e.currentTarget;
-    const files = (target.files as FileList)[0];
-    formData.append("files", e.currentTarget.value[0]);
+    const files = target.files as FileList;
+
+    for (let i = 0; i <= files.length - 1; i++) {
+      formData.append("files", files[i]);
+    }
+
     setFiles(files);
   };
 
   function onSubmit() {
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("incidentDate", incidentDate);
-    formData.append("mainText", mainText);
-    formData.append("location", location);
-    formData.append("category", category);
-    formData.append("files", files);
-
-    if (files === undefined) {
-      formData.delete("files");
-    }
-
     axios
-      .post<{}, IPostWriteData>(`${API_BASED_URL}/write`, formData, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "multipart/form-data",
+      .post<{}, IPostWriteData>(
+        `${API_BASED_URL}/write`,
+        {
+          title,
+          incidentDate,
+          mainText,
+          location,
+          category,
+          files,
         },
-      })
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        },
+      )
       .then(() => {
-        <Loading />;
-        router.push("/");
+        router.push("/Main");
       });
   }
 
